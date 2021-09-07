@@ -2,7 +2,7 @@
 using Universe;
 using Universe.Session;
 
-namespace EngineCore
+namespace Engine
 {
     public class LocalGameServer: IGameServer
     {

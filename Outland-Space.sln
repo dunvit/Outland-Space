@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClient", "Outla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceUniverse", "OutlandSpaceUniverse\OutlandSpaceUniverse.csproj", "{A0AE8B02-1F8C-482A-91C1-F5371A8BBFC2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceTests", "OutlandSpaceTests\OutlandSpaceTests.csproj", "{089FAF5F-161E-4DD7-9C24-EE9D40B6B38B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DDD574EA-A227-4E46-A28C-B47C41479971}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{A0AE8B02-1F8C-482A-91C1-F5371A8BBFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0AE8B02-1F8C-482A-91C1-F5371A8BBFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0AE8B02-1F8C-482A-91C1-F5371A8BBFC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{089FAF5F-161E-4DD7-9C24-EE9D40B6B38B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{089FAF5F-161E-4DD7-9C24-EE9D40B6B38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{089FAF5F-161E-4DD7-9C24-EE9D40B6B38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{089FAF5F-161E-4DD7-9C24-EE9D40B6B38B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDD574EA-A227-4E46-A28C-B47C41479971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDD574EA-A227-4E46-A28C-B47C41479971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDD574EA-A227-4E46-A28C-B47C41479971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDD574EA-A227-4E46-A28C-B47C41479971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
