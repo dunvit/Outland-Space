@@ -6,7 +6,7 @@ namespace Universe
     {
         //GameSession Initialization(string scenario, bool isActive = true);
 
-        SessionDataDto RefreshGameSession(int id);
+        IGameSessionData RefreshGameSession(int id);
 
         void ResumeSession(int id);
 
@@ -16,6 +16,6 @@ namespace Universe
 
         int GetTurn(int sessionId);
 
-        void SessionInitialization(int sessionId = -1);
+        IGameSessionData SessionInitialization(int sessionId = -1);
     }
 }

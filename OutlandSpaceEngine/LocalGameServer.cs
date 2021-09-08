@@ -7,40 +7,52 @@ namespace Engine
 {
     public class LocalGameServer: IGameServer
     {
-        private readonly Dictionary<int, SessionDataDto> _sessions = new Dictionary<int, SessionDataDto>();
+        private readonly Dictionary<int, IGameSessionData> _sessions = new Dictionary<int, IGameSessionData>();
 
-        public SessionDataDto RefreshGameSession(int id)
+        public IGameSessionData RefreshGameSession(int sessionId)
         {
-            throw new NotImplementedException();
+            Validation(sessionId);
+
+            return _sessions[sessionId];
         }
 
-        public void ResumeSession(int id)
+        public void ResumeSession(int sessionId)
         {
-            throw new NotImplementedException();
+            Validation(sessionId);
         }
 
-        public void PauseSession(int id)
+        public void PauseSession(int sessionId)
         {
-            throw new NotImplementedException();
+            Validation(sessionId);
         }
 
         public void Command(int sessionId, string command)
         {
-            throw new NotImplementedException();
+            Validation(sessionId);
         }
 
         public int GetTurn(int sessionId)
         {
-            throw new NotImplementedException();
+            Validation(sessionId);
+
+            return _sessions[sessionId].Turn;
         }
 
-        public void SessionInitialization(int sessionId = -1)
+        public IGameSessionData SessionInitialization(int sessionId = -1)
         {
-            if (sessionId == -1) sessionId = OutlandSpaceCommon.RandomGenerator.GetId();
+            var session = SessionFactory.ProduceSession(sessionId);
 
-            _sessions.Add(sessionId, new SessionDataDto());
+            _sessions.Add(session.Id, session);
 
-            throw new NotImplementedException();
+            return session;
+        }
+
+        private void Validation(int sessionId)
+        {
+            if (_sessions.ContainsKey(sessionId) == false)
+            {
+                throw new InvalidOperationException();
+            }
         }
     }
 }
