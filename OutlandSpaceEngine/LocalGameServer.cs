@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Universe;
 using Universe.Session;
 
@@ -6,6 +7,8 @@ namespace Engine
 {
     public class LocalGameServer: IGameServer
     {
+        private readonly Dictionary<int, SessionDataDto> _sessions = new Dictionary<int, SessionDataDto>();
+
         public SessionDataDto RefreshGameSession(int id)
         {
             throw new NotImplementedException();
@@ -33,7 +36,10 @@ namespace Engine
 
         public void SessionInitialization(int sessionId = -1)
         {
-            
+            if (sessionId == -1) sessionId = OutlandSpaceCommon.RandomGenerator.GetId();
+
+            _sessions.Add(sessionId, new SessionDataDto());
+
             throw new NotImplementedException();
         }
     }

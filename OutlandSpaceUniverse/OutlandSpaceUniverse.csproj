@@ -5,4 +5,8 @@
     <RootNamespace>Universe</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OutlandSpaceCommon\OutlandSpaceCommon.csproj" />
+  </ItemGroup>
+
 </Project>

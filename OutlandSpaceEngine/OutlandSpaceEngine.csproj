@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OutlandSpaceCommon\OutlandSpaceCommon.csproj" />
     <ProjectReference Include="..\OutlandSpaceUniverse\OutlandSpaceUniverse.csproj" />
   </ItemGroup>
 
