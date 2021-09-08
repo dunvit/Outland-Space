@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Universe.Session;
+﻿using Engine;
+using NUnit.Framework;
 
 namespace Tests.UniverseTests.SessionTests
 {

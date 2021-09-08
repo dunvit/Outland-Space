@@ -1,4 +1,6 @@
-﻿namespace Universe.Session
+﻿using Universe.Session;
+
+namespace Engine
 {
     public class GameSession: IGameSession
     {
