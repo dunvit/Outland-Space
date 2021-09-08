@@ -1,18 +1,33 @@
 ﻿using System;
 using Engine;
 using NUnit.Framework;
+using Universe;
 
 namespace Tests.EngineTests
 {
     [TestFixture]
     public class LocalGameServerTests
     {
-        private LocalGameServer _server;
+        private IGameServer _server;
 
         [SetUp]
         protected void Init()
         {
             _server = new LocalGameServer();
+        }
+
+        //int sessionId
+
+        [Test]
+        public void SessionInitializationTest()
+        {
+            Assert.Throws<NotImplementedException>(() => _server.SessionInitialization(1));
+        }
+
+        [Test]
+        public void GetTurnTest()
+        {
+            Assert.Throws<NotImplementedException>(() => _server.GetTurn(1));
         }
 
         [Test]

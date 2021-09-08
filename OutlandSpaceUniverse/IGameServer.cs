@@ -14,5 +14,8 @@ namespace Universe
 
         void Command(int sessionId, string command);
 
+        int GetTurn(int sessionId);
+
+        void SessionInitialization(int sessionId = -1);
     }
 }

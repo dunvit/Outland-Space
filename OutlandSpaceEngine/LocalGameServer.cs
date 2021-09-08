@@ -25,5 +25,16 @@ namespace Engine
         {
             throw new NotImplementedException();
         }
+
+        public int GetTurn(int sessionId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SessionInitialization(int sessionId = -1)
+        {
+            
+            throw new NotImplementedException();
+        }
     }
 }
