@@ -9,5 +9,7 @@
         bool IsPause { get; set; }
 
         string ScenarioName { get; set; }
+
+        
     }
 }

@@ -17,5 +17,7 @@ namespace Universe
         int GetTurn(int sessionId);
 
         IGameSessionData SessionInitialization(int sessionId = -1);
+
+        IGameSessionData Execute(int sessionId, int turns);
     }
 }

@@ -7,13 +7,13 @@ namespace Engine
 {
     public class LocalGameServer: IGameServer
     {
-        private readonly Dictionary<int, IGameSessionData> _sessions = new Dictionary<int, IGameSessionData>();
+        private readonly Dictionary<int, IGameSession> _sessions = new Dictionary<int, IGameSession>();
 
         public IGameSessionData RefreshGameSession(int sessionId)
         {
             Validation(sessionId);
 
-            return _sessions[sessionId];
+            return _sessions[sessionId].Export();
         }
 
         public void ResumeSession(int sessionId)
@@ -45,6 +45,13 @@ namespace Engine
             _sessions.Add(session.Id, session);
 
             return session;
+        }
+
+        public IGameSessionData Execute(int sessionId, int turns)
+        {
+            Validation(sessionId);
+
+            return _sessions[sessionId].Export();
         }
 
         private void Validation(int sessionId)

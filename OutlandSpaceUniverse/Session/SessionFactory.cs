@@ -4,7 +4,7 @@ namespace Universe.Session
 {
     public class SessionFactory
     {
-        public static IGameSessionData ProduceSession(int sessionId = -1)
+        public static IGameSession ProduceSession(int sessionId = -1)
         {
             if (sessionId == -1)
                 return EmptySession();
@@ -12,9 +12,9 @@ namespace Universe.Session
             throw new NotImplementedException();
         }
 
-        private static IGameSessionData EmptySession()
+        private static IGameSession EmptySession()
         {
-            return new SessionDataDto
+            return new GameSession
             {
                 Id = OutlandSpaceCommon.RandomGenerator.GetId(),
                 Turn = 1,
