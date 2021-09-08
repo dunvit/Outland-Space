@@ -63,6 +63,7 @@ namespace Tests.CommonTests
         [TestCase(1)]
         [TestCase(5)]
         [TestCase(10)]
+        [TestCase(1000)]
         public void DiceRollerTest(int numberOfSides)
         {
             Assert.That(RandomGenerator.DiceRoller(numberOfSides), Is.InRange(1, numberOfSides));
