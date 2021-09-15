@@ -24,14 +24,7 @@ namespace Engine
                 ScenarioName = "Empty session scenario"
             };
 
-            const double centerMap = 1000;
-            const int radiusMap = 500;
-
-            var smallAsteroids = RandomFactory.GenerateSmallAsteroids(120, new SpacePoint(centerMap, centerMap), radiusMap);
-            var stations = RandomFactory.GenerateStations(4, new SpacePoint(centerMap, centerMap), radiusMap);
-
-            result.SpaceMap.Add(smallAsteroids);
-            result.SpaceMap.Add(stations);
+            
 
 
             return result;
