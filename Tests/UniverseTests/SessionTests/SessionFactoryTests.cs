@@ -15,6 +15,7 @@ namespace Tests.UniverseTests.SessionTests
             Assert.That(session.IsPause, Is.True);
             Assert.That(session.Id, Is.InRange(1000000000, 2147483647));
             Assert.That(session.ScenarioName, Is.EqualTo("Empty session scenario"));
+            Assert.That(session.SpaceMap.GetCelestialObjects().Count, Is.EqualTo(121));
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using Engine.Generation;
+using Universe.Objects.Points;
 
 namespace Engine
 {
@@ -14,13 +16,22 @@ namespace Engine
 
         private static IGameSession EmptySession()
         {
-            return new GameSession
+            var result = new GameSession
             {
                 Id = OutlandSpaceCommon.RandomGenerator.GetId(),
                 Turn = 1,
                 IsPause = true,
                 ScenarioName = "Empty session scenario"
             };
+
+            const double centerMap = 1000;
+            const int radiusMap = 500;
+
+            var smallAsteroids = RandomFactory.GenerateSmallAsteroids(120, new SpacePoint(centerMap, centerMap), radiusMap);
+
+            result.SpaceMap.Add(smallAsteroids);
+
+            return result;
         }
     }
 }

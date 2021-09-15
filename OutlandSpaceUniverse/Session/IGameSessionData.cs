@@ -1,4 +1,7 @@
-﻿namespace Universe.Session
+﻿using System.Collections.Generic;
+using Universe.Objects;
+
+namespace Universe.Session
 {
     public interface IGameSessionData
     {
@@ -10,6 +13,5 @@
 
         string ScenarioName { get; set; }
 
-        
     }
 }
