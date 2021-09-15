@@ -11,6 +11,7 @@
         SpaceshipNpcFriend = 203,
         Asteroid = 1,
         Explosion = 800,
-        ScanProbe = 600
+        ScanProbe = 600,
+        Station = 10
     }
 }

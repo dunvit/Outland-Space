@@ -17,5 +17,17 @@ namespace Engine.Generation
 
             return result;
         }
+
+        public static List<ICelestialObject> GenerateStations(int count, SpacePoint centerMap, int radius)
+        {
+            var result = new List<ICelestialObject>();
+
+            for (var i = 0; i < count; i++)
+            {
+                result.Add(StationFactory.Generate(centerMap, radius));
+            }
+
+            return result;
+        }
     }
 }

@@ -36,6 +36,12 @@ namespace Tests.EngineTests.Generation
             spaceMap.Add(asteroids);
 
             Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(112));
+
+            var stations = RandomFactory.GenerateStations(4, new SpacePoint(centerMap, centerMap), radiusMap);
+
+            spaceMap.Add(stations);
+
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(116));
         }
     }
 }
