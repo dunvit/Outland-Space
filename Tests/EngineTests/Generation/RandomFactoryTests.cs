@@ -1,4 +1,5 @@
-﻿using Engine.Generation;
+﻿using Engine;
+using Engine.Generation;
 using NUnit.Framework;
 using Universe.Objects;
 using Universe.Objects.Points;
@@ -14,7 +15,7 @@ namespace Tests.EngineTests.Generation
             const double centerMap = 1000;
             const int radiusMap = 500;
 
-            var asteroids = RandomFactory.GenerateSmallAsteroids(20, new SpacePoint(centerMap, centerMap), radiusMap);
+            var asteroids = Tools.Random.GenerateSmallAsteroids(20, new SpacePoint(centerMap, centerMap), radiusMap);
 
             Assert.That(asteroids.Count, Is.EqualTo(20));
 

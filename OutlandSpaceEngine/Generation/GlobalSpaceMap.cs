@@ -12,8 +12,8 @@ namespace Engine.Generation
             const double centerMap = 1000;
             const int radiusMap = 500;
 
-            var smallAsteroids = RandomFactory.GenerateSmallAsteroids(120, new SpacePoint(centerMap, centerMap), radiusMap);
-            var stations = RandomFactory.GenerateStations(4, new SpacePoint(centerMap, centerMap), radiusMap);
+            var smallAsteroids = Tools.Random.GenerateSmallAsteroids(120, new SpacePoint(centerMap, centerMap), radiusMap);
+            var stations = Tools.Random.GenerateStations(4, new SpacePoint(centerMap, centerMap), radiusMap);
 
             var objects = new List<ICelestialObject>();
 

@@ -6,7 +6,7 @@ namespace Engine.Generation
 {
     public class RandomFactory
     {
-        public static List<ICelestialObject> GenerateSmallAsteroids(int count, SpacePoint centerMap, int radius)
+        public List<ICelestialObject> GenerateSmallAsteroids(int count, SpacePoint centerMap, int radius)
         {
             var result = new List<ICelestialObject>();
 
@@ -18,7 +18,7 @@ namespace Engine.Generation
             return result;
         }
 
-        public static List<ICelestialObject> GenerateStations(int count, SpacePoint centerMap, int radius)
+        public List<ICelestialObject> GenerateStations(int count, SpacePoint centerMap, int radius)
         {
             var result = new List<ICelestialObject>();
 
