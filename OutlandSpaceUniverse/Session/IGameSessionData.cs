@@ -7,11 +7,12 @@ namespace Universe.Session
     {
         int Id { get; set; }
 
-        int Turn { get; set; }
+        int Turn { get;}
 
         bool IsPause { get; set; }
 
         string ScenarioName { get; set; }
 
+        bool IsValid { get; set; }
     }
 }

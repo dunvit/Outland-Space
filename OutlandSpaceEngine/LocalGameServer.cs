@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using Engine.Sessions;
+using OutlandSpaceCommon;
 using Universe;
 using Universe.Session;
 
@@ -7,13 +8,13 @@ namespace Engine
 {
     public class LocalGameServer: IGameServer
     {
-        private readonly Dictionary<int, IGameSession> _sessions = new Dictionary<int, IGameSession>();
+        readonly ISessionsCollection _sessions = new SessionsCollection();
 
         public IGameSessionData RefreshGameSession(int sessionId)
         {
             Validation(sessionId);
 
-            return _sessions[sessionId].Export();
+            return _sessions.Get(sessionId).Export();
         }
 
         public void ResumeSession(int sessionId)
@@ -35,14 +36,14 @@ namespace Engine
         {
             Validation(sessionId);
 
-            return _sessions[sessionId].Turn;
+            return _sessions.Get(sessionId).Turn;
         }
 
         public IGameSessionData SessionInitialization(int sessionId = -1)
         {
             var session = SessionFactory.ProduceSession(sessionId);
 
-            _sessions.Add(session.Id, session);
+            _sessions.Set(session);
 
             return session;
         }
@@ -51,12 +52,16 @@ namespace Engine
         {
             Validation(sessionId);
 
-            return _sessions[sessionId].Export();
+            var session = _sessions.Get(sessionId).DeepClone();
+
+            var result = new TurnCalculator().Execute(session, turns);
+
+            return result;
         }
 
         private void Validation(int sessionId)
         {
-            if (_sessions.ContainsKey(sessionId) == false)
+            if (_sessions.IsExists(sessionId) == false)
             {
                 throw new InvalidOperationException();
             }

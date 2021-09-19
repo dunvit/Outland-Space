@@ -24,6 +24,7 @@ namespace Tests.EngineTests
 
             Assert.That(session.Turn, Is.EqualTo(1));
             Assert.That(session.IsPause, Is.True);
+            Assert.That(session.IsValid, Is.True);
             Assert.That(session.Id, Is.InRange(1000000000, 2147483647));
             Assert.That(session.ScenarioName, Is.EqualTo("Empty session scenario"));
         }
@@ -32,6 +33,15 @@ namespace Tests.EngineTests
         public void GetTurn_NegativeTest()
         {
             Assert.Throws<InvalidOperationException>(() => _server.GetTurn(1));
+        }
+
+        [Test]
+        public void Execute_PositiveTest()
+        {
+            var session = _server.SessionInitialization();
+            session = _server.Execute(session.Id, 1);
+
+            Assert.That(session.Turn, Is.EqualTo(2));
         }
 
         [Test]

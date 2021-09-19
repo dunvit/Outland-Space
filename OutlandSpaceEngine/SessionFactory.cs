@@ -19,8 +19,8 @@ namespace Engine
             var result = new GameSession
             {
                 Id = OutlandSpaceCommon.RandomGenerator.GetId(),
-                Turn = 1,
                 IsPause = true,
+                IsValid = true,
                 ScenarioName = "Empty session scenario"
             };
 

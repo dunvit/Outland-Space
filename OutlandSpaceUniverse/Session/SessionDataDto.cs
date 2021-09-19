@@ -9,5 +9,6 @@
         public bool IsPause { get; set; }
 
         public string ScenarioName { get; set; }
+        public bool IsValid { get; set; }
     }
 }

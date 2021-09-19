@@ -13,7 +13,7 @@ namespace Tests.EngineTests.Generation
         {
             var spaceMap = GlobalSpaceMap.GenerateEmpty();
 
-            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(1));
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(125));
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace Tests.EngineTests.Generation
         {
             var spaceMap = GlobalSpaceMap.GenerateEmpty();
 
-            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(1));
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(125));
 
             const double centerMap = 1000;
             const int radiusMap = 500;
@@ -30,19 +30,19 @@ namespace Tests.EngineTests.Generation
 
             spaceMap.Add(asteroids[0]);
 
-            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(2));
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(126));
 
             asteroids = Tools.Random.GenerateSmallAsteroids(110, new SpacePoint(centerMap, centerMap), radiusMap);
 
             spaceMap.Add(asteroids);
 
-            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(112));
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(236));
 
             var stations = Tools.Random.GenerateStations(4, new SpacePoint(centerMap, centerMap), radiusMap);
 
             spaceMap.Add(stations);
 
-            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(116));
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(240));
         }
     }
 }

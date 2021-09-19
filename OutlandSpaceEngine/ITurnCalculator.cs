@@ -4,6 +4,6 @@ namespace Engine
 {
     public interface ITurnCalculator
     {
-        SessionDataDto Execute(int turns);
+        IGameSessionData Execute(IGameSession session, int turns);
     }
 }

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OutlandSpaceCommon;
 using Universe.Objects;
 
 namespace Universe.Session
 {
+    [Serializable]
     public class CelestialMap
     {
         public string Id { get; set; }
