@@ -54,7 +54,11 @@ namespace Engine
 
             var session = _sessions.Get(sessionId).DeepClone();
 
+            session.Block();
+
             var result = new TurnCalculator().Execute(session, turns);
+
+            session.UnBlock();
 
             return result;
         }

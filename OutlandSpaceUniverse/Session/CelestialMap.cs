@@ -33,5 +33,10 @@ namespace Universe.Session
         {
             _celestialObjects.Add(celestialObject);
         }
+
+        public void Clear()
+        {
+            _celestialObjects = new List<ICelestialObject>();
+        }
     }
 }

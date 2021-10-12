@@ -1,6 +1,4 @@
 ﻿using System;
-using Engine.Generation;
-using Universe.Objects.Points;
 
 namespace Engine
 {
@@ -23,9 +21,6 @@ namespace Engine
                 IsValid = true,
                 ScenarioName = "Empty session scenario"
             };
-
-            
-
 
             return result;
         }

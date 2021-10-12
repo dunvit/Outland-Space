@@ -9,6 +9,13 @@ namespace Engine.Generation
     {
         public static CelestialMap GenerateEmpty()
         {
+            var objects = new List<ICelestialObject>();
+
+            return new CelestialMap(objects);
+        }
+
+        public static CelestialMap GenerateBase()
+        {
             const double centerMap = 1000;
             const int radiusMap = 500;
 
@@ -23,5 +30,7 @@ namespace Engine.Generation
 
             return new CelestialMap(objects);
         }
+
+
     }
 }

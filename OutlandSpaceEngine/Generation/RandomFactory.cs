@@ -18,6 +18,11 @@ namespace Engine.Generation
             return result;
         }
 
+        public ICelestialObject GenerateSmallAsteroid(SpacePoint centerMap, int radius)
+        {
+            return AsteroidFactory.GenerateSmall(centerMap, radius);
+        }
+
         public List<ICelestialObject> GenerateStations(int count, SpacePoint centerMap, int radius)
         {
             var result = new List<ICelestialObject>();

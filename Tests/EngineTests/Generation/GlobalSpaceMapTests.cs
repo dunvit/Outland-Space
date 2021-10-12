@@ -11,7 +11,7 @@ namespace Tests.EngineTests.Generation
         [Test]
         public void GenerateEmptySpaceMapTest()
         {
-            var spaceMap = GlobalSpaceMap.GenerateEmpty();
+            var spaceMap = GlobalSpaceMap.GenerateBase();
 
             Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(125));
         }
@@ -19,7 +19,7 @@ namespace Tests.EngineTests.Generation
         [Test]
         public void GenerateEmptySpaceMapWithCelestialObjectsTest()
         {
-            var spaceMap = GlobalSpaceMap.GenerateEmpty();
+            var spaceMap = GlobalSpaceMap.GenerateBase();
 
             Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(125));
 
@@ -43,6 +43,10 @@ namespace Tests.EngineTests.Generation
             spaceMap.Add(stations);
 
             Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(240));
+
+            spaceMap.Clear();
+
+            Assert.That(spaceMap.GetCelestialObjects().Count, Is.EqualTo(0));
         }
     }
 }
