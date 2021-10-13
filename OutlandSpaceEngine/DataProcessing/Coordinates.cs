@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using log4net;
@@ -19,7 +20,7 @@ namespace Engine.DataProcessing
 
             foreach (var celestialObject in updatedSession)
             {
-                RecalculateGeneralObjectLocation(gameSession, celestialObject, settings);
+                RecalculateGeneralObjectLocation(celestialObject, settings);
             }
 
             gameSession.ReplaceCelestialObjects(updatedSession);
@@ -27,7 +28,7 @@ namespace Engine.DataProcessing
             return gameSession;
         }
 
-        private void RecalculateGeneralObjectLocation(IGameSession gameSession, ICelestialObject celestialObject, EngineSettings settings)
+        private void RecalculateGeneralObjectLocation(ICelestialObject celestialObject, EngineSettings settings)
         {
             var position = GeometryTools.MoveObject(
                 new PointF((float) celestialObject.PositionX, (float) celestialObject.PositionY),
@@ -43,11 +44,16 @@ namespace Engine.DataProcessing
             celestialObject.PositionX = position.X;
             celestialObject.PositionY = position.Y;
 
+            celestialObject.AtomicLocation = new List<Tuple<int, Point>>();
+
             var speedInTick = celestialObject.Speed / settings.UnitsPerSecond;
 
             var currentAtomicPosition = new Point(celestialObject.PositionX, celestialObject.PositionY);
 
-            for (var i = 0; i < settings.UnitsPerSecond; i++)
+            // Initial turn position
+            celestialObject.AtomicLocation.Add(new Tuple<int, Point>(0, new Point(currentAtomicPosition.X, currentAtomicPosition.Y)));
+
+            for (var i = 1; i <= settings.UnitsPerSecond; i++)
             {
                 currentAtomicPosition = GeometryTools.Move(
                     currentAtomicPosition,

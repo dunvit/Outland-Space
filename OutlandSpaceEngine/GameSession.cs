@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Engine.Generation;
 using OutlandSpaceCommon;
 using Universe.Geometry;
@@ -106,7 +107,14 @@ namespace Engine
                 throw new Exception($"Atomic results for turn location object '{celestialObjectId}' not found.");
             }
 
+            var atomicLocation = celestialObject.AtomicLocation.FirstOrDefault(x => x.Item1 == step);
 
+            if (atomicLocation is null)
+            {
+                throw new Exception($"Atomic results for turn location object '{celestialObjectId}' and step {step} not found.");
+            }
+
+            return atomicLocation.Item2;
         }
     }
 }

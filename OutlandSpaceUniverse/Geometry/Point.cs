@@ -14,5 +14,10 @@ namespace Universe.Geometry
             X = x;
             Y = y;
         }
+
+        public bool IsEqualTo(Point point)
+        {
+            return (Math.Abs(point.X - X) < 0.001 && Math.Abs(point.Y - Y) < 0.001);
+        }
     }
 }
