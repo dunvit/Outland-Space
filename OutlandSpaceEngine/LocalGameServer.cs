@@ -60,7 +60,7 @@ namespace Engine
             if(debug is false)
                 Scheduler.Instance.ScheduleTask(50, 50, ExecuteTurnCalculation, null);
 
-            return session;
+            return session.Export();
         }
 
         private bool isDebug;

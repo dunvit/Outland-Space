@@ -68,7 +68,8 @@ namespace Engine
                 Turn = Turn,
                 IsPause = IsPause,
                 ScenarioName = ScenarioName,
-                IsValid = IsValid
+                IsValid = IsValid,
+                CelestialObjects = SpaceMap.GetCelestialObjects()
             };
         }
 

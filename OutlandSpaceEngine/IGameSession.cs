@@ -6,9 +6,17 @@ using Universe.Session;
 
 namespace Engine
 {
-    public interface IGameSession: IGameSessionData, IGameSessionExporter
+    public interface IGameSession: IGameSessionExporter
     {
-        //CelestialMap SpaceMap { get; set; }
+        int Id { get; set; }
+
+        int Turn { get; }
+
+        bool IsPause { get; set; }
+
+        string ScenarioName { get; set; }
+
+        bool IsValid { get; set; }
 
         DateTime LastUpdate { get; set; }
 

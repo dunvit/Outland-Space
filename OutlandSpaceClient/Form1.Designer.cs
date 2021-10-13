@@ -34,6 +34,8 @@ namespace OutlandSpaceClient
             this.txtTurn = new System.Windows.Forms.Label();
             this.txtMode = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.Label();
+            this.txtLocation = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -83,11 +85,31 @@ namespace OutlandSpaceClient
             this.txtId.TabIndex = 2;
             this.txtId.Text = "label1";
             // 
+            // txtLocation
+            // 
+            this.txtLocation.AutoSize = true;
+            this.txtLocation.Location = new System.Drawing.Point(229, 118);
+            this.txtLocation.Name = "txtLocation";
+            this.txtLocation.Size = new System.Drawing.Size(38, 15);
+            this.txtLocation.TabIndex = 3;
+            this.txtLocation.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(229, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtLocation);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtMode);
             this.Controls.Add(this.txtTurn);
@@ -95,7 +117,6 @@ namespace OutlandSpaceClient
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +129,8 @@ namespace OutlandSpaceClient
         private System.Windows.Forms.Label txtTurn;
         private System.Windows.Forms.Label txtMode;
         private System.Windows.Forms.Label txtId;
+        private System.Windows.Forms.Label txtLocation;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -22,7 +22,7 @@ namespace OutlandSpaceClient
 
             if (_worker != null)
             {
-                _worker.OnEndTurn += Event_EndTurn;
+                _worker.OnEndTurnStep += Event_EndTurn;
             }
         }
 
@@ -37,9 +37,18 @@ namespace OutlandSpaceClient
 
         private void RefreshControl()
         {
-            txtTurn.Text = _session.Turn + "";
-            txtMode.Text = _session.IsPause.ToString();
-            txtId.Text = _session.Id + "";
+            txtTurn.Text = @"Turn: " + _session.Turn + "";
+            txtMode.Text = @"Mode: " + _session.IsPause;
+            txtId.Text = @"session Id: " + _session.Id + "";
+            txtLocation.Text = @"Location X: " + _session.CelestialObjects[1].PositionX + "";
+
+            if (_session.CelestialObjects[1].AtomicLocation.Count > 0 && _session.Step < 21)
+            {
+                label1.Text = @"Location X: " + _session.CelestialObjects[1].AtomicLocation[_session.Step].Item2.X + "";
+                Logger.Info($" location {_session.CelestialObjects[1].AtomicLocation[_session.Step].Item2.X} Turn {_session.Turn} step {_session.Step}");
+
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,11 +59,6 @@ namespace OutlandSpaceClient
         private void cmdResume_Click(object sender, EventArgs e)
         {
             _worker.SessionResume();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

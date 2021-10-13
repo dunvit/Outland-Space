@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using Universe.Objects;
 
 namespace Universe.Session
@@ -9,9 +10,13 @@ namespace Universe.Session
 
         int Turn { get;}
 
+        int Step { get; set; }
+
         bool IsPause { get; set; }
 
         string ScenarioName { get; set; }
+
+        List<ICelestialObject> CelestialObjects { get; set; }
 
         bool IsValid { get; set; }
     }
