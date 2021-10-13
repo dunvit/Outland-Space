@@ -31,6 +31,26 @@ namespace Engine.Generation
             return new CelestialMap(objects);
         }
 
+        public static CelestialMap GenerateDebug()
+        {
+            const double centerMap = 1000;
+            const int radiusMap = 500;
+
+            var smallAsteroid = Tools.Random.GenerateSmallAsteroid(new SpacePoint(centerMap, radiusMap), radiusMap);
+
+            smallAsteroid.PositionX = 10300;
+            smallAsteroid.PositionY = 10300;
+            smallAsteroid.Direction = 90;
+            smallAsteroid.Speed = 10;
+
+            var objects = new List<ICelestialObject>();
+
+            objects.Add(PlayerSpacecraft.Generate());
+            objects.Add(smallAsteroid);
+
+
+            return new CelestialMap(objects);
+        }
 
     }
 }

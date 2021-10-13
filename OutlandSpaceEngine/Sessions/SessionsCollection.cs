@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Engine.Sessions
 {
@@ -10,6 +12,11 @@ namespace Engine.Sessions
         public IGameSession Get(int sessionId)
         {
             return _sessions[sessionId];
+        }
+
+        public List<IGameSession> GetAll()
+        {
+            return _sessions.Select(gameSession => gameSession.Value).ToList();
         }
 
         public void Set(IGameSession session)
@@ -40,6 +47,11 @@ namespace Engine.Sessions
         public int Count()
         {
             return _sessions.Count;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return _sessions.GetEnumerator();
         }
     }
 }

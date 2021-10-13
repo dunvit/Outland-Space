@@ -16,7 +16,7 @@ namespace Universe
 
         int GetTurn(int sessionId);
 
-        IGameSessionData SessionInitialization(int sessionId = -1);
+        IGameSessionData SessionInitialization(bool debug = false, bool isGenerateStartMap = false, int sessionId = -1);
 
         IGameSessionData Execute(int sessionId, int turns);
     }

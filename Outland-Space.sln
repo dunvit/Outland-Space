@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClient", "Outla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceUniverse", "OutlandSpaceUniverse\OutlandSpaceUniverse.csproj", "{A0AE8B02-1F8C-482A-91C1-F5371A8BBFC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DDD574EA-A227-4E46-A28C-B47C41479971}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{DDD574EA-A227-4E46-A28C-B47C41479971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceCommon", "OutlandSpaceCommon\OutlandSpaceCommon.csproj", "{0A21C6E9-E632-48D2-BE39-38F6C8F38EEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceCommon", "OutlandSpaceCommon\OutlandSpaceCommon.csproj", "{0A21C6E9-E632-48D2-BE39-38F6C8F38EEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceClientUpdater", "OutlandSpaceClientUpdater\OutlandSpaceClientUpdater.csproj", "{78E4B710-D726-4B4C-9C8F-481BB6537E3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0A21C6E9-E632-48D2-BE39-38F6C8F38EEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A21C6E9-E632-48D2-BE39-38F6C8F38EEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A21C6E9-E632-48D2-BE39-38F6C8F38EEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78E4B710-D726-4B4C-9C8F-481BB6537E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78E4B710-D726-4B4C-9C8F-481BB6537E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78E4B710-D726-4B4C-9C8F-481BB6537E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78E4B710-D726-4B4C-9C8F-481BB6537E3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

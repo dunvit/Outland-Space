@@ -16,6 +16,7 @@ namespace Engine
         public int Id { get; set; }
         public int Turn { get; private set; }
         public bool IsPause { get; set; }
+        public DateTime LastUpdate { get; set; }
         public string ScenarioName { get; set; }
         public bool IsValid { get; set; } = true;
         private bool _isBlocked = false;
@@ -36,6 +37,12 @@ namespace Engine
             SpaceMap = GlobalSpaceMap.GenerateBase();
         }
 
+        public void GenerateDebugSpaceMap()
+        {
+            SpaceMap = GlobalSpaceMap.GenerateDebug();
+        }
+
+
         public ICelestialObject GetCelestialObject(int id)
         {
             return SpaceMap.GetCelestialObjects().FirstOrDefault(x => x.Id == id);
@@ -45,6 +52,8 @@ namespace Engine
         {
             Turn++;
         }
+
+        
 
         public List<ICelestialObject> GetCelestialObjects()
         {

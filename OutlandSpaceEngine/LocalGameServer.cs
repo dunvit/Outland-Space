@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using Engine.Sessions;
 using OutlandSpaceCommon;
 using Universe;
@@ -8,7 +10,11 @@ namespace Engine
 {
     public class LocalGameServer: IGameServer
     {
-        readonly ISessionsCollection _sessions = new SessionsCollection();
+        private readonly ISessionsCollection _sessions = new SessionsCollection();
+
+        private readonly ReaderWriterLockSlim _sessionLock = new ReaderWriterLockSlim();
+
+        private List<int> _runnedSessions = new List<int>();
 
         public IGameSessionData RefreshGameSession(int sessionId)
         {
@@ -20,11 +26,15 @@ namespace Engine
         public void ResumeSession(int sessionId)
         {
             Validation(sessionId);
+
+            _runnedSessions.Add(sessionId);
         }
 
         public void PauseSession(int sessionId)
         {
             Validation(sessionId);
+
+            _runnedSessions.Remove(sessionId);
         }
 
         public void Command(int sessionId, string command)
@@ -39,28 +49,65 @@ namespace Engine
             return _sessions.Get(sessionId).Turn;
         }
 
-        public IGameSessionData SessionInitialization(int sessionId = -1)
+        public IGameSessionData SessionInitialization(bool debug = false, bool isGenerateStartMap = false, int sessionId = -1)
         {
             var session = SessionFactory.ProduceSession(sessionId);
 
+            if(isGenerateStartMap) session.GenerateDebugSpaceMap();
+
             _sessions.Set(session);
+
+            if(debug is false)
+                Scheduler.Instance.ScheduleTask(50, 50, ExecuteTurnCalculation, null);
 
             return session;
         }
 
-        public IGameSessionData Execute(int sessionId, int turns)
+        private bool isDebug;
+        private bool isExecute;
+
+        private void ExecuteTurnCalculation()
+        {
+            if(isExecute) return;
+
+            isExecute = true;
+
+            foreach (var session in _sessions.GetAll())
+            {
+                // TODO: Refactor update session pause status
+                session.IsPause = !_runnedSessions.Contains(session.Id);
+
+                if (session.IsPause) continue;
+                if (isDebug) continue;
+
+                Execute(session.Id);
+            }
+
+            isExecute = false;
+        }
+
+        public IGameSessionData Execute(int sessionId, int turns = 1)
         {
             Validation(sessionId);
 
+            isDebug = true;
+
             var session = _sessions.Get(sessionId).DeepClone();
 
+            _sessionLock.EnterWriteLock();
             session.Block();
 
             var result = new TurnCalculator().Execute(session, turns);
 
-            session.UnBlock();
 
-            return result;
+            _sessions.Update(result);
+
+            session.UnBlock();
+            _sessionLock.ExitWriteLock();
+
+            isDebug = false;
+
+            return result.Export();
         }
 
         private void Validation(int sessionId)

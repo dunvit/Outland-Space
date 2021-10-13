@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Universe.Geometry;
 using Universe.Objects;
 using Universe.Session;
@@ -9,6 +10,8 @@ namespace Engine
     {
         //CelestialMap SpaceMap { get; set; }
 
+        DateTime LastUpdate { get; set; }
+
         List<ICelestialObject> GetCelestialObjects();
 
         ICelestialObject GetCelestialObject(int id);
@@ -18,6 +21,8 @@ namespace Engine
         void GenerateEmptySpaceMap();
 
         void GenerateBaseSpaceMap();
+
+        void GenerateDebugSpaceMap();
 
         void AddCelestialObjects(List<ICelestialObject> celestialObjects);
 

@@ -38,7 +38,8 @@ namespace Tests.EngineTests
         [Test]
         public void Execute_PositiveTest()
         {
-            var session = _server.SessionInitialization();
+            var session = _server.SessionInitialization(true);
+            _server.ResumeSession(session.Id);
             session = _server.Execute(session.Id, 1);
 
             Assert.That(session.Turn, Is.EqualTo(2));

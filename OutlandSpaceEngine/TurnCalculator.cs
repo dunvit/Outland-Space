@@ -1,6 +1,6 @@
-﻿using Engine.DataProcessing;
+﻿using System;
+using Engine.DataProcessing;
 using OutlandSpaceCommon;
-using Universe.Session;
 
 namespace Engine
 {
@@ -8,20 +8,25 @@ namespace Engine
     {
         private readonly EngineSettings _engineSettings = new EngineSettings();
 
-        public IGameSessionData Execute(IGameSession session, int turns)
+        public IGameSession Execute(IGameSession session, int turns)
         {
             if (turns <= 0)
             {
                 // Pause or wrong turns value
-                return new SessionDataDto{IsValid = false};
+                return new GameSession {IsValid = false};
             }
+
+            // Run execute once in second
+            if ((DateTime.Now - session.LastUpdate).TotalMilliseconds < 1000) return session;
 
             for (var i = 0; i < turns; i++)
             {
                 session = Execute(session);
             }
 
-            return session.Export();
+            session.LastUpdate = DateTime.Now;
+
+            return session;
         }
 
         private IGameSession Execute(IGameSession session)
