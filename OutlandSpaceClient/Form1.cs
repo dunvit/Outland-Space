@@ -44,8 +44,10 @@ namespace OutlandSpaceClient
 
             if (_session.CelestialObjects[1].AtomicLocation.Count > 0 && _session.Step < 21)
             {
-                label1.Text = @"Location X: " + _session.CelestialObjects[1].AtomicLocation[_session.Step].Item2.X + "";
-                Logger.Info($" location {_session.CelestialObjects[1].AtomicLocation[_session.Step].Item2.X} Turn {_session.Turn} step {_session.Step}");
+                var locationX = $"{_session.CelestialObjects[1].AtomicLocation[_session.Step].Item2.X:0.00}"; 
+
+                label1.Text = @"Location X: " + locationX + "";
+                Logger.Info($" location {locationX} Turn {_session.Turn} step {_session.Step}");
 
             }
 
