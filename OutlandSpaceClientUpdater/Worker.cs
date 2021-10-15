@@ -9,14 +9,15 @@ using Universe.Session;
 
 namespace Updater
 {
-    public class Worker
+    public class Worker: IGameEvents
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private readonly IGameServer _gameServer;
         private IGameSessionData _session;
 
+        public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
-        public event Action<IGameSessionData> OnEndTurnStep;
+        public event Action<IGameSessionData, int> OnEndTurnStep;
 
         public Worker()
         {
@@ -39,6 +40,8 @@ namespace Updater
         {
             _session = _gameServer.SessionInitialization(false, true);
 
+            OnStartGame?.Invoke(_session);
+
             Scheduler.Instance.ScheduleTask(50, 50, GetDataFromServer, null);
 
             Scheduler.Instance.ScheduleTask(50, 50, RefreshSessionData, null);
@@ -50,7 +53,7 @@ namespace Updater
 
             _session.Step++;
 
-            OnEndTurnStep?.Invoke(_session);
+            OnEndTurnStep?.Invoke(_session, _session.Step);
         }
 
         private bool _inProgress;
@@ -67,11 +70,11 @@ namespace Updater
 
             if (gameSession.Turn > _session.Turn)
             {
+                OnEndTurn?.Invoke(gameSession);
+
                 _session = gameSession;
 
                 _session.Step = 0;
-
-                OnEndTurn?.Invoke(_session);
             }
 
             timeMetricGetGameSession.Stop();

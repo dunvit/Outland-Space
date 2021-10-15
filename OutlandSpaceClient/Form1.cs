@@ -2,9 +2,6 @@
 using System.Reflection;
 using System.Windows.Forms;
 using log4net;
-using OutlandSpaceClient.Tools;
-using Universe.Session;
-using Updater;
 
 namespace OutlandSpaceClient
 {
@@ -12,55 +9,22 @@ namespace OutlandSpaceClient
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly Worker _worker = new Worker();
-
-        private IGameSessionData _session;
-
         public Form1()
         {
             InitializeComponent();
 
-            if (_worker != null)
-            {
-                _worker.OnEndTurnStep += Event_EndTurn;
-            }
-        }
+            crlTacticalMap.Dock = DockStyle.Fill;
 
-        private void Event_EndTurn(IGameSessionData environment)
-        {
-            _session = environment;
+            if (Global.Game == null) return;
 
-            Logger.Debug($"Refresh game information for turn '{_session.Turn}'.");
+            Logger.Debug("Base game screen initialization finished.");
 
-            this.PerformSafely(RefreshControl);
-        }
-
-        private void RefreshControl()
-        {
-            txtTurn.Text = @"Turn: " + _session.Turn + "";
-            txtMode.Text = @"Mode: " + _session.IsPause;
-            txtId.Text = @"session Id: " + _session.Id + "";
-            txtLocation.Text = @"Location X: " + _session.CelestialObjects[1].PositionX + "";
-
-            if (_session.CelestialObjects[1].AtomicLocation.Count > 0 && _session.Step < 21)
-            {
-                var locationX = $"{_session.CelestialObjects[1].AtomicLocation[_session.Step].Item2.X:0.00}"; 
-
-                label1.Text = @"Location X: " + locationX + "";
-                Logger.Info($" location {locationX} Turn {_session.Turn} step {_session.Step}");
-
-            }
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _worker.StartNewGameSession();
+            Global.Game.StartGameSession();
         }
 
         private void cmdResume_Click(object sender, EventArgs e)
         {
-            _worker.SessionResume();
+            Global.Game.SessionResume();
         }
     }
 }

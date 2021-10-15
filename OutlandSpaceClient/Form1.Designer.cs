@@ -29,28 +29,14 @@ namespace OutlandSpaceClient
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.cmdResume = new System.Windows.Forms.Button();
-            this.txtTurn = new System.Windows.Forms.Label();
-            this.txtMode = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.Label();
-            this.txtLocation = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.crlTacticalMap = new OutlandSpaceClient.UI.Controls.TacticalMap();
+            this.controlDebugInformation1 = new OutlandSpaceClient.UI.Controls.ControlDebugInformation();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cmdResume
             // 
-            this.cmdResume.Location = new System.Drawing.Point(713, 415);
+            this.cmdResume.Location = new System.Drawing.Point(12, 12);
             this.cmdResume.Name = "cmdResume";
             this.cmdResume.Size = new System.Drawing.Size(75, 23);
             this.cmdResume.TabIndex = 1;
@@ -58,79 +44,41 @@ namespace OutlandSpaceClient
             this.cmdResume.UseVisualStyleBackColor = true;
             this.cmdResume.Click += new System.EventHandler(this.cmdResume_Click);
             // 
-            // txtTurn
+            // crlTacticalMap
             // 
-            this.txtTurn.AutoSize = true;
-            this.txtTurn.Location = new System.Drawing.Point(229, 34);
-            this.txtTurn.Name = "txtTurn";
-            this.txtTurn.Size = new System.Drawing.Size(38, 15);
-            this.txtTurn.TabIndex = 2;
-            this.txtTurn.Text = "label1";
+            this.crlTacticalMap.BackColor = System.Drawing.Color.Black;
+            this.crlTacticalMap.Location = new System.Drawing.Point(275, 69);
+            this.crlTacticalMap.Name = "crlTacticalMap";
+            this.crlTacticalMap.Size = new System.Drawing.Size(150, 150);
+            this.crlTacticalMap.TabIndex = 6;
             // 
-            // txtMode
+            // controlDebugInformation1
             // 
-            this.txtMode.AutoSize = true;
-            this.txtMode.Location = new System.Drawing.Point(229, 60);
-            this.txtMode.Name = "txtMode";
-            this.txtMode.Size = new System.Drawing.Size(38, 15);
-            this.txtMode.TabIndex = 2;
-            this.txtMode.Text = "label1";
-            // 
-            // txtId
-            // 
-            this.txtId.AutoSize = true;
-            this.txtId.Location = new System.Drawing.Point(229, 85);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(38, 15);
-            this.txtId.TabIndex = 2;
-            this.txtId.Text = "label1";
-            // 
-            // txtLocation
-            // 
-            this.txtLocation.AutoSize = true;
-            this.txtLocation.Location = new System.Drawing.Point(229, 118);
-            this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(38, 15);
-            this.txtLocation.TabIndex = 3;
-            this.txtLocation.Text = "label1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(229, 144);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.controlDebugInformation1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.controlDebugInformation1.Location = new System.Drawing.Point(12, 604);
+            this.controlDebugInformation1.Name = "controlDebugInformation1";
+            this.controlDebugInformation1.Size = new System.Drawing.Size(251, 157);
+            this.controlDebugInformation1.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtLocation);
-            this.Controls.Add(this.txtId);
-            this.Controls.Add(this.txtMode);
-            this.Controls.Add(this.txtTurn);
+            this.ClientSize = new System.Drawing.Size(1302, 773);
+            this.Controls.Add(this.controlDebugInformation1);
             this.Controls.Add(this.cmdResume);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.crlTacticalMap);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button cmdResume;
-        private System.Windows.Forms.Label txtTurn;
-        private System.Windows.Forms.Label txtMode;
-        private System.Windows.Forms.Label txtId;
-        private System.Windows.Forms.Label txtLocation;
-        private System.Windows.Forms.Label label1;
+        private UI.Controls.TacticalMap crlTacticalMap;
+        private UI.Controls.ControlDebugInformation controlDebugInformation1;
     }
 }
 
