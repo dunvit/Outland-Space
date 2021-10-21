@@ -51,13 +51,13 @@ namespace OutlandSpaceClient.UI.Controls
             txtId.Text = @"session Id: " + session.Id + "";
             txtLocation.Text = @"Location X: " + session.CelestialObjects[1].PositionX + "";
 
-            if (session.CelestialObjects[1].AtomicLocation.Count > 0 && session.Step < 21)
-            {
-                var locationX = $"{session.CelestialObjects[1].AtomicLocation[session.Step].Item2.X:0.00}";
+            //if (session.CelestialObjects[1].AtomicLocation.Count > 0 && session.Step < 21)
+            //{
+            //    var locationX = $"{session.CelestialObjects[1].Location(session.Turn, session.Step).X:0.00}";
 
-                label1.Text = @"Location X: " + locationX + "";
-                Logger.Debug($" location {locationX} Turn {session.Turn} step {session.Step}");
-            }
+            //    label1.Text = @"Location X: " + locationX + "";
+            //    Logger.Debug($" location {locationX} Turn {session.Turn} step {session.Step}");
+            //}
         }
     }
 }

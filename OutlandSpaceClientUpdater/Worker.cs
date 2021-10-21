@@ -15,6 +15,8 @@ namespace Updater
         private readonly IGameServer _gameServer;
         private IGameSessionData _session;
 
+        
+
         public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
         public event Action<IGameSessionData, int> OnEndTurnStep;
@@ -54,6 +56,11 @@ namespace Updater
             _session.Step++;
 
             OnEndTurnStep?.Invoke(_session, _session.Step);
+
+            Logger.Debug("Refresh Session Data. " +
+                        $"Turn is {_session.Turn} " +
+                        $"Step is {_session.Step} " +
+                        $"Atomic results is {_session.CelestialObjects[1].AtomicLocation.Count}");
         }
 
         private bool _inProgress;

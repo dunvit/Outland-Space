@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using log4net;
+using OutlandSpaceCommon;
 using Universe.Session;
 using Updater;
 
@@ -14,10 +15,14 @@ namespace OutlandSpaceClient
         public event Action<IGameSessionData> OnEndTurn;
         public event Action<IGameSessionData, int> OnEndTurnStep;
 
+        public GameState State;
+
         private readonly Worker _worker;
 
         public GameManager()
         {
+            State = new GameState();
+
             _worker = new Worker();
             _worker.OnEndTurn += Event_EndTurn;
             _worker.OnEndTurnStep += Event_EndTurnStep;
