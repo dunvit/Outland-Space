@@ -1,9 +1,6 @@
-﻿using log4net;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Reflection;
-using Point = Universe.Geometry.Point;
+using Universe.Geometry;
 
 namespace Universe.Objects
 {
