@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Reflection;
 using Engine.DataProcessing;
+using log4net;
 using OutlandSpaceCommon;
 
 namespace Engine
 {
     public class TurnCalculator: ITurnCalculator
     {
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private readonly EngineSettings _engineSettings = new EngineSettings();
 
         public IGameSession Execute(IGameSession session, int turns)
@@ -21,6 +24,8 @@ namespace Engine
 
             for (var i = 0; i < turns; i++)
             {
+                Logger.Debug($"Refresh Session Data. Turn is {session.Turn}");
+
                 session = Execute(session);
             }
 

@@ -44,9 +44,9 @@ namespace Updater
 
             OnStartGame?.Invoke(_session);
 
-            Scheduler.Instance.ScheduleTask(50, 50, GetDataFromServer, null);
+            Scheduler.Instance.ScheduleTask(1, 25, GetDataFromServer, null);
 
-            Scheduler.Instance.ScheduleTask(50, 50, RefreshSessionData, null);
+            Scheduler.Instance.ScheduleTask(1, 25, RefreshSessionData, null);
         }
 
         private void RefreshSessionData()

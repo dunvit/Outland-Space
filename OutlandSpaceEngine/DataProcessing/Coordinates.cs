@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Reflection;
 using log4net;
 using OutlandSpaceCommon;
 using Universe.Geometry;
 using Universe.Objects;
-using Point = Universe.Geometry.Point;
 
 namespace Engine.DataProcessing
 {
@@ -30,8 +28,8 @@ namespace Engine.DataProcessing
 
         private void RecalculateGeneralObjectLocation(ICelestialObject celestialObject, EngineSettings settings)
         {
-            var position = GeometryTools.MoveObject(
-                new PointF((float) celestialObject.PositionX, (float) celestialObject.PositionY),
+            var position = GeometryTools.Move(
+                new Point(celestialObject.PositionX, celestialObject.PositionY),
                 celestialObject.Speed,
                 celestialObject.Direction);
 
@@ -46,22 +44,19 @@ namespace Engine.DataProcessing
 
             celestialObject.AtomicLocation = new List<Tuple<int, Point>>();
 
-            var speedInTick = celestialObject.Speed / settings.UnitsPerSecond;
-
             var currentAtomicPosition = new Point(celestialObject.PositionX, celestialObject.PositionY);
 
             // Initial turn position
             celestialObject.AtomicLocation.Add(new Tuple<int, Point>(0, new Point(currentAtomicPosition.X, currentAtomicPosition.Y)));
 
-            for (var i = 1; i <= settings.UnitsPerSecond; i++)
+            for (var i = 1; i <= settings.FramesPerSecond; i++)
             {
-                currentAtomicPosition = GeometryTools.Move(
-                    currentAtomicPosition,
-                    speedInTick,
-                    celestialObject.Direction);
+                currentAtomicPosition = GeometryTools.RecalculateAtomicObjectLocation(celestialObject, settings, i);
 
                 celestialObject.AtomicLocation.Add(new Tuple<int, Point>( i, new Point(currentAtomicPosition.X, currentAtomicPosition.Y)));
             }
         }
+
+        
     }
 }

@@ -58,7 +58,7 @@ namespace Engine
             _sessions.Set(session);
 
             if(debug is false)
-                Scheduler.Instance.ScheduleTask(50, 50, ExecuteTurnCalculation, null);
+                Scheduler.Instance.ScheduleTask(50, 100, ExecuteTurnCalculation);
 
             return session.Export();
         }

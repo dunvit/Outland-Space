@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Reflection;
+using log4net;
 using OutlandSpaceClient.Tools;
 using OutlandSpaceClient.UI.Model;
 using Universe.Objects;
@@ -9,7 +11,8 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 {
     public class CelestialObjects
     {
-        public static void Draw(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo)
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        public static void Draw(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, int frame)
         {
             foreach (var currentObject in session.CelestialObjects)
             {
@@ -31,7 +34,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
                         DrawSpaceship(graphics, session, screenInfo, currentObject);
                         break;
                     case CelestialObjectTypes.Asteroid:
-                        DrawAsteroid(graphics, session, screenInfo, currentObject);
+                        DrawAsteroid(graphics, session, screenInfo, currentObject, frame);
                         break;
                     case CelestialObjectTypes.Explosion:
                         break;
@@ -44,7 +47,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
         }
 
-        private static void DrawAsteroid(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject celestialObject)
+        private static void DrawAsteroid(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject celestialObject, int frame)
         {
             var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, celestialObject.Location(session.Turn, session.Step));
 
@@ -52,6 +55,8 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
             graphics.FillEllipse(new SolidBrush(color), screenCoordinates.X - 2, screenCoordinates.Y - 2, 4, 4);
             graphics.DrawEllipse(new Pen(color), screenCoordinates.X - 4, screenCoordinates.Y - 4, 8, 8);
+
+            Logger.Info($"Turn: {session.Turn} Frame: {frame} Location: {screenCoordinates}");
         }
 
         private static void DrawSpaceship(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject spaceShip)

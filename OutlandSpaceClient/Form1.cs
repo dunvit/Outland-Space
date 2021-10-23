@@ -13,6 +13,10 @@ namespace OutlandSpaceClient
         {
             InitializeComponent();
 
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint , true);
+
+            UpdateStyles();
+
             crlTacticalMap.Dock = DockStyle.Fill;
 
             if (Global.Game == null) return;

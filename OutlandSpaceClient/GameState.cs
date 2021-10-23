@@ -1,5 +1,6 @@
 ﻿using Engine.DataProcessing;
 using OutlandSpaceClient.UI.Model;
+using OutlandSpaceCommon;
 
 namespace OutlandSpaceClient
 {

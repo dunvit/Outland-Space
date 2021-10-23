@@ -1,13 +1,12 @@
-﻿
-using System.Drawing;
+﻿using Point = Universe.Geometry.Point;
 
 namespace Universe.Objects
 {
     public static class CelestialObjectExtensions
     {
-        public static PointF GetLocation(this ICelestialObject celestialObject)
+        public static Point GetLocation(this ICelestialObject celestialObject)
         {
-            return new PointF((float) celestialObject.PositionX, (float) celestialObject.PositionY);
+            return new Point(celestialObject.PositionX, celestialObject.PositionY);
         }
 
         public static bool IsNameCorrect(this ICelestialObject celestialObject)

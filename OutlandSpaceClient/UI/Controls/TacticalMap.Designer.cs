@@ -30,6 +30,8 @@ namespace OutlandSpaceClient.UI.Controls
         private void InitializeComponent()
         {
             this.txtTurn = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTurn
@@ -43,14 +45,25 @@ namespace OutlandSpaceClient.UI.Controls
             this.txtTurn.TabIndex = 0;
             this.txtTurn.Text = "label1";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 135);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // TacticalMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtTurn);
             this.DoubleBuffered = true;
             this.Name = "TacticalMap";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -59,5 +72,6 @@ namespace OutlandSpaceClient.UI.Controls
         #endregion
 
         private System.Windows.Forms.Label txtTurn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

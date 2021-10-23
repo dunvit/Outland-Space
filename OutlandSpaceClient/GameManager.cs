@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using log4net;
-using OutlandSpaceCommon;
 using Universe.Session;
 using Updater;
 
