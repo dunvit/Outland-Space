@@ -54,13 +54,9 @@ namespace OutlandSpaceClient.UI.Controls
 
             UpdateStyles();
 
-            //if (DesignTimeHelper.IsInDesignMode) return;
-
             if (Global.Game == null) return;
 
             Global.Game.OnEndTurn += Event_EndTurn;
-
-            
 
             Application.Idle += HandleApplicationIdle;
         }
