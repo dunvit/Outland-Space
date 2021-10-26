@@ -1,6 +1,7 @@
 ﻿using Engine.Generation;
 using NUnit.Framework;
 using Universe.Objects;
+using Universe.Objects.Spaceships;
 
 namespace Tests.EngineTests.Generation
 {
@@ -18,5 +19,7 @@ namespace Tests.EngineTests.Generation
             Assert.That(spaceMap.PositionY, Is.EqualTo(10000));
             Assert.That(spaceMap.Type, Is.EqualTo(CelestialObjectTypes.SpaceshipPlayer));
         }
+
+        
     }
 }

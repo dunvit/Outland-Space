@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using OutlandSpaceCommon;
-using Universe.Modules;
+﻿using OutlandSpaceCommon;
 using Universe.Objects;
 using Universe.Objects.Asteroids;
+using Universe.Objects.Spaceships;
 
 namespace Engine.Generation
 {
@@ -10,20 +9,23 @@ namespace Engine.Generation
     {
         public static ICelestialObject Generate()
         {
+            var furyClassSpaceship = SpaceshipFactory.GenerateFuryClassSpaceship();
+
             var spaceship = new Spaceship
             {
-                Id = RandomGenerator.GetId(),
+                Id = furyClassSpaceship.Id,
                 Name = "Glowworm",
                 Direction = 90,
                 PositionX = 10000,
                 PositionY = 10000,
-                MaxSpeed = 12,
-                Modules = new List<IModule>(),
+                Modules = furyClassSpaceship.Modules,
+                MaxSpeed = furyClassSpaceship.MaxSpeed,
                 Type = CelestialObjectTypes.SpaceshipPlayer
             };
 
-
             return spaceship;
         }
+
+
     }
 }

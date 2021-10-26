@@ -56,33 +56,7 @@ namespace Tests.EngineTests.DataProcessing
 
             var atomicSecondTurnLocation = resultSession.GetCelestialObject(smallAsteroid.Id).AtomicLocation;
 
-            Assert.That(atomicSecondTurnLocation.Count, Is.EqualTo(21));
-
-            var atomicInitialStepLocation = resultSession.GetTurnLocation(smallAsteroid.Id, 0);
-            var atomicFirstStepLocation = resultSession.GetTurnLocation(smallAsteroid.Id, 1);
-            var atomicSecondStepLocation = resultSession.GetTurnLocation(smallAsteroid.Id, 2);
-            var atomicFinishStepLocation = resultSession.GetTurnLocation(smallAsteroid.Id, 20);
-
-            Assert.That(atomicInitialStepLocation.IsEqualTo(new Point(1020, 2000)));
-            Assert.That(atomicFirstStepLocation.IsEqualTo(new Point(1020.5, 2000)));
-            Assert.That(atomicSecondStepLocation.IsEqualTo(new Point(1021, 2000)));
-            Assert.That(atomicFinishStepLocation.IsEqualTo(new Point(1030, 2000)));
-
-            var resultSessionThirdTurn = dataProcess.Recalculate(session, new EngineSettings());
-
-            var atomicThirdTurnLocation = resultSessionThirdTurn.GetCelestialObject(smallAsteroid.Id).AtomicLocation;
-
-            Assert.That(atomicThirdTurnLocation.Count, Is.EqualTo(21));
-
-            var atomicInitialStepThirdTurnLocation = resultSessionThirdTurn.GetTurnLocation(smallAsteroid.Id, 0);
-            var atomicFirstStepThirdTurnLocation = resultSessionThirdTurn.GetTurnLocation(smallAsteroid.Id, 1);
-            var atomicSecondStepThirdTurnLocation = resultSessionThirdTurn.GetTurnLocation(smallAsteroid.Id, 2);
-            var atomicFinishStepThirdTurnLocation = resultSessionThirdTurn.GetTurnLocation(smallAsteroid.Id, 20);
-
-            Assert.That(atomicInitialStepThirdTurnLocation.IsEqualTo(new Point(1030, 2000)));
-            Assert.That(atomicFirstStepThirdTurnLocation.IsEqualTo(new Point(1030.5, 2000)));
-            Assert.That(atomicSecondStepThirdTurnLocation.IsEqualTo(new Point(1031, 2000)));
-            Assert.That(atomicFinishStepThirdTurnLocation.IsEqualTo(new Point(1040, 2000)));
+            Assert.That(atomicSecondTurnLocation.Count, Is.EqualTo(61));
         }
     }
 }
