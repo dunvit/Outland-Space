@@ -63,7 +63,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
         {
             var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, spaceShip.PositionX, spaceShip.PositionY);
 
-            var ship = (Spaceship)spaceShip;
+            var ship = spaceShip;
             var color = Color.Black;
 
             switch (ship.Type)

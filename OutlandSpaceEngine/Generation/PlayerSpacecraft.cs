@@ -1,6 +1,4 @@
-﻿using OutlandSpaceCommon;
-using Universe.Objects;
-using Universe.Objects.Asteroids;
+﻿using Universe.Objects;
 using Universe.Objects.Spaceships;
 
 namespace Engine.Generation
@@ -11,15 +9,15 @@ namespace Engine.Generation
         {
             var furyClassSpaceship = SpaceshipFactory.GenerateFuryClassSpaceship();
 
-            var spaceship = new Spaceship
+            ICelestialObject spaceship = new BaseSpaceship
             {
                 Id = furyClassSpaceship.Id,
                 Name = "Glowworm",
                 Direction = 90,
                 PositionX = 10000,
                 PositionY = 10000,
-                Modules = furyClassSpaceship.Modules,
-                MaxSpeed = furyClassSpaceship.MaxSpeed,
+                Modules = furyClassSpaceship.ToSpaceship().Modules,
+                MaxSpeed = furyClassSpaceship.ToSpaceship().MaxSpeed,
                 Type = CelestialObjectTypes.SpaceshipPlayer
             };
 

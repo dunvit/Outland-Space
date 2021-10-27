@@ -1,4 +1,5 @@
-﻿using Point = Universe.Geometry.Point;
+﻿using Universe.Objects.Spaceships;
+using Point = Universe.Geometry.Point;
 
 namespace Universe.Objects
 {
@@ -7,6 +8,11 @@ namespace Universe.Objects
         public static Point GetLocation(this ICelestialObject celestialObject)
         {
             return new Point(celestialObject.PositionX, celestialObject.PositionY);
+        }
+
+        public static ISpaceship ToSpaceship(this ICelestialObject celestialObject)
+        {
+            return (ISpaceship)celestialObject;
         }
 
         public static bool IsNameCorrect(this ICelestialObject celestialObject)

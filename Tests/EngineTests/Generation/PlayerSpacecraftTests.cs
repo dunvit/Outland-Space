@@ -11,13 +11,17 @@ namespace Tests.EngineTests.Generation
         [Test]
         public void GenerateBaseSpaceshipTest()
         {
-            var spaceMap = PlayerSpacecraft.Generate();
+            var celestialObject = PlayerSpacecraft.Generate();
 
-            Assert.That(spaceMap.Direction, Is.EqualTo(90));
-            Assert.That(spaceMap.Name, Is.EqualTo("Glowworm"));
-            Assert.That(spaceMap.PositionX, Is.EqualTo(10000));
-            Assert.That(spaceMap.PositionY, Is.EqualTo(10000));
-            Assert.That(spaceMap.Type, Is.EqualTo(CelestialObjectTypes.SpaceshipPlayer));
+            Assert.That(celestialObject.Direction, Is.EqualTo(90));
+            Assert.That(celestialObject.Name, Is.EqualTo("Glowworm"));
+            Assert.That(celestialObject.PositionX, Is.EqualTo(10000));
+            Assert.That(celestialObject.PositionY, Is.EqualTo(10000));
+            Assert.That(celestialObject.Type, Is.EqualTo(CelestialObjectTypes.SpaceshipPlayer));
+
+            ISpaceship spaceship = celestialObject.ToSpaceship();
+
+            Assert.That(spaceship.Modules.Count, Is.EqualTo(1));
         }
 
         

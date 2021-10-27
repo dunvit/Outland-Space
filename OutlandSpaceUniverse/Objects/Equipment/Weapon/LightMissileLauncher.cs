@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Universe.Modules.Weapon
+namespace Universe.Objects.Equipment.Weapon
 {
     [Serializable]
     public class LightMissileLauncher: BaseModule, IModule, IWeaponModule

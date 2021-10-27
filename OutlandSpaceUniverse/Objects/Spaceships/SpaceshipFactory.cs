@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using OutlandSpaceCommon;
-using Universe.Modules;
-using Universe.Objects.Asteroids;
+using Universe.Objects.Equipment;
 
 namespace Universe.Objects.Spaceships
 {
     public class SpaceshipFactory
     {
-        public static Spaceship GenerateFuryClassSpaceship()
+        public static ICelestialObject GenerateFuryClassSpaceship()
         {
-            var spaceship = new Spaceship
+            var spaceship = new BaseSpaceship
             {
                 Id = RandomGenerator.GetId(),
                 Name = RandomGenerator.GenerateCelestialObjectName(),
@@ -17,6 +16,8 @@ namespace Universe.Objects.Spaceships
                 Type = CelestialObjectTypes.SpaceshipNpcNeutral,
                 Modules = new List<IModule>()
             };
+
+            spaceship.ToSpaceship().Modules.Add(Factory.Create(spaceship.Id, "SSM5001"));
 
             return spaceship;
         }
