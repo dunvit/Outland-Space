@@ -3,13 +3,13 @@ using NUnit.Framework;
 using Universe.Objects;
 using Universe.Objects.Spaceships;
 
-namespace Tests.EngineTests.Generation
+namespace OutlandSpaceEngine.Tests.Generation
 {
     [TestFixture]
     public class PlayerSpacecraftTests
     {
         [Test]
-        public void GenerateBaseSpaceshipTest()
+        public void GenerateBaseSpaceship()
         {
             var celestialObject = PlayerSpacecraft.Generate();
 

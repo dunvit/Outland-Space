@@ -3,13 +3,13 @@ using NUnit.Framework;
 using Universe.Objects;
 using Universe.Objects.Points;
 
-namespace Tests.EngineTests.Generation
+namespace OutlandSpaceEngine.Tests.Generation
 {
     [TestFixture]
     public class StationTests
     {
         [Test]
-        public void GenerateStationTest()
+        public void GenerateStation()
         {
             const double centerMap = 1000;
             const int radiusMap = 500;

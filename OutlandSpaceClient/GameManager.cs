@@ -18,11 +18,11 @@ namespace OutlandSpaceClient
 
         private readonly Worker _worker;
 
-        public GameManager()
+        public GameManager(Worker worker)
         {
             State = new GameState();
 
-            _worker = new Worker();
+            _worker = worker;
             _worker.OnEndTurn += Event_EndTurn;
             _worker.OnEndTurnStep += Event_EndTurnStep;
             _worker.OnStartGame += Event_StartGame;

@@ -14,13 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OutlandSpaceCommon\OutlandSpaceCommon.csproj" />
-    <ProjectReference Include="..\OutlandSpaceEngine\OutlandSpaceEngine.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CommonTests\" />
-    <Folder Include="UniverseTests\" />
+    <ProjectReference Include="..\OutlandSpaceClientUpdater\OutlandSpaceClientUpdater.csproj" />
+    <ProjectReference Include="..\OutlandSpaceClient\OutlandSpaceClient.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,13 +1,13 @@
-﻿using System;
-using Engine;
+﻿using Engine;
+using Engine.Sessions;
 using NUnit.Framework;
 using Universe;
 using Universe.Objects.Points;
 
-namespace Tests.EngineTests.TurnCalculator
+namespace OutlandSpaceEngine.Tests
 {
     [TestFixture]
-    public class BaseExecuteTests
+    public class TurnCalculatorTests
     {
         private IGameServer _server;
 
@@ -20,9 +20,9 @@ namespace Tests.EngineTests.TurnCalculator
         [Test]
         [TestCase(0)]
         [TestCase(-100)]
-        public void NotValidSessionTest(int value)
+        public void NotValidSession(int value)
         {
-            ITurnCalculator server = new Engine.TurnCalculator();
+            ITurnCalculator server = new TurnCalculator();
 
             Assert.That(server.Execute(new GameSession(), value).IsValid, Is.False);
         }
@@ -30,17 +30,17 @@ namespace Tests.EngineTests.TurnCalculator
         [Test]
         [TestCase(1)]
         [TestCase(100)]
-        public void ValidSessionTest(int value)
+        public void ValidSession(int value)
         {
-            ITurnCalculator server = new Engine.TurnCalculator();
+            ITurnCalculator server = new TurnCalculator();
 
             Assert.That(server.Execute(new GameSession(), value).IsValid, Is.True);
         }
 
         [Test]
-        public void RefreshGameSessionTest()
+        public void RefreshGameSession()
         {
-            ITurnCalculator server = new Engine.TurnCalculator();
+            ITurnCalculator server = new TurnCalculator();
 
             var session = server.Execute(new GameSession(), 1);
 
@@ -48,12 +48,12 @@ namespace Tests.EngineTests.TurnCalculator
         }
 
         [Test]
-        public void BasicExecuteTest()
+        public void BasicExecute()
         {
             const double centerMap = 1000;
             const int radiusMap = 500;
 
-            ITurnCalculator server = new Engine.TurnCalculator();
+            ITurnCalculator server = new TurnCalculator();
 
             var session = SessionFactory.ProduceSession();
 

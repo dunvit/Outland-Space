@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using Engine;
+using Engine.Sessions;
 using NUnit.Framework;
 using Universe.Objects;
 
-namespace Tests.UniverseTests.SessionTests
+namespace OutlandSpaceEngine.Tests.Sessions
 {
     [TestFixture]
     public class SessionFactoryTests
     {
         [Test]
-        public void GenerateEmptySessionTest()
+        public void GenerateEmptySession()
         {
             var session = SessionFactory.ProduceSession();
 

@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using Engine;
 using Engine.DataProcessing;
+using Engine.Sessions;
 using NUnit.Framework;
 using OutlandSpaceCommon;
-using Universe.Geometry;
 using Universe.Objects;
 using Universe.Objects.Points;
 
-namespace Tests.EngineTests.DataProcessing
+namespace OutlandSpaceEngine.Tests.DataProcessing
 {
     [TestFixture]
     public class CoordinatesTests
@@ -25,7 +25,7 @@ namespace Tests.EngineTests.DataProcessing
         }
 
         [Test]
-        public void CalculateGeneralObjectLocationTest()
+        public void CalculateGeneralObjectLocation()
         {
             var smallAsteroid = Tools.Random.GenerateSmallAsteroid(new SpacePoint(CenterMap, RadiusMap), RadiusMap);
 

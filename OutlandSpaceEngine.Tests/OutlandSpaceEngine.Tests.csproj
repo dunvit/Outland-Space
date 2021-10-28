@@ -18,9 +18,4 @@
     <ProjectReference Include="..\OutlandSpaceEngine\OutlandSpaceEngine.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CommonTests\" />
-    <Folder Include="UniverseTests\" />
-  </ItemGroup>
-
 </Project>

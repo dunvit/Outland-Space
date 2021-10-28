@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Universe;
 using Universe.Session;
 
-namespace Tests.EngineTests
+namespace OutlandSpaceEngine.Tests
 {
     [TestFixture]
     public class LocalGameServerTests
@@ -18,7 +18,7 @@ namespace Tests.EngineTests
         }
 
         [Test]
-        public void EmptySessionInitialization_Test()
+        public void EmptySessionInitialization()
         {
             IGameSessionData session = _server.SessionInitialization();
 
@@ -30,13 +30,13 @@ namespace Tests.EngineTests
         }
 
         [Test]
-        public void GetTurn_NegativeTest()
+        public void GetTurn_Negative()
         {
             Assert.Throws<InvalidOperationException>(() => _server.GetTurn(1));
         }
 
         [Test]
-        public void Execute_PositiveTest()
+        public void Execute_Positive()
         {
             var session = _server.SessionInitialization(true);
             _server.ResumeSession(session.Id);
@@ -46,7 +46,7 @@ namespace Tests.EngineTests
         }
 
         [Test]
-        public void GetTurn_EmptySessionPositiveTest()
+        public void GetTurn_EmptySessionPositive()
         {
             var session = _server.SessionInitialization();
 
@@ -54,13 +54,13 @@ namespace Tests.EngineTests
         }
 
         [Test]
-        public void RefreshGameSession_NegativeTest()
+        public void RefreshGameSession_Negative()
         {
             Assert.Throws<InvalidOperationException>(() => _server.RefreshGameSession(1));
         }
 
         [Test]
-        public void RefreshGameSession_PositiveTest()
+        public void RefreshGameSession_Positive()
         {
             var session = _server.SessionInitialization();
 
@@ -69,19 +69,19 @@ namespace Tests.EngineTests
         }
 
         [Test]
-        public void ResumeSession_NegativeTest()
+        public void ResumeSession_Negative()
         {
             Assert.Throws<InvalidOperationException>(() => _server.ResumeSession(1));
         }
 
         [Test()]
-        public void PauseSession_NegativeTest()
+        public void PauseSession_Negative()
         {
             Assert.Throws<InvalidOperationException>(() => _server.PauseSession(1));
         }
 
         [Test()]
-        public void Command_NegativeTest()
+        public void Command_Negative()
         {
             Assert.Throws<InvalidOperationException>(() => _server.Command(1, ""));
         }

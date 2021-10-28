@@ -1,4 +1,6 @@
-﻿namespace OutlandSpaceClient
+﻿using Updater;
+
+namespace OutlandSpaceClient
 {
     public class Global
     {
@@ -8,7 +10,7 @@
         {
             log4net.Config.XmlConfigurator.Configure();
 
-            Game = new GameManager();
+            Game = new GameManager(new Worker());
         }
     }
 }

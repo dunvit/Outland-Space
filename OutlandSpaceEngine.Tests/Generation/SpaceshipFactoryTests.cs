@@ -3,13 +3,13 @@ using Universe.Objects;
 using Universe.Objects.Equipment;
 using Universe.Objects.Spaceships;
 
-namespace Tests.EngineTests.Generation
+namespace OutlandSpaceEngine.Tests.Generation
 {
     [TestFixture]
     public class SpaceshipFactoryTests
     {
         [Test]
-        public void GenerateFuryClassSpaceshipTest()
+        public void GenerateFuryClassSpaceship()
         {
             var furyClassSpaceship = SpaceshipFactory.GenerateFuryClassSpaceship();
 

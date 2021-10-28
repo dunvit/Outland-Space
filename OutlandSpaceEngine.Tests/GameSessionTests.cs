@@ -1,7 +1,8 @@
 ﻿using Engine;
+using Engine.Sessions;
 using NUnit.Framework;
 
-namespace Tests.EngineTests
+namespace OutlandSpaceEngine.Tests
 {
     [TestFixture]
     public class GameSessionTests
@@ -9,7 +10,7 @@ namespace Tests.EngineTests
         private IGameSession session;
 
         [Test]
-        public void Block_Test()
+        public void Block()
         {
             session = SessionFactory.ProduceSession();
 
@@ -21,7 +22,7 @@ namespace Tests.EngineTests
         }
 
         [Test]
-        public void UnBlock_Test()
+        public void UnBlock()
         {
             session = SessionFactory.ProduceSession();
 

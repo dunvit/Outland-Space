@@ -1,35 +1,34 @@
-﻿using NUnit.Framework;
-using OutlandSpaceCommon;
+using NUnit.Framework;
 
-namespace Tests.CommonTests
+namespace OutlandSpaceCommon.Tests
 {
     [TestFixture]
     public class RandomGeneratorTests
     {
         [Test]
         [Repeat(25)]
-        public void GetIntegerWithMaxTest()
+        public void GetIntegerWithMax()
         {
-            Assert.That( RandomGenerator.GetInteger(10), Is.InRange(0, 10));
+            Assert.That(RandomGenerator.GetInteger(10), Is.InRange(0, 10));
         }
 
         [Test]
         [Repeat(25)]
-        public void GetIntegerWithMaxAndMinTest()
+        public void GetIntegerWithMaxAndMin()
         {
             Assert.That(RandomGenerator.GetInteger(20, 30), Is.InRange(20, 30));
         }
 
         [Test]
         [Repeat(25)]
-        public void GetIdTest()
+        public void GetId()
         {
             Assert.That(RandomGenerator.GetId(), Is.InRange(1000000000, 2147483647));
         }
 
         [Test]
         [Repeat(25)]
-        public void GetDoubleWithoutParametersTest()
+        public void GetDoubleWithoutParameters()
         {
             Assert.That(RandomGenerator.GetDouble(), Is.GreaterThan(0));
             Assert.That(RandomGenerator.GetDouble(), Is.LessThan(1));
@@ -38,7 +37,7 @@ namespace Tests.CommonTests
         [Test]
         [TestCase(5d, 5d)]
         [TestCase(10d, 10d)]
-        public void GetDoubleWithSomeParametersTest(double min, double max)
+        public void GetDoubleWithSomeParameters(double min, double max)
         {
             Assert.That(RandomGenerator.GetDouble(min, max), Is.GreaterThan(0));
             Assert.That(RandomGenerator.GetDouble(min, max), Is.LessThan(1));
@@ -47,14 +46,14 @@ namespace Tests.CommonTests
         [Test]
         [TestCase(5d, 15d)]
         [TestCase(10d, 20d)]
-        public void GetDoubleWithParametersTest(double min, double max)
+        public void GetDoubleWithParameters(double min, double max)
         {
             Assert.That(RandomGenerator.GetDouble(min, max), Is.InRange(min, max));
         }
 
         [Test]
         [Repeat(25)]
-        public void GetDirectionTest()
+        public void GetDirection()
         {
             Assert.That(RandomGenerator.Direction(), Is.InRange(0, 360));
         }
@@ -64,14 +63,14 @@ namespace Tests.CommonTests
         [TestCase(5)]
         [TestCase(10)]
         [TestCase(1000)]
-        public void DiceRollerTest(int numberOfSides)
+        public void DiceRoller(int numberOfSides)
         {
             Assert.That(RandomGenerator.DiceRoller(numberOfSides), Is.InRange(1, numberOfSides));
         }
 
         [Test]
         [Repeat(25)]
-        public void GenerateCelestialObjectNameTest()
+        public void GenerateCelestialObjectName()
         {
             var name = RandomGenerator.GenerateCelestialObjectName();
             Assert.That(name, Is.TypeOf<string>());
@@ -89,7 +88,7 @@ namespace Tests.CommonTests
         [TestCase(1)]
         [TestCase(5)]
         [TestCase(10)]
-        public void RandomStringTest(int size)
+        public void RandomString(int size)
         {
             Assert.That(RandomGenerator.RandomString(size).Length, Is.EqualTo(size));
         }
@@ -98,7 +97,7 @@ namespace Tests.CommonTests
         [TestCase(1)]
         [TestCase(5)]
         [TestCase(10)]
-        public void RandomNumberTest(int size)
+        public void RandomNumber(int size)
         {
             Assert.That(RandomGenerator.RandomNumber(size).Length, Is.EqualTo(size));
         }

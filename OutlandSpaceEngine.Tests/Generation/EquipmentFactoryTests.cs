@@ -1,21 +1,21 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using NUnit.Framework;
 using Universe.Objects.Equipment;
 using Universe.Objects.Equipment.Shield;
 
-namespace Tests.EngineTests.Generation
+namespace OutlandSpaceEngine.Tests.Generation
 {
     [TestFixture]
     public class EquipmentFactoryTests
     {
         [Test]
-        public void EquipmentFactoryShieldsGeneration_NegativeTest()
+        public void EquipmentFactoryShieldsGeneration_Negative()
         {
             Assert.Throws<Exception>(() => Factory.Create(1, ""));
         }
 
         [Test]
-        public void EquipmentFactoryShieldsGeneration_PositiveTest()
+        public void EquipmentFactoryShieldsGeneration_Positive()
         {
             IModule module = Factory.Create(1, "SSM5001");
 

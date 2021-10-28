@@ -15,8 +15,6 @@ namespace Updater
         private readonly IGameServer _gameServer;
         private IGameSessionData _session;
 
-        
-
         public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
         public event Action<IGameSessionData, int> OnEndTurnStep;
@@ -24,6 +22,11 @@ namespace Updater
         public Worker()
         {
             _gameServer = new LocalGameServer();
+        }
+
+        public bool IsRunning()
+        {
+            return _session != null;
         }
 
         public void SessionResume()
@@ -38,15 +41,16 @@ namespace Updater
             Logger.Info($"Game paused. Turn is {_session.Turn}");
         }
 
-        public void StartNewGameSession()
+        public void StartNewGameSession(int ticks = 25)
         {
             _session = _gameServer.SessionInitialization(false, true);
 
             OnStartGame?.Invoke(_session);
 
-            Scheduler.Instance.ScheduleTask(1, 25, GetDataFromServer, null);
+            if (ticks <= 0) return;
 
-            Scheduler.Instance.ScheduleTask(1, 25, RefreshSessionData, null);
+            Scheduler.Instance.ScheduleTask(1, ticks, GetDataFromServer);
+            Scheduler.Instance.ScheduleTask(1, ticks, RefreshSessionData);
         }
 
         private void RefreshSessionData()
@@ -70,6 +74,8 @@ namespace Updater
             if (_inProgress) return;
 
             _inProgress = true;
+
+            if (_session == null) throw new NullReferenceException();
 
             var timeMetricGetGameSession = Stopwatch.StartNew();
 

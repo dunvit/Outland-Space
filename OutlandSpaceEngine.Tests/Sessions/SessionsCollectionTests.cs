@@ -3,7 +3,7 @@ using Engine;
 using Engine.Sessions;
 using NUnit.Framework;
 
-namespace Tests.EngineTests.Sessions
+namespace OutlandSpaceEngine.Tests.Sessions
 {
     [TestFixture]
     public class SessionsCollectionTests
@@ -17,13 +17,13 @@ namespace Tests.EngineTests.Sessions
         }
 
         [Test]
-        public void IsExists_Negative_Test()
+        public void IsExists_Negative()
         {
             Assert.That(sessions.IsExists(111), Is.False); 
         }
 
         [Test]
-        public void IsExists_Positive_Test()
+        public void IsExists_Positive()
         {
             var session = new GameSession();
 
@@ -34,7 +34,7 @@ namespace Tests.EngineTests.Sessions
         }
 
         [Test]
-        public void Set_Positive_Test()
+        public void Set_Positive()
         {
             Assert.That(sessions.Count, Is.EqualTo(0));
 
@@ -44,7 +44,7 @@ namespace Tests.EngineTests.Sessions
         }
 
         [Test]
-        public void Set_Negative_Test()
+        public void Set_Negative()
         {
             Assert.That(sessions.Count, Is.EqualTo(0));
 
@@ -58,7 +58,7 @@ namespace Tests.EngineTests.Sessions
         }
 
         [Test]
-        public void Get_Positive_Test()
+        public void Get_Positive()
         {
             var session = new GameSession();
 
@@ -70,7 +70,7 @@ namespace Tests.EngineTests.Sessions
         }
 
         [Test]
-        public void Update_Positive_Test()
+        public void Update_Positive()
         {
             var session = new GameSession();
 
@@ -88,7 +88,7 @@ namespace Tests.EngineTests.Sessions
         }
 
         [Test]
-        public void Update_Negative_Test()
+        public void Update_Negative()
         {
             var session = new GameSession();
 

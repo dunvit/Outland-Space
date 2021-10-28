@@ -3,13 +3,13 @@ using Engine.Generation;
 using NUnit.Framework;
 using Universe.Objects.Points;
 
-namespace Tests.EngineTests.Generation
+namespace OutlandSpaceEngine.Tests.Generation
 {
     [TestFixture]
     public class GlobalSpaceMapTests
     {
         [Test]
-        public void GenerateEmptySpaceMapTest()
+        public void GenerateEmptySpaceMap()
         {
             var spaceMap = GlobalSpaceMap.GenerateBase();
 
@@ -17,7 +17,7 @@ namespace Tests.EngineTests.Generation
         }
 
         [Test]
-        public void GenerateEmptySpaceMapWithCelestialObjectsTest()
+        public void GenerateEmptySpaceMapWithCelestialObjects()
         {
             var spaceMap = GlobalSpaceMap.GenerateBase();
 

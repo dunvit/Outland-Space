@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Engine
+namespace Engine.Sessions
 {
     public class SessionFactory
     {
