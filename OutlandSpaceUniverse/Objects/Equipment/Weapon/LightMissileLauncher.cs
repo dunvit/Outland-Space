@@ -7,7 +7,6 @@ namespace Universe.Objects.Equipment.Weapon
     public class LightMissileLauncher: BaseModule, IModule, IWeaponModule
     {
         public int AmmoId { get; set; }
-        public double ReloadTime { get; set; }
-        public double Reloading { get; set; }
+        public int BaseAccuracy { get; set; }
     }
 }

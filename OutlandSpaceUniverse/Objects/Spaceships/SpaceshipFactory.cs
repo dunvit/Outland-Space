@@ -18,6 +18,7 @@ namespace Universe.Objects.Spaceships
             };
 
             spaceship.ToSpaceship().Modules.Add(Factory.Create(spaceship.Id, "SSM5001"));
+            spaceship.ToSpaceship().Modules.Add(Factory.Create(spaceship.Id, "WRS5002"));
 
             return spaceship;
         }
