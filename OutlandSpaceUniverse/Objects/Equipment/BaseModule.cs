@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Engine;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using Universe.Objects.Equipment;
 
 namespace Universe.Objects
@@ -20,5 +23,17 @@ namespace Universe.Objects
 
         public Category Category { get; set; }
         public double ActivationCost { get; set; }
+
+        public string Shot(long targetId)
+        {
+            dynamic serverCommand = new JObject();
+
+            serverCommand.ModuleId = Id;
+            serverCommand.OwnerId = OwnerId;
+            serverCommand.TypeId = CommandTypes.Fire.ToInt();
+            serverCommand.TargetId = targetId;
+
+            return serverCommand.ToString(Formatting.None);
+        }
     }
 }

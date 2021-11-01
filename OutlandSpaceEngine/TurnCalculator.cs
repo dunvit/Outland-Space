@@ -38,7 +38,11 @@ namespace Engine
         {
             var processingData = session.DeepClone();
 
-            processingData = new Coordinates().Recalculate(processingData, _engineSettings);
+            var sessionAfterCoordinatesRecalculate = new Coordinates().Recalculate(processingData, _engineSettings);
+
+            var sessionAfterCommandsExecute = new Commands().Execute(sessionAfterCoordinatesRecalculate, new EngineSettings());
+
+            processingData = sessionAfterCommandsExecute;
 
             processingData.FinishTurn();
 

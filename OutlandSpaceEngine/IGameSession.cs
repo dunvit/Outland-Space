@@ -18,6 +18,12 @@ namespace Engine
 
         bool IsValid { get; set; }
 
+        void ClearCommands();
+
+        List<Command> GetTurnCommands();
+
+        void AddCommand(int id, string command);
+
         DateTime LastUpdate { get; set; }
 
         List<ICelestialObject> GetCelestialObjects();

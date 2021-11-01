@@ -20,10 +20,13 @@ namespace Engine
         public bool IsValid { get; set; } = true;
         private bool _isBlocked = false;
         private CelestialMap SpaceMap { get; set; } = new CelestialMap(new List<ICelestialObject>());
+        private List<Command> Commands { get; set; }
 
         public GameSession()
         {
             Turn = 1;
+
+            Commands = new List<Command>();
         }
 
         public void GenerateEmptySpaceMap()
@@ -124,6 +127,21 @@ namespace Engine
             }
 
             return atomicLocation.Item2;
+        }
+
+        public List<Command> GetTurnCommands()
+        {
+            return Commands;
+        }
+
+        public void AddCommand(int id, string command)
+        {
+            Commands.Add(new Command(command) { Id = id });
+        }
+
+        public void ClearCommands()
+        {
+            Commands = new List<Command>();
         }
     }
 }

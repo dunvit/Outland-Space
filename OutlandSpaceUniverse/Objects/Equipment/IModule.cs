@@ -8,5 +8,7 @@
         Category Category { get; set; }
         bool IsAutoRun { get; set; }
         double ActivationCost { get; set; }
+
+        
     }
 }

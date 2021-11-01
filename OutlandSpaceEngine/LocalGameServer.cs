@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Engine.DataProcessing;
 using Engine.Sessions;
 using OutlandSpaceCommon;
 using Universe;
@@ -15,6 +16,11 @@ namespace Engine
         private readonly ReaderWriterLockSlim _sessionLock = new ReaderWriterLockSlim();
 
         private List<int> _runnedSessions = new List<int>();
+
+        public IGameSession CloneSession(int sessionId)
+        {
+            return _sessions.Get(sessionId).DeepClone();
+        }
 
         public IGameSessionData RefreshGameSession(int sessionId)
         {
@@ -40,6 +46,8 @@ namespace Engine
         public void Command(int sessionId, string command)
         {
             Validation(sessionId);
+
+            _sessions.Get(sessionId).AddCommand(1, command);
         }
 
         public int GetTurn(int sessionId)
@@ -97,8 +105,7 @@ namespace Engine
             _sessionLock.EnterWriteLock();
             session.Block();
 
-            var result = new TurnCalculator().Execute(session, turns);
-
+            var result = new TurnCalculator().Execute(session, turns);            
 
             _sessions.Update(result);
 

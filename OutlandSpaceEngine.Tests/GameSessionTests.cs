@@ -1,6 +1,10 @@
 ﻿using Engine;
 using Engine.Sessions;
 using NUnit.Framework;
+using Universe;
+using Universe.Objects.Equipment;
+using Universe.Objects.Equipment.Weapon;
+using Universe.Session;
 
 namespace OutlandSpaceEngine.Tests
 {
@@ -8,6 +12,13 @@ namespace OutlandSpaceEngine.Tests
     public class GameSessionTests
     {
         private IGameSession session;
+        private IGameServer _server;
+
+        [SetUp]
+        protected void Init()
+        {
+            _server = new LocalGameServer();
+        }
 
         [Test]
         public void Block()
@@ -35,6 +46,26 @@ namespace OutlandSpaceEngine.Tests
             session.UnBlock();
 
             Assert.That(session.IsBlocked, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void BaseCommandsInitialization()
+        {
+            session = SessionFactory.ProduceSession();
+
+            Assert.That(session.GetTurnCommands().Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void AddBaseCommand()
+        {
+            session = SessionFactory.ProduceSession();
+
+            var command = ((IWeaponModule)Factory.Create(1, "WRS5002")).Shot(201);
+
+            session.AddCommand(1, command);
+
+            Assert.That(session.GetTurnCommands().Count, Is.EqualTo(1));
         }
     }
 }
