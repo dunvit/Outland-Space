@@ -5,7 +5,7 @@ using Universe.Objects.Equipment;
 namespace Universe.Objects.Spaceships
 {
     [Serializable]
-    public class BaseSpaceship: BaseCelestialObject, ISpaceship, ICelestialObject
+    public class BaseSpaceship: BaseCelestialObject, ISpaceship
     {
         public List<IModule> Modules { get; set; } = new List<IModule>();
 

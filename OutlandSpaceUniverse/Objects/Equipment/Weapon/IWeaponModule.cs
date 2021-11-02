@@ -1,6 +1,6 @@
 ﻿namespace Universe.Objects.Equipment.Weapon
 {
-    public interface IWeaponModule
+    public interface IWeaponModule : IModule
     {
         int AmmoId { get; set; }
 

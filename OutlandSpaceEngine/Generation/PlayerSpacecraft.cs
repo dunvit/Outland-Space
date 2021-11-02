@@ -11,11 +11,12 @@ namespace Engine.Generation
 
             ICelestialObject spaceship = new BaseSpaceship
             {
-                Id = furyClassSpaceship.Id,
+                Id = 1000000001,
                 Name = "Glowworm",
                 Direction = 90,
                 PositionX = 10000,
                 PositionY = 10000,
+                Speed = 10,
                 Modules = furyClassSpaceship.ToSpaceship().Modules,
                 MaxSpeed = furyClassSpaceship.ToSpaceship().MaxSpeed,
                 Type = CelestialObjectTypes.SpaceshipPlayer

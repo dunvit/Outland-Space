@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Universe;
 using Universe.Objects.Equipment;
 using Universe.Objects.Equipment.Weapon;
-using Universe.Session;
 
 namespace OutlandSpaceEngine.Tests
 {

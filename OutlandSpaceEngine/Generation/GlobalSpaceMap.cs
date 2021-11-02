@@ -14,6 +14,15 @@ namespace Engine.Generation
             return new CelestialMap(objects);
         }
 
+        public static CelestialMap GenerateEmptyBase()
+        {
+            var objects = new List<ICelestialObject>();
+
+            objects.Add(PlayerSpacecraft.Generate());
+
+            return new CelestialMap(objects);
+        }
+
         public static CelestialMap GenerateBase()
         {
             const double centerMap = 1000;

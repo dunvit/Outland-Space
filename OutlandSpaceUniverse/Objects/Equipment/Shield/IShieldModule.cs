@@ -1,7 +1,7 @@
 ﻿
 namespace Universe.Objects.Equipment.Shield
 {
-    public interface IShieldModule
+    public interface IShieldModule: IModule
     {
         double Power { get; set; }
     }

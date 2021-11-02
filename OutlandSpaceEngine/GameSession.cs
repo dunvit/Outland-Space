@@ -29,6 +29,11 @@ namespace Engine
             Commands = new List<Command>();
         }
 
+        public GameSession(CelestialMap celestialMap): this()
+        {
+            SpaceMap = celestialMap;
+        }
+
         public void GenerateEmptySpaceMap()
         {
             SpaceMap = GlobalSpaceMap.GenerateEmpty();

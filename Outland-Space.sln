@@ -13,15 +13,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceCommon", "Outla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClientUpdater", "OutlandSpaceClientUpdater\OutlandSpaceClientUpdater.csproj", "{78E4B710-D726-4B4C-9C8F-481BB6537E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceCommon.Tests", "OutlandSpaceCommon.Tests\OutlandSpaceCommon.Tests.csproj", "{061A83AD-8422-4863-982D-30E9CCE044FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceCommon.Tests", "OutlandSpaceCommon.Tests\OutlandSpaceCommon.Tests.csproj", "{061A83AD-8422-4863-982D-30E9CCE044FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceEngine.Tests", "OutlandSpaceEngine.Tests\OutlandSpaceEngine.Tests.csproj", "{8DEC6C07-7424-4305-A357-3C60B9A402EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceEngine.Tests", "OutlandSpaceEngine.Tests\OutlandSpaceEngine.Tests.csproj", "{8DEC6C07-7424-4305-A357-3C60B9A402EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceUniverse.Tests", "OutlandSpaceUniverse.Tests\OutlandSpaceUniverse.Tests.csproj", "{5E054932-A88A-4238-8513-F198A50C7E42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceUniverse.Tests", "OutlandSpaceUniverse.Tests\OutlandSpaceUniverse.Tests.csproj", "{5E054932-A88A-4238-8513-F198A50C7E42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceClientUpdater.Tests", "OutlandSpaceClientUpdater.Tests\OutlandSpaceClientUpdater.Tests.csproj", "{FD08B204-2CC5-4104-9CF6-18B4D4B6705F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClientUpdater.Tests", "OutlandSpaceClientUpdater.Tests\OutlandSpaceClientUpdater.Tests.csproj", "{FD08B204-2CC5-4104-9CF6-18B4D4B6705F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpaceClient.Tests", "OutlandSpaceClient.Tests\OutlandSpaceClient.Tests.csproj", "{58419C6B-36CD-405F-BBD1-FCC8A8121B6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClient.Tests", "OutlandSpaceClient.Tests\OutlandSpaceClient.Tests.csproj", "{58419C6B-36CD-405F-BBD1-FCC8A8121B6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpace.Integration.Tests", "OutlandSpace.Integration.Tests\OutlandSpace.Integration.Tests.csproj", "{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{58419C6B-36CD-405F-BBD1-FCC8A8121B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58419C6B-36CD-405F-BBD1-FCC8A8121B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58419C6B-36CD-405F-BBD1-FCC8A8121B6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

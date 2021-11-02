@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Universe.Objects;
+using Universe.Session;
 
 namespace Engine.Sessions
 {
@@ -10,6 +13,24 @@ namespace Engine.Sessions
                 return EmptySession();
 
             throw new NotImplementedException();
+        }
+
+        public static IGameSession GenerateBaseSession(CelestialMap celestialMap = null)
+        {
+            if(celestialMap is null)
+            {
+                celestialMap = new CelestialMap(new List<ICelestialObject>());
+            }
+
+            var result = new GameSession(celestialMap)
+            {
+                Id = OutlandSpaceCommon.RandomGenerator.GetId(),
+                IsPause = true,
+                IsValid = true,
+                ScenarioName = "Base session scenario"
+            };
+
+            return result;
         }
 
         private static IGameSession EmptySession()
