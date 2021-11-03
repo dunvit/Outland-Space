@@ -1,13 +1,14 @@
 ﻿
 namespace Universe.Objects.Equipment
 {
-    public enum Category
+    public enum ModuleCategory
     {
         Weapon,
         Shield,
         Propulsion,
         Reactor,
         SpaceScanner,
-        DeepScanner
+        DeepScanner,
+        RechargeableBattery
     }
 }

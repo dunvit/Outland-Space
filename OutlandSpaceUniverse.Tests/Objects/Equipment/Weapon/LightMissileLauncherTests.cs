@@ -11,9 +11,9 @@ namespace OutlandSpaceUniverse.Tests.Objects.Equipment.Weapon
     public class LightMissileLauncherTests
     {
         [Test]
-        public void LightMissileLauncherBaseShotCommandShoudBeCorrect()
+        public void LightMissileLauncherBaseShotCommandShouldBeCorrect()
         {
-            var missileLauncher = Factory.Create(1, "WRS5002");
+            var missileLauncher = EquipmentFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher);
 
             var command = ((IWeaponModule)missileLauncher).Shot(201);
 

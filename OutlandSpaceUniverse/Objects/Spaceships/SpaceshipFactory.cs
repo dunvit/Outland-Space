@@ -17,8 +17,9 @@ namespace Universe.Objects.Spaceships
                 Modules = new List<IModule>()
             };
 
-            spaceship.ToSpaceship().Modules.Add(Factory.Create(spaceship.Id, "SSM5001"));
-            spaceship.ToSpaceship().Modules.Add(Factory.Create(spaceship.Id, "WRS5002"));
+            spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.ShieldModuleStandardMediumShield));
+            spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.EnergyModulesStandardLargeBattery));
+            spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.WeaponModuleLightMissileLauncher));
 
             return spaceship;
         }

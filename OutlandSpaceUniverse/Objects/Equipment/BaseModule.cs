@@ -21,7 +21,7 @@ namespace Universe.Objects
         public double ReloadTime { get; set; }
         public double Reloading { get; set; }
 
-        public Category Category { get; set; }
+        public ModuleCategory Category { get; set; }
         public double ActivationCost { get; set; }
 
         public string Shot(long targetId)

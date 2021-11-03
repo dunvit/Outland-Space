@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Universe.Objects.Equipment;
+using Universe.Objects.Equipment.Energy;
 using Universe.Objects.Equipment.Shield;
 using Universe.Objects.Equipment.Weapon;
 
@@ -10,41 +11,74 @@ namespace OutlandSpaceEngine.Tests.Generation
     public class EquipmentFactoryTests
     {
         [Test]
-        public void EquipmentFactoryShieldsGeneration_Negative()
+        public void GenerateShieldModuleStandardMediumShieldShouldBeCorrect()
         {
-            Assert.Throws<Exception>(() => Factory.Create(1, ""));
+            // Arrange
+            var expectedModuleName = "Standard Medium Shield Mk I";
+            var expectedPower = 200;
+
+            // Act
+            var moduleFromEnergyModuleFactory = ShieldModuleFactory.Create(1, ModulesType.ShieldModuleStandardMediumShield).ToShield();
+            var moduleFromEquipmentFactory = EquipmentFactory.Create(1, ModulesType.ShieldModuleStandardMediumShield).ToShield();
+
+            // Assert
+            Assert.AreEqual(expectedModuleName, moduleFromEnergyModuleFactory.Name);
+            Assert.AreEqual(expectedPower, moduleFromEnergyModuleFactory.Power);
+            Assert.AreEqual(ModuleCategory.Shield, moduleFromEnergyModuleFactory.Category);
+            Assert.That(moduleFromEnergyModuleFactory.ActivationCost, Is.EqualTo(100));
+
+            Assert.AreEqual(expectedModuleName, moduleFromEquipmentFactory.Name);
+            Assert.AreEqual(expectedPower, moduleFromEquipmentFactory.Power);
+            Assert.AreEqual(ModuleCategory.Shield, moduleFromEquipmentFactory.Category);
+            Assert.That(moduleFromEquipmentFactory.ActivationCost, Is.EqualTo(100));
         }
 
         [Test]
-        public void EquipmentFactoryShieldsGeneration_Positive()
+        public void GenerateWeaponModuleLightMissileLauncherShouldBeCorrect()
         {
-            IModule module = Factory.Create(1, "SSM5001");
+            // Arrange
+            var expectedModuleName = "Light Missile Launcher I";
+            var expectedBaseAccuracy = 100;
+            var expectedAmmoId = 101;
 
-            Assert.That(module.Name, Is.EqualTo("Shield Mk I"));
-            Assert.That(module.OwnerId, Is.EqualTo(1));
-            Assert.That(module.ActivationCost, Is.EqualTo(100));            
-            Assert.That(module.Category, Is.EqualTo(Category.Shield));
+            // Act
+            var moduleFromEnergyModuleFactory = WeaponModuleFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher).ToWeapon();
+            var moduleFromEquipmentFactory = EquipmentFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher).ToWeapon();
 
-            IShieldModule shieldModule = (IShieldModule)module;
+            // Assert
+            Assert.AreEqual(expectedModuleName, moduleFromEnergyModuleFactory.Name);
+            Assert.AreEqual(expectedBaseAccuracy, moduleFromEnergyModuleFactory.BaseAccuracy);
+            Assert.AreEqual(expectedAmmoId, moduleFromEnergyModuleFactory.AmmoId);
+            Assert.AreEqual(ModuleCategory.Weapon, moduleFromEnergyModuleFactory.Category);
 
-            Assert.That(shieldModule.Power, Is.EqualTo(200));
+            Assert.AreEqual(expectedModuleName, moduleFromEquipmentFactory.Name);
+            Assert.AreEqual(expectedBaseAccuracy, moduleFromEquipmentFactory.BaseAccuracy);
+            Assert.AreEqual(expectedAmmoId, moduleFromEquipmentFactory.AmmoId);
+            Assert.AreEqual(ModuleCategory.Weapon, moduleFromEquipmentFactory.Category);
         }
 
         [Test]
-        public void EquipmentFactoryWeaponGeneration_Positive()
+        public void GenerateEnergyModuleStandardLargeBatteryShouldBeCorrect()
         {
-            IModule module = Factory.Create(1, "WRS5002");
+            // Arrange
+            var expectedModuleName = "Standard Large Battery Mk I";
+            var expectedCapacity = 300;
+            var expectedMaxCapacity = 300;
 
-            Assert.That(module.Name, Is.EqualTo("Light Missile Launcher I"));
-            Assert.That(module.OwnerId, Is.EqualTo(1));
-            Assert.That(module.ActivationCost, Is.EqualTo(100));
-            Assert.That(module.Category, Is.EqualTo(Category.Weapon));
+            // Act
+            var moduleFromEnergyModuleFactory = EnergyModuleFactory.Create(1, ModulesType.EnergyModulesStandardLargeBattery).ToRechargeableBattery();
+            var moduleFromEquipmentFactory = EquipmentFactory.Create(1, ModulesType.EnergyModulesStandardLargeBattery).ToRechargeableBattery();
 
-            IWeaponModule weaponModule = (IWeaponModule)module;
+            // Assert
+            Assert.AreEqual(expectedModuleName, moduleFromEnergyModuleFactory.Name);
+            Assert.AreEqual(expectedCapacity, moduleFromEnergyModuleFactory.Capacity);
+            Assert.AreEqual(expectedMaxCapacity, moduleFromEnergyModuleFactory.MaxCapacity);
+            Assert.AreEqual(ModuleCategory.RechargeableBattery, moduleFromEnergyModuleFactory.Category);
 
-            Assert.That(weaponModule.BaseAccuracy, Is.EqualTo(100));
-            Assert.That(weaponModule.AmmoId, Is.EqualTo(101));
-            
+            Assert.AreEqual(expectedModuleName, moduleFromEquipmentFactory.Name);
+            Assert.AreEqual(expectedCapacity, moduleFromEquipmentFactory.Capacity);
+            Assert.AreEqual(expectedMaxCapacity, moduleFromEquipmentFactory.MaxCapacity);
+            Assert.AreEqual(ModuleCategory.RechargeableBattery, moduleFromEquipmentFactory.Category);
         }
     }
 }

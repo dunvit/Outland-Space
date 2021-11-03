@@ -60,7 +60,7 @@ namespace OutlandSpaceEngine.Tests
         {
             session = SessionFactory.ProduceSession();
 
-            var command = ((IWeaponModule)Factory.Create(1, "WRS5002")).Shot(201);
+            var command = EquipmentFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher).ToWeapon().Shot(201);
 
             session.AddCommand(1, command);
 
