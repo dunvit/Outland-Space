@@ -46,18 +46,23 @@ namespace OutlandSpaceClient.UI.Controls
             _celestialBackground = new CelestialBackground(300, Width, Height);
 
             bmpbase = new Bitmap(Width, Height);
+            
+            Draw.DrawBaseTacticalMapScreen(bmpbase, Global.Game.State.ScreenInfo, _session, _celestialBackground);
 
-            DrawBaseTacticalMapScreen(bmpbase, Global.Game.State.ScreenInfo);
-
-            lock (bmpLast)
-            {
-                imageTacticalMap.Image = (Bitmap)bmpbase.Clone();
-            }
+            imageTacticalMap.Image = (Bitmap)bmpbase.Clone();
+            
         }
 
         private void RefreshControl()
         {
             lblFps.Text = $@"FPS: {lastFrameRate} Location turn {_session.Turn} step {_session.Step}";
+
+            Image image = (Bitmap)bmpbase.Clone();
+
+            Draw.DrawTacticalMapScreen(image, Global.Game.State.ScreenInfo, _session, _celestialBackground, currentFrameRate);
+
+            imageTacticalMap.Image?.Dispose();
+            imageTacticalMap.Image = image;
         }
 
         protected override async Task Render()
@@ -74,18 +79,6 @@ namespace OutlandSpaceClient.UI.Controls
                 {
                     try
                     {
-                        //imageTacticalMap.Image?.Dispose();
-                        //imageTacticalMap.Image = (Bitmap)bmpLast.Clone();
-
-                        Image image = (Bitmap)bmpbase.Clone();
-
-                        DrawTacticalMapScreen(image, Global.Game.State.ScreenInfo, _session);
-
-                        //bmpLast = (Bitmap)image.Clone();
-
-                        imageTacticalMap.Image?.Dispose();
-                        imageTacticalMap.Image = image;
-
                         this.PerformSafely(RefreshControl);
                     }
                     catch (Exception e)
@@ -99,43 +92,6 @@ namespace OutlandSpaceClient.UI.Controls
             _inProgress = false;
         }
 
-        private void DrawTacticalMapScreen(Image image, IScreenInfo screenParameters, IGameSessionData session)
-        {
-            //Logger.Debug($"[Event_OnEndTurnStep] Location turn {session.Turn} step {session.Step}");
-
-            var graphics = Graphics.FromImage(image);
-
-            graphics.CompositingQuality = CompositingQuality.HighQuality;
-            graphics.InterpolationMode = InterpolationMode.Bicubic;
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
-
-            // TODO: Calculate celestial object position by timespan instead of frame 
-            // recalculate frame number for draw process 
-
-            // TODO: Refactor Draw process to stand alone file
-
-            StartFlicker.Draw(graphics, session, screenParameters, _celestialBackground);
-
-            CelestialObjects.Draw(graphics, session, screenParameters, currentFrameRate);
-        }
-
-        private void DrawBaseTacticalMapScreen(Image image, IScreenInfo screenParameters)
-        {
-            //Logger.Debug($"[Event_OnEndTurnStep] Location turn {session.Turn} step {session.Step}");
-
-            var graphics = Graphics.FromImage(image);
-
-            graphics.CompositingQuality = CompositingQuality.HighQuality;
-            graphics.InterpolationMode = InterpolationMode.Bicubic;
-            graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
-
-            BackGround.Draw(graphics, screenParameters);
-
-            Grid.Draw(graphics, screenParameters);
-
-            StartFlicker.Draw(graphics, _session, screenParameters, _celestialBackground);
-        }
+        
     }
 }

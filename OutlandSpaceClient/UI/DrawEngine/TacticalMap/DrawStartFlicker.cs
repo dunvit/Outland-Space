@@ -5,9 +5,9 @@ using Universe.Session;
 
 namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 {
-    public class StartFlicker
+    public class DrawStartFlicker
     {
-        public static void Draw(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, CelestialBackground frame)
+        public static void Execute(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, CelestialBackground frame)
         {
             try
             {

@@ -3,9 +3,9 @@ using OutlandSpaceClient.UI.Model;
 
 namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 {
-    public class BackGround
+    public class DrawGridBackGround
     {
-        public static void Draw(Graphics graphics, IScreenInfo screenInfo)
+        public static void Execute(Graphics graphics, IScreenInfo screenInfo)
         {
             try
             {

@@ -4,15 +4,14 @@ using log4net;
 using OutlandSpaceClient.Tools;
 using OutlandSpaceClient.UI.Model;
 using Universe.Objects;
-using Universe.Objects.Asteroids;
 using Universe.Session;
 
 namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 {
-    public class CelestialObjects
+    public class DrawCelestialObjects
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        public static void Draw(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, int frame)
+        public static void Execute(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, int frame)
         {
             foreach (var currentObject in session.CelestialObjects)
             {
