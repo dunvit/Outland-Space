@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
+using Engine.Generation.Celestial;
 using log4net;
 using OutlandSpaceClient.UI.DrawEngine.TacticalMap;
 using OutlandSpaceClient.UI.Model;
@@ -23,6 +24,7 @@ namespace OutlandSpaceClient.UI.Controls
         private IGameSessionData _session;
         private int _frame;
         private readonly EngineSettings _settings;
+        private CelestialBackground _celestialBackground;
 
         public TacticalMap()
         {
@@ -39,9 +41,9 @@ namespace OutlandSpaceClient.UI.Controls
 
             _settings = Global.Game.State.Settings;
 
-            var frameInMilliseconds = 1000 / (double)_settings.FramesPerSecond;
+            _celestialBackground = new CelestialBackground(300, Width, Height);
 
-            //Scheduler.Instance.ScheduleTask(1, 1000, V1);
+            var frameInMilliseconds = 1000 / (double)_settings.FramesPerSecond;
 
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += RecalculateCelestialObjectPositionsEvent1;
@@ -85,6 +87,8 @@ namespace OutlandSpaceClient.UI.Controls
                     frameId = 0;
                 }
 
+                RefreshControl(_session);
+
                 double msToWait = minFramePeriodMsec - stopwatch.ElapsedMilliseconds;
                 if (msToWait > 0)
                     Thread.Sleep((int)msToWait);
@@ -126,6 +130,8 @@ namespace OutlandSpaceClient.UI.Controls
 
                     _frame++;
                     _printFrames = $"Last frame is {frameId}/{_frame}"; //_printFrames + Environment.NewLine + _lastTurn + " - " + _frame;
+
+                    
 
                     //lock (bmpLast)
                     //{

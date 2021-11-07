@@ -47,10 +47,11 @@ namespace OutlandSpaceClient.UI.Controls
             // lblFps
             // 
             this.lblFps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblFps.AutoSize = true;
             this.lblFps.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblFps.Location = new System.Drawing.Point(5, 131);
             this.lblFps.Name = "lblFps";
-            this.lblFps.Size = new System.Drawing.Size(65, 15);
+            this.lblFps.Size = new System.Drawing.Size(38, 15);
             this.lblFps.TabIndex = 1;
             this.lblFps.Text = "label1";
             // 
@@ -64,6 +65,7 @@ namespace OutlandSpaceClient.UI.Controls
             this.Name = "ControlTacticalMap";
             ((System.ComponentModel.ISupportInitialize)(this.imageTacticalMap)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
