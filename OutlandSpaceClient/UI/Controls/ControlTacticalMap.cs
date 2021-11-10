@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Engine.Generation.Celestial;
 using OutlandSpaceClient.Tools;
 using OutlandSpaceClient.UI.DrawEngine.TacticalMap;
-using OutlandSpaceClient.UI.Model;
-using Universe.Session;
 
 namespace OutlandSpaceClient.UI.Controls
 {
@@ -35,22 +31,22 @@ namespace OutlandSpaceClient.UI.Controls
             if (Global.Game == null) return;
 
             bmpLive = new Bitmap(Width, Height);
-            bmpLast = (Bitmap)bmpLive.Clone();
-            
+            bmpLast = (Bitmap)bmpLive.Clone();            
 
-            log.Info("This is a 'ControlTacticalMap' message");
+            log.Info("Build 'ControlTacticalMap' control");
         }
 
         internal void Initialization()
         {
+            log.Info("Initialization 'ControlTacticalMap' control");
+
             _celestialBackground = new CelestialBackground(300, Width, Height);
 
             bmpbase = new Bitmap(Width, Height);
             
             Draw.DrawBaseTacticalMapScreen(bmpbase, Global.Game.State.ScreenInfo, _session, _celestialBackground);
 
-            imageTacticalMap.Image = (Bitmap)bmpbase.Clone();
-            
+            imageTacticalMap.Image = (Bitmap)bmpbase.Clone();            
         }
 
         private void RefreshControl()
@@ -71,7 +67,7 @@ namespace OutlandSpaceClient.UI.Controls
 
             _inProgress = true;
             
-            log.Info($"frame is {_session.Turn}.{currentFrameRate} ");
+            log.Debug($"frame is {_session.Turn}.{currentFrameRate} ");
 
             lock (bmpLast)
             {

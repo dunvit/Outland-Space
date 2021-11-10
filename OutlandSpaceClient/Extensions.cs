@@ -1,6 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Reflection;
 using log4net;
+using Universe.Geometry;
 using Universe.Objects;
 
 namespace OutlandSpaceClient
@@ -8,6 +10,16 @@ namespace OutlandSpaceClient
     public static class Extensions
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        
+        public static PointF Location(this ICelestialObject celestialObject, DateTime lastUpdate)
+        {
+            var ms = (DateTime.UtcNow - lastUpdate).TotalMilliseconds / 1000;
+
+            var location = GeometryTools.RecalculateAtomicObjectLocation(celestialObject, ms);
+
+            return new PointF((float)location.X, (float)location.Y);
+        }
+
 
         public static PointF Location(this ICelestialObject celestialObject, int turn, int step)
         {

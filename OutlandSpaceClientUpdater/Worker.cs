@@ -59,6 +59,8 @@ namespace Updater
 
             _session.Step++;
 
+            
+
             OnEndTurnStep?.Invoke(_session, _session.Step);
 
             Logger.Debug("Refresh Session Data. " +
@@ -83,11 +85,20 @@ namespace Updater
 
             if (gameSession.Turn > _session.Turn)
             {
+                var ms = (DateTime.UtcNow - gameSession.LastUpdate).TotalMilliseconds / 1000;
+
+                Logger.Info($"Last update is {ms} ms before");
+
+                gameSession.LastUpdate = DateTime.UtcNow;
+
                 OnEndTurn?.Invoke(gameSession);
 
                 _session = gameSession;
 
                 _session.Step = 0;
+
+                Logger.Debug($"Turn [{gameSession.Turn}] Get data from server is finished {timeMetricGetGameSession.Elapsed.TotalMilliseconds} ms.");
+
             }
 
             timeMetricGetGameSession.Stop();

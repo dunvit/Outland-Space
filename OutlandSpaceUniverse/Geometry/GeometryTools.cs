@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using OutlandSpaceCommon;
 using Universe.Objects;
 
 namespace Universe.Geometry
 {
     public class GeometryTools
     {
-        public static Point RecalculateAtomicObjectLocation(ICelestialObject celestialObject, EngineSettings settings, int step)
+        public static Point RecalculateAtomicObjectLocation(ICelestialObject celestialObject, double delta)
         {
-            var speedInTick = celestialObject.Speed / settings.FramesPerSecond;
-
-            return Move(celestialObject.GetLocation(), speedInTick * step, celestialObject.Direction);
+            return Move(celestialObject.GetLocation(), celestialObject.Speed * delta, celestialObject.Direction);
         }
 
         public static PointF ToRelativeCoordinates(PointF mouseLocation, PointF centerPosition)

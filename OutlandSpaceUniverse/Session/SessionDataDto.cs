@@ -19,5 +19,7 @@ namespace Universe.Session
         public bool IsValid { get; set; }
 
         public List<ICelestialObject> CelestialObjects { get; set; } = new List<ICelestialObject>();
+
+        public DateTime LastUpdate { get; set; }
     }
 }

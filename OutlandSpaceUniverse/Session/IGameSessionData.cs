@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using Universe.Objects;
 
@@ -19,5 +20,7 @@ namespace Universe.Session
         List<ICelestialObject> CelestialObjects { get; set; }
 
         bool IsValid { get; set; }
+
+        DateTime LastUpdate { get; set; }
     }
 }

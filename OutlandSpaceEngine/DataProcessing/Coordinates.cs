@@ -33,7 +33,6 @@ namespace Engine.DataProcessing
                 celestialObject.Speed,
                 celestialObject.Direction);
 
-
             Logger.Debug($"Object '{celestialObject.Name}' id='{celestialObject.Id}' moved from {celestialObject.GetLocation()} to {position}");
 
             celestialObject.PreviousPositionX = celestialObject.PositionX;
@@ -41,20 +40,6 @@ namespace Engine.DataProcessing
 
             celestialObject.PositionX = position.X;
             celestialObject.PositionY = position.Y;
-
-            celestialObject.AtomicLocation = new List<Tuple<int, Point>>();
-
-            var currentAtomicPosition = new Point(celestialObject.PositionX, celestialObject.PositionY);
-
-            // Initial turn position
-            celestialObject.AtomicLocation.Add(new Tuple<int, Point>(0, new Point(currentAtomicPosition.X, currentAtomicPosition.Y)));
-
-            for (var i = 1; i <= settings.FramesPerSecond; i++)
-            {
-                currentAtomicPosition = GeometryTools.RecalculateAtomicObjectLocation(celestialObject, settings, i);
-
-                celestialObject.AtomicLocation.Add(new Tuple<int, Point>( i, new Point(currentAtomicPosition.X, currentAtomicPosition.Y)));
-            }
         }
 
         

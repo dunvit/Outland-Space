@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Reflection;
 using log4net;
 using OutlandSpaceClient.Tools;
@@ -48,20 +49,19 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
         private static void DrawAsteroid(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject celestialObject, int frame)
         {
-            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, celestialObject.Location(session.Turn, session.Step));
+            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, celestialObject.Location(session.LastUpdate));
 
             var color = Color.Gray;
 
             graphics.FillEllipse(new SolidBrush(color), screenCoordinates.X - 2, screenCoordinates.Y - 2, 4, 4);
             graphics.DrawEllipse(new Pen(color), screenCoordinates.X - 4, screenCoordinates.Y - 4, 8, 8);
 
-            Logger.Info($"Turn: {session.Turn} Frame: {frame} Location: {screenCoordinates}");
+            Logger.Debug($"Turn: {session.Turn} Frame: {frame} Location: {screenCoordinates}");
         }
 
         private static void DrawSpaceship(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject spaceShip)
         {
-            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, spaceShip.PositionX, spaceShip.PositionY);
-
+            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, spaceShip.Location(session.LastUpdate));
             var ship = spaceShip;
             var color = Color.Black;
 
