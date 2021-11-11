@@ -57,8 +57,17 @@ namespace OutlandSpaceClient.UI.Controls
             if (Global.Game == null) return;
 
             Global.Game.OnEndTurn += Event_EndTurn;
+            Global.Game.OnRefreshLocations += Event_RefreshLocations;
 
             Application.Idle += HandleApplicationIdle;
+        }
+
+        private void Event_RefreshLocations(IGameSessionData session)
+        {
+            lock (_syncLock)
+            {
+                _session = session;
+            }                
         }
 
         private readonly object _syncLock = new object();

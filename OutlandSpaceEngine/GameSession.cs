@@ -21,6 +21,7 @@ namespace Engine
         private bool _isBlocked = false;
         private CelestialMap SpaceMap { get; set; } = new CelestialMap(new List<ICelestialObject>());
         private List<Command> Commands { get; set; }
+        public DateTime ExecuteTime { get; set; }
 
         public GameSession()
         {
@@ -76,6 +77,8 @@ namespace Engine
                 IsPause = IsPause,
                 ScenarioName = ScenarioName,
                 IsValid = IsValid,
+                ExecuteTime = ExecuteTime,
+                LastUpdate = LastUpdate,
                 CelestialObjects = SpaceMap.GetCelestialObjects()
             };
         }

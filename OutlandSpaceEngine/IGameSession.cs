@@ -26,6 +26,8 @@ namespace Engine
 
         DateTime LastUpdate { get; set; }
 
+        DateTime ExecuteTime { get; set; }
+
         List<ICelestialObject> GetCelestialObjects();
 
         ICelestialObject GetCelestialObject(int id);

@@ -49,7 +49,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
         private static void DrawAsteroid(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject celestialObject, int frame)
         {
-            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, celestialObject.Location(session.LastUpdate));
+            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, celestialObject.Location(session));
 
             var color = Color.Gray;
 
@@ -61,7 +61,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
         private static void DrawSpaceship(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject spaceShip)
         {
-            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, spaceShip.Location(session.LastUpdate));
+            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, spaceShip.Location(session));
             var ship = spaceShip;
             var color = Color.Black;
 

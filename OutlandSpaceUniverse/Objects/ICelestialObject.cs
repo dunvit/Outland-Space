@@ -18,5 +18,7 @@ namespace Universe.Objects
         List<Tuple<int, Geometry.Point>> AtomicLocation { get; set; }
 
         CelestialObjectTypes Type { get; set; }
+
+        DateTime LastUpdate { get; set; }
     }
 }

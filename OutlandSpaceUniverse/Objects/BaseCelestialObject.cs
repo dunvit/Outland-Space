@@ -17,6 +17,8 @@ namespace Universe.Objects
         public double Speed { get; set; }
         public CelestialObjectTypes Type { get; set; }
         public List<Tuple<int, Point>> AtomicLocation { get; set; } = new List<Tuple<int, Point>>();
+
+        public DateTime LastUpdate { get; set; } = DateTime.UtcNow;
     }
 
 

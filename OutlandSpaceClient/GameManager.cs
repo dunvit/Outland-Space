@@ -12,6 +12,7 @@ namespace OutlandSpaceClient
 
         public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
+        public event Action<IGameSessionData> OnRefreshLocations;
         public event Action<IGameSessionData, int> OnEndTurnStep;
 
         public GameState State;
@@ -26,6 +27,12 @@ namespace OutlandSpaceClient
             _worker.OnEndTurn += Event_EndTurn;
             _worker.OnEndTurnStep += Event_EndTurnStep;
             _worker.OnStartGame += Event_StartGame;
+            _worker.OnRefreshLocations += Event_RefreshLocations;
+        }
+
+        private void Event_RefreshLocations(IGameSessionData session)
+        {
+            OnRefreshLocations?.Invoke(session);
         }
 
         private void Event_StartGame(IGameSessionData session)

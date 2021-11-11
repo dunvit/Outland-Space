@@ -20,16 +20,28 @@ namespace Engine
             }
 
             // Run execute once in second
-            if ((DateTime.Now - session.LastUpdate).TotalMilliseconds < 1000) return session;
+            var millesecondsAfterLastTurnExecution = (DateTime.UtcNow - session.LastUpdate).TotalMilliseconds;
+            if (millesecondsAfterLastTurnExecution < 1000) 
+            {
+                //Logger.Info($"Recalculate celestial objects positions. Turn is {session.Turn}");
+
+                // Recalculate celestial objects positions 10 times per second
+                session = ExecuteMovement(session, 0.1);
+
+                //session.ExecuteTime = DateTime.UtcNow;
+
+                return session; 
+            }
 
             for (var i = 0; i < turns; i++)
             {
-                Logger.Debug($"Refresh Session Data. Turn is {session.Turn}");
+                Logger.Info($"Refresh Session Data. Turn is {session.Turn}");
 
                 session = Execute(session);
             }
 
-            session.LastUpdate = DateTime.Now;
+            session.LastUpdate = DateTime.UtcNow;
+            session.ExecuteTime = DateTime.UtcNow;
 
             return session;
         }
@@ -38,13 +50,26 @@ namespace Engine
         {
             var processingData = session.DeepClone();
 
-            var sessionAfterCoordinatesRecalculate = new Coordinates().Recalculate(processingData, _engineSettings);
+            //var sessionAfterCoordinatesRecalculate = new Coordinates().Recalculate(processingData, _engineSettings);
 
-            var sessionAfterCommandsExecute = new Commands().Execute(sessionAfterCoordinatesRecalculate, new EngineSettings());
+            //var sessionAfterCommandsExecute = new Commands().Execute(sessionAfterCoordinatesRecalculate, new EngineSettings());
+
+            var sessionAfterCommandsExecute = new Commands().Execute(processingData, new EngineSettings());
 
             processingData = sessionAfterCommandsExecute;
 
             processingData.FinishTurn();
+
+            return processingData.DeepClone();
+        }
+
+        private IGameSession ExecuteMovement(IGameSession session, double deltaInSeconds)
+        {
+            var processingData = session.DeepClone();
+
+            var sessionAfterCoordinatesRecalculate = new Coordinates().Recalculate(processingData, _engineSettings, deltaInSeconds);
+
+            processingData = sessionAfterCoordinatesRecalculate;
 
             return processingData.DeepClone();
         }

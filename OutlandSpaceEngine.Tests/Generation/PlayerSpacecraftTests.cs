@@ -21,7 +21,7 @@ namespace OutlandSpaceEngine.Tests.Generation
 
             ISpaceship spaceship = celestialObject.ToSpaceship();
 
-            Assert.That(spaceship.Modules.Count, Is.EqualTo(2));
+            Assert.That(spaceship.Modules.Count, Is.EqualTo(3));
         }
 
         

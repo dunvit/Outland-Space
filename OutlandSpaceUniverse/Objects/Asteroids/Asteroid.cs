@@ -8,5 +8,6 @@ namespace Universe.Objects.Asteroids
     public class Asteroid : BaseCelestialObject, ICelestialObject
     {
         public bool IsOreScanned { get; set; }
+        
     }
 }

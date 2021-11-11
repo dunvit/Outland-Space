@@ -53,10 +53,6 @@ namespace OutlandSpaceEngine.Tests.DataProcessing
 
             Assert.That(resultSession.GetCelestialObject(smallAsteroid.Id).PositionX, Is.EqualTo(1020));
             Assert.That(resultSession.GetCelestialObject(smallAsteroid.Id).PositionY, Is.EqualTo(2000));
-
-            var atomicSecondTurnLocation = resultSession.GetCelestialObject(smallAsteroid.Id).AtomicLocation;
-
-            Assert.That(atomicSecondTurnLocation.Count, Is.EqualTo(61));
         }
     }
 }

@@ -12,26 +12,31 @@ namespace Engine.DataProcessing
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public IGameSession Recalculate(IGameSession gameSession, EngineSettings settings)
+        public IGameSession Recalculate(IGameSession gameSession, EngineSettings settings, double ticks = 1)
         {
             var updatedSession = gameSession.GetCelestialObjects();
 
             foreach (var celestialObject in updatedSession)
             {
-                RecalculateGeneralObjectLocation(celestialObject, settings);
+                RecalculateGeneralObjectLocation(gameSession, celestialObject, settings, ticks);
             }
 
             gameSession.ReplaceCelestialObjects(updatedSession);
 
+            gameSession.ExecuteTime = DateTime.UtcNow;
+
             return gameSession;
         }
 
-        private void RecalculateGeneralObjectLocation(ICelestialObject celestialObject, EngineSettings settings)
+        private void RecalculateGeneralObjectLocation(IGameSession gameSession, ICelestialObject celestialObject, EngineSettings settings, double ticks = 1)
         {
             var position = GeometryTools.Move(
                 new Point(celestialObject.PositionX, celestialObject.PositionY),
-                celestialObject.Speed,
+                celestialObject.Speed * ticks,
                 celestialObject.Direction);
+
+            if (celestialObject.Id == 1000000001)
+                Logger.Debug($"Spaceship moved from {celestialObject.GetLocation().X:N2} to {position.X:N2}");
 
             Logger.Debug($"Object '{celestialObject.Name}' id='{celestialObject.Id}' moved from {celestialObject.GetLocation()} to {position}");
 
@@ -40,6 +45,8 @@ namespace Engine.DataProcessing
 
             celestialObject.PositionX = position.X;
             celestialObject.PositionY = position.Y;
+
+            celestialObject.LastUpdate = DateTime.UtcNow;
         }
 
         

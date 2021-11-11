@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using Engine.DataProcessing;
 using Engine.Sessions;
 using OutlandSpaceCommon;
 using Universe;
@@ -34,6 +33,8 @@ namespace Engine
             Validation(sessionId);
 
             _runnedSessions.Add(sessionId);
+
+            ExecuteTurnCalculation();
         }
 
         public void PauseSession(int sessionId)
@@ -66,7 +67,7 @@ namespace Engine
             _sessions.Set(session);
 
             if(debug is false)
-                Scheduler.Instance.ScheduleTask(50, 100, ExecuteTurnCalculation);
+                Scheduler.Instance.ScheduleTask(50, 50, ExecuteTurnCalculation);
 
             return session.Export();
         }

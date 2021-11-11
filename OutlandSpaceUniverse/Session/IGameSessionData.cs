@@ -22,5 +22,7 @@ namespace Universe.Session
         bool IsValid { get; set; }
 
         DateTime LastUpdate { get; set; }
+
+        DateTime ExecuteTime { get; set; }
     }
 }

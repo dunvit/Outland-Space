@@ -4,6 +4,7 @@ using System.Reflection;
 using log4net;
 using Universe.Geometry;
 using Universe.Objects;
+using Universe.Session;
 
 namespace OutlandSpaceClient
 {
@@ -11,13 +12,9 @@ namespace OutlandSpaceClient
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         
-        public static PointF Location(this ICelestialObject celestialObject, DateTime lastUpdate)
+        public static PointF Location(this ICelestialObject celestialObject, IGameSessionData session)
         {
-            var ms = (DateTime.UtcNow - lastUpdate).TotalMilliseconds / 1000;
-
-            var location = GeometryTools.RecalculateAtomicObjectLocation(celestialObject, ms);
-
-            return new PointF((float)location.X, (float)location.Y);
+            return new PointF((float)celestialObject.PositionX, (float)celestialObject.PositionY);
         }
 
 

@@ -17,6 +17,7 @@ namespace Updater
 
         public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
+        public event Action<IGameSessionData> OnRefreshLocations;
         public event Action<IGameSessionData, int> OnEndTurnStep;
 
         public Worker()
@@ -50,23 +51,21 @@ namespace Updater
             if (ticks <= 0) return;
 
             Scheduler.Instance.ScheduleTask(1, ticks, GetDataFromServer);
-            Scheduler.Instance.ScheduleTask(1, ticks, RefreshSessionData);
+            Scheduler.Instance.ScheduleTask(1, ticks, RefreshLocations);
         }
 
-        private void RefreshSessionData()
+        private void RefreshLocations()
         {
-            if (_session is null) return;
+            var gameSession = _gameServer.RefreshGameSession(_session.Id);
 
-            _session.Step++;
+            _session = gameSession;
 
-            
-
-            OnEndTurnStep?.Invoke(_session, _session.Step);
+            OnRefreshLocations?.Invoke(gameSession);
 
             Logger.Debug("Refresh Session Data. " +
                         $"Turn is {_session.Turn} " +
                         $"Step is {_session.Step} " +
-                        $"Atomic results is {_session.CelestialObjects[1].AtomicLocation.Count}");
+                        $"Atomic results is {_session.CelestialObjects[1].PositionX:N2}");
         }
 
         private bool _inProgress;
@@ -81,24 +80,23 @@ namespace Updater
 
             var timeMetricGetGameSession = Stopwatch.StartNew();
 
+            var lastUpdateDateTime = _session.LastUpdate;
+
             var gameSession = _gameServer.RefreshGameSession(_session.Id);
+
+            //gameSession.LastUpdate = DateTime.UtcNow;
 
             if (gameSession.Turn > _session.Turn)
             {
-                var ms = (DateTime.UtcNow - gameSession.LastUpdate).TotalMilliseconds / 1000;
+                var ms = (gameSession.LastUpdate - _session.LastUpdate).TotalMilliseconds ;
 
-                Logger.Info($"Last update is {ms} ms before");
-
-                gameSession.LastUpdate = DateTime.UtcNow;
+                Logger.Debug($"Last update is {ms} ms before. Server answear delay is {(DateTime.UtcNow - gameSession.ExecuteTime).TotalMilliseconds} ms.");
 
                 OnEndTurn?.Invoke(gameSession);
-
-                _session = gameSession;
 
                 _session.Step = 0;
 
                 Logger.Debug($"Turn [{gameSession.Turn}] Get data from server is finished {timeMetricGetGameSession.Elapsed.TotalMilliseconds} ms.");
-
             }
 
             timeMetricGetGameSession.Stop();

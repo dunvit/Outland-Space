@@ -21,5 +21,7 @@ namespace Universe.Session
         public List<ICelestialObject> CelestialObjects { get; set; } = new List<ICelestialObject>();
 
         public DateTime LastUpdate { get; set; }
+
+        public DateTime ExecuteTime { get; set; }
     }
 }
