@@ -20,6 +20,7 @@ namespace Universe.Objects.Spaceships
             spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.ShieldModuleStandardMediumShield));
             spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.EnergyModulesStandardLargeBattery));
             spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.WeaponModuleLightMissileLauncher));
+            spaceship.ToSpaceship().Modules.Add(EquipmentFactory.Create(spaceship.Id, ModulesType.CommandModuleFrigateSize));
 
             return spaceship;
         }

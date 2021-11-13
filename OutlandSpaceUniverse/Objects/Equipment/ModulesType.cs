@@ -8,5 +8,7 @@ namespace Universe.Objects.Equipment
         WeaponModuleLightMissileLauncher = 1001,
 
         ShieldModuleStandardMediumShield = 2001,
+
+        CommandModuleFrigateSize = 5001,
     }
 }

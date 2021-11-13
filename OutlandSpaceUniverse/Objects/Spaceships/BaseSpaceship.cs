@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Universe.Objects.Equipment;
+using Universe.Objects.Equipment.Control;
 using Universe.Objects.Equipment.Energy;
 using Universe.Objects.Equipment.Shield;
 using Universe.Objects.Equipment.Weapon;
@@ -15,15 +16,19 @@ namespace Universe.Objects.Spaceships
 
         public float MaxSpeed { get; set; }
 
-        // TODO: Add Unit test
         public bool IsDestroyed { get {
 
-            if (GetWorkableRechargeableBatteryModules().Count == 0)
-            {
-                return true;
-            }
+                if (GetWorkableRechargeableBatteryModules().Count == 0)
+                {
+                    return true;
+                }
 
-            return false;
+                if (GetWorkableCommandModules().Count == 0)
+                {
+                    return true;
+                }
+
+                return false;
             } 
         }
 
@@ -72,6 +77,22 @@ namespace Universe.Objects.Spaceships
             return Modules.
                 Where(module => module.Category == ModuleCategory.RechargeableBattery && module.Status == ModuleStatus.Workable).
                 Select(weaponModule => weaponModule.ToRechargeableBattery()).
+                ToList();
+        }
+
+        public List<ICommandModule> GetCommandModules()
+        {
+            return Modules.
+                Where(module => module.Category == ModuleCategory.Command).
+                Select(commandModule => commandModule.ToCommand()).
+                ToList();
+        }
+
+        public List<ICommandModule> GetWorkableCommandModules()
+        {
+            return Modules.
+                Where(module => module.Category == ModuleCategory.Command && module.Status == ModuleStatus.Workable).
+                Select(commandModule => commandModule.ToCommand()).
                 ToList();
         }
     }

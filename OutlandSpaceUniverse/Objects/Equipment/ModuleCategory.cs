@@ -9,6 +9,7 @@ namespace Universe.Objects.Equipment
         Reactor,
         SpaceScanner,
         DeepScanner,
-        RechargeableBattery
+        RechargeableBattery,
+        Command
     }
 }

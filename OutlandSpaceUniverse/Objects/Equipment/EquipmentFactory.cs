@@ -1,4 +1,5 @@
 ﻿using System;
+using Universe.Objects.Equipment.Control;
 using Universe.Objects.Equipment.Energy;
 using Universe.Objects.Equipment.Shield;
 using Universe.Objects.Equipment.Weapon;
@@ -13,6 +14,9 @@ namespace Universe.Objects.Equipment
 
             switch (moduleType)
             {
+                case ModulesType.CommandModuleFrigateSize:
+                    module = CommandModuleFactory.Create(ownerId, moduleType);
+                    break;
                 case ModulesType.EnergyModulesStandardLargeBattery:
                     module = EnergyModuleFactory.Create(ownerId, moduleType);
                     break;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Universe.Objects.Equipment;
+using Universe.Objects.Equipment.Control;
 using Universe.Objects.Equipment.Energy;
 using Universe.Objects.Equipment.Shield;
 using Universe.Objects.Equipment.Weapon;
@@ -16,10 +17,12 @@ namespace Universe.Objects.Spaceships
 
         List<IWeaponModule> GetWeaponModules();
         List<IShieldModule> GetShieldModules();
+        List<ICommandModule> GetCommandModules();
         List<IRechargeableBattery> GetRechargeableBatteryModules();
 
         List<IWeaponModule> GetWorkableWeaponModules();
         List<IShieldModule> GetWorkableShieldModules();
+        List<ICommandModule> GetWorkableCommandModules();
         List<IRechargeableBattery> GetWorkableRechargeableBatteryModules();
     }
 }

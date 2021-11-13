@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Universe.Objects.Equipment;
+using Universe.Objects.Equipment.Control;
 using Universe.Objects.Equipment.Energy;
 using Universe.Objects.Equipment.Shield;
 using Universe.Objects.Equipment.Weapon;
@@ -105,6 +106,34 @@ namespace OutlandSpaceEngine.Tests.Generation
             Assert.AreEqual(expectedCapacity, moduleFromEquipmentFactory.Capacity);
             Assert.AreEqual(expectedMaxCapacity, moduleFromEquipmentFactory.MaxCapacity);
             Assert.AreEqual(ModuleCategory.RechargeableBattery, moduleFromEquipmentFactory.Category);
+
+            Assert.AreEqual(expectedArmor, moduleFromEquipmentFactory.ArmorActual);
+            Assert.AreEqual(expectedArmorFull, moduleFromEquipmentFactory.ArmorDesign);
+
+            Assert.AreEqual(expectedStructure, moduleFromEquipmentFactory.StructureActual);
+            Assert.AreEqual(expectedStructureFull, moduleFromEquipmentFactory.StructureDesign);
+        }
+
+        [Test]
+        public void GenerateCommandModuleFrigateSizeShouldBeCorrect()
+        {
+            // Arrange
+            var expectedModuleName = "Command Module FS Mk I";
+            var expectedArmor = 10;
+            var expectedArmorFull = 10;
+            var expectedStructure = 5;
+            var expectedStructureFull = 5;
+
+            // Act
+            var moduleFromCommandModuleFactory = CommandModuleFactory.Create(1, ModulesType.CommandModuleFrigateSize).ToCommand();
+            var moduleFromEquipmentFactory = EquipmentFactory.Create(1, ModulesType.CommandModuleFrigateSize).ToCommand();
+
+            // Assert
+            Assert.AreEqual(expectedModuleName, moduleFromCommandModuleFactory.Name);
+            Assert.AreEqual(ModuleCategory.Command, moduleFromCommandModuleFactory.Category);
+
+            Assert.AreEqual(expectedModuleName, moduleFromEquipmentFactory.Name);
+            Assert.AreEqual(ModuleCategory.Command, moduleFromEquipmentFactory.Category);
 
             Assert.AreEqual(expectedArmor, moduleFromEquipmentFactory.ArmorActual);
             Assert.AreEqual(expectedArmorFull, moduleFromEquipmentFactory.ArmorDesign);

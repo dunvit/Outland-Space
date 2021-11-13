@@ -14,6 +14,7 @@ namespace OutlandSpaceEngine.Tests.Generation
             // Arrange
 
             var expectedIsShipDestroyed = false;
+            var expectedModulesCount = 4;
 
             // Act
 
@@ -29,7 +30,7 @@ namespace OutlandSpaceEngine.Tests.Generation
 
             ISpaceship spaceship = celestialObject.ToSpaceship();
 
-            Assert.That(spaceship.Modules.Count, Is.EqualTo(3));
+            Assert.That(spaceship.Modules.Count, Is.EqualTo(expectedModulesCount));
 
             Assert.AreEqual(expectedIsShipDestroyed, spaceship.IsDestroyed);
         }

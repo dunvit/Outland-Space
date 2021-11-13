@@ -1,4 +1,5 @@
-﻿using Universe.Objects.Equipment.Energy;
+﻿using Universe.Objects.Equipment.Control;
+using Universe.Objects.Equipment.Energy;
 using Universe.Objects.Equipment.Shield;
 using Universe.Objects.Equipment.Weapon;
 
@@ -6,18 +7,6 @@ namespace Universe.Objects.Equipment
 {
     public static class ModulesTypesExtensions
     {
-        public static int ToInt(this ModulesType module)
-        {
-            return (int)module;
-        }
-
-        public static int ToInt(this EnergyModulesTypes module)
-        {
-            return (int)module;
-        }
-
-        //IRechargeableBattery
-
         public static IRechargeableBattery ToRechargeableBattery(this IModule module)
         {
             return (IRechargeableBattery)module;
@@ -31,6 +20,11 @@ namespace Universe.Objects.Equipment
         public static IShieldModule ToShield(this IModule module)
         {
             return (IShieldModule)module;
+        }
+
+        public static ICommandModule ToCommand(this IModule module)
+        {
+            return (ICommandModule)module;
         }
     }
 }
