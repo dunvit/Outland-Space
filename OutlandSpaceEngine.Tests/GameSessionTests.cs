@@ -3,7 +3,6 @@ using Engine.Sessions;
 using NUnit.Framework;
 using Universe;
 using Universe.Objects.Equipment;
-using Universe.Objects.Equipment.Weapon;
 
 namespace OutlandSpaceEngine.Tests
 {

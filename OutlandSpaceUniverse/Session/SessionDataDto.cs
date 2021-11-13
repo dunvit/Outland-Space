@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OutlandSpaceCommon;
+using System;
 using System.Collections.Generic;
 using Universe.Objects;
 
@@ -23,5 +24,10 @@ namespace Universe.Session
         public DateTime LastUpdate { get; set; }
 
         public DateTime ExecuteTime { get; set; }
+
+        public List<ICelestialObject> GetCelestialObjects()
+        {
+            return CelestialObjects.DeepClone();
+        }
     }
 }

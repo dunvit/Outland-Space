@@ -29,8 +29,8 @@ namespace OutlandSpaceClient.UI.Controls
 
             imageTacticalMap.Dock = DockStyle.Fill;
 
-            MouseClick += MapClick;
-            MouseMove += MapMouseMove;
+            imageTacticalMap.MouseClick += MapClick;
+            imageTacticalMap.MouseMove += MapMouseMove;
 
             if (Global.Game == null) return;
 
@@ -40,16 +40,23 @@ namespace OutlandSpaceClient.UI.Controls
             log.Info("Build 'ControlTacticalMap' control");
         }
 
-        private void MapMouseMove(object sender, MouseEventArgs e)
+        private Universe.Geometry.Point GetCurrentMapCoordinates(System.Drawing.Point location)
         {
-            var mouseScreenCoordinates = GeometryTools.ToRelativeCoordinates(e.Location, Global.Game.State.ScreenInfo.Center);
+            var mouseScreenCoordinates = GeometryTools.ToRelativeCoordinates(location, Global.Game.State.ScreenInfo.Center);
 
             var mouseLocation = GeometryTools.ToTacticalMapCoordinates(mouseScreenCoordinates, Global.Game.State.ScreenInfo.CenterScreenOnMap);
+
+            return mouseLocation;
+        }
+
+        private void MapMouseMove(object sender, MouseEventArgs e)
+        {
+             Global.Game.RefreshOuterSpace(GetCurrentMapCoordinates(e.Location), MouseArguments.Move);
         }
 
         private void MapClick(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            Global.Game.RefreshOuterSpace(GetCurrentMapCoordinates(e.Location), MouseArguments.LeftClick);
         }
 
         internal void Initialization()

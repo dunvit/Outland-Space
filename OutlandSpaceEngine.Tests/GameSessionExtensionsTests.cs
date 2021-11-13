@@ -25,7 +25,7 @@ namespace OutlandSpaceEngine.Tests
         [Test]
         public void GetPlayerSpaceShipShouldReturnSpaceship()
         {
-            // Arround
+            // Arrange
             var exceptedId = 1000000001;
             var exceptedMaxSpeed = 12;
 

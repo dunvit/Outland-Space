@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using Universe.Geometry;
+using Universe.Session;
 
 namespace OutlandSpaceClient.Tools
 {
@@ -15,7 +16,7 @@ namespace OutlandSpaceClient.Tools
 
         public Point MouseCoordinates { get; private set; }
 
-        public void Refresh(IGameSession gameSession, Point coordinates, MouseArguments type)
+        public void Refresh(IGameSessionData gameSession, Point coordinates, MouseArguments type)
         {
             MouseCoordinates = coordinates;
 

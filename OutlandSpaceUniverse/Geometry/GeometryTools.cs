@@ -20,12 +20,12 @@ namespace Universe.Geometry
             return new PointF(relativeX, relativeY);
         }
 
-        public static PointF ToTacticalMapCoordinates(PointF currentMouseCoordinates, PointF centerPosition)
+        public static Point ToTacticalMapCoordinates(PointF currentMouseCoordinates, PointF centerPosition)
         {
             var relativeX = (centerPosition.X + currentMouseCoordinates.X);
             var relativeY = (centerPosition.Y + currentMouseCoordinates.Y);
 
-            return new PointF(relativeX, relativeY);
+            return new Point(relativeX, relativeY);
         }
 
         public static PointF MoveObject(PointF currentLocation, double speed, double angleInDegrees)
