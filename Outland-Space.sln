@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClientUpdater.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpaceClient.Tests", "OutlandSpaceClient.Tests\OutlandSpaceClient.Tests.csproj", "{58419C6B-36CD-405F-BBD1-FCC8A8121B6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlandSpace.Integration.Tests", "OutlandSpace.Integration.Tests\OutlandSpace.Integration.Tests.csproj", "{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpace.Integration.Tests", "OutlandSpace.Integration.Tests\OutlandSpace.Integration.Tests.csproj", "{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3BA93425-B099-4F21-BCB9-02265737D6E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +80,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{061A83AD-8422-4863-982D-30E9CCE044FE} = {3BA93425-B099-4F21-BCB9-02265737D6E9}
+		{8DEC6C07-7424-4305-A357-3C60B9A402EC} = {3BA93425-B099-4F21-BCB9-02265737D6E9}
+		{5E054932-A88A-4238-8513-F198A50C7E42} = {3BA93425-B099-4F21-BCB9-02265737D6E9}
+		{FD08B204-2CC5-4104-9CF6-18B4D4B6705F} = {3BA93425-B099-4F21-BCB9-02265737D6E9}
+		{58419C6B-36CD-405F-BBD1-FCC8A8121B6E} = {3BA93425-B099-4F21-BCB9-02265737D6E9}
+		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C} = {3BA93425-B099-4F21-BCB9-02265737D6E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78002152-3652-441B-A7AD-D7EC3E7FB63A}
