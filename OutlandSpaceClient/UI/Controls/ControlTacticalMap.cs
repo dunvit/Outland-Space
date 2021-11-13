@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Engine.Generation.Celestial;
 using OutlandSpaceClient.Tools;
 using OutlandSpaceClient.UI.DrawEngine.TacticalMap;
+using Universe.Geometry;
 
 namespace OutlandSpaceClient.UI.Controls
 {
@@ -28,12 +29,27 @@ namespace OutlandSpaceClient.UI.Controls
 
             imageTacticalMap.Dock = DockStyle.Fill;
 
+            MouseClick += MapClick;
+            MouseMove += MapMouseMove;
+
             if (Global.Game == null) return;
 
             bmpLive = new Bitmap(Width, Height);
             bmpLast = (Bitmap)bmpLive.Clone();            
 
             log.Info("Build 'ControlTacticalMap' control");
+        }
+
+        private void MapMouseMove(object sender, MouseEventArgs e)
+        {
+            var mouseScreenCoordinates = GeometryTools.ToRelativeCoordinates(e.Location, Global.Game.State.ScreenInfo.Center);
+
+            var mouseLocation = GeometryTools.ToTacticalMapCoordinates(mouseScreenCoordinates, Global.Game.State.ScreenInfo.CenterScreenOnMap);
+        }
+
+        private void MapClick(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         internal void Initialization()

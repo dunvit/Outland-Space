@@ -56,6 +56,14 @@ namespace Universe.Geometry
             return Math.Sqrt(Math.Pow(xDelta, 2) + Math.Pow(yDelta, 2));
         }
 
+        public static double Distance(Point p1, Point p2)
+        {
+            double xDelta = p1.X - p2.X;
+            double yDelta = p1.Y - p2.Y;
+
+            return Math.Sqrt(Math.Pow(xDelta, 2) + Math.Pow(yDelta, 2));
+        }
+
         public static double Azimuth(PointF destination, PointF center)
         {
             var relativeDestination = new PointF(destination.X - center.X, destination.Y - center.Y);
