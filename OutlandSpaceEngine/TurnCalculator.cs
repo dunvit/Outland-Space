@@ -35,7 +35,7 @@ namespace Engine
 
             for (var i = 0; i < turns; i++)
             {
-                Logger.Info($"Refresh Session Data. Turn is {session.Turn}");
+                Logger.Debug($"Refresh Session Data. Turn is {session.Turn}");
 
                 session = Execute(session);
             }

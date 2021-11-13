@@ -20,7 +20,11 @@ namespace Universe.Objects.Equipment.Energy
                         MaxCapacity = 300,
                         Capacity = 300,
                         Category = ModuleCategory.RechargeableBattery,
-                        Name = "Standard Large Battery Mk I"
+                        Name = "Standard Large Battery Mk I",
+                        ArmorActual = 10,
+                        ArmorDesign = 10,
+                        StructureActual = 5,
+                        StructureDesign = 5
                     };
                     break;
                 default:

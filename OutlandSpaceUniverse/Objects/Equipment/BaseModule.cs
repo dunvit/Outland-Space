@@ -24,6 +24,21 @@ namespace Universe.Objects
         public ModuleCategory Category { get; set; }
         public double ActivationCost { get; set; }
 
+        public int ArmorActual { get; set; }
+        public int ArmorDesign { get; set; }
+        public int StructureActual { get; set; }
+        public int StructureDesign { get; set; }
+
+        public ModuleStatus Status {
+            get
+            {
+                if (StructureActual > 0)
+                    return ModuleStatus.Workable;
+                else
+                    return ModuleStatus.Destroyed;
+            }
+        }
+
         public string Shot(long targetId)
         {
             dynamic serverCommand = new JObject();
@@ -34,6 +49,11 @@ namespace Universe.Objects
             serverCommand.TargetId = targetId;
 
             return serverCommand.ToString(Formatting.None);
+        }
+
+        public void Hit(int damage)
+        {
+            StructureActual -= damage;
         }
     }
 }

@@ -19,7 +19,11 @@ namespace Universe.Objects.Equipment.Shield
                         ActivationCost = 100,
                         Power = 200,
                         Category = ModuleCategory.Shield,
-                        Name = "Standard Medium Shield Mk I"
+                        Name = "Standard Medium Shield Mk I",
+                        ArmorActual = 10,
+                        ArmorDesign = 10,
+                        StructureActual = 5,
+                        StructureDesign = 5
                     };
                     break;
                 default:

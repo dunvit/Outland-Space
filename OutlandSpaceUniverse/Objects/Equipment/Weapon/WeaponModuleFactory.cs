@@ -22,7 +22,11 @@ namespace Universe.Objects.Equipment.Weapon
                         Reloading = 5,
                         AmmoId = 101,
                         BaseAccuracy = 100,
-                        Name = "Light Missile Launcher I"
+                        Name = "Light Missile Launcher I",
+                        ArmorActual = 10,
+                        ArmorDesign = 10,
+                        StructureActual = 5,
+                        StructureDesign = 5
                     };
                     break;
                 default:

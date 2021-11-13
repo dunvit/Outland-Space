@@ -9,6 +9,14 @@
         bool IsAutoRun { get; set; }
         double ActivationCost { get; set; }
 
-        
+        int ArmorActual { get; set; }
+        int ArmorDesign { get; set; }
+
+        int StructureActual { get; set; }
+        int StructureDesign { get; set; }
+
+        ModuleStatus Status { get; }
+
+        void Hit(int damage);
     }
 }

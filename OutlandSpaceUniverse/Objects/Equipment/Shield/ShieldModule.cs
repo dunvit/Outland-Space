@@ -6,5 +6,6 @@ namespace Universe.Objects.Equipment.Shield
     public class ShieldModule : BaseModule, IModule, IShieldModule
     {
         public double Power { get; set; }
+
     }
 }
