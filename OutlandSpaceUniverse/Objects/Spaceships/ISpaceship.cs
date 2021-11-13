@@ -12,8 +12,14 @@ namespace Universe.Objects.Spaceships
 
         float MaxSpeed { get; set; }
 
+        bool IsDestroyed { get; }
+
         List<IWeaponModule> GetWeaponModules();
         List<IShieldModule> GetShieldModules();
         List<IRechargeableBattery> GetRechargeableBatteryModules();
+
+        List<IWeaponModule> GetWorkableWeaponModules();
+        List<IShieldModule> GetWorkableShieldModules();
+        List<IRechargeableBattery> GetWorkableRechargeableBatteryModules();
     }
 }

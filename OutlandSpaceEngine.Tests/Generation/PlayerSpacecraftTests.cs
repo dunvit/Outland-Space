@@ -11,7 +11,15 @@ namespace OutlandSpaceEngine.Tests.Generation
         [Test]
         public void GenerateBaseSpaceship()
         {
+            // Arrange
+
+            var expectedIsShipDestroyed = false;
+
+            // Act
+
             var celestialObject = PlayerSpacecraft.Generate();
+
+            // Assert
 
             Assert.That(celestialObject.Direction, Is.EqualTo(90));
             Assert.That(celestialObject.Name, Is.EqualTo("Glowworm"));
@@ -22,6 +30,8 @@ namespace OutlandSpaceEngine.Tests.Generation
             ISpaceship spaceship = celestialObject.ToSpaceship();
 
             Assert.That(spaceship.Modules.Count, Is.EqualTo(3));
+
+            Assert.AreEqual(expectedIsShipDestroyed, spaceship.IsDestroyed);
         }
 
         
