@@ -10,6 +10,8 @@ namespace Engine.DataProcessing
 
         public IGameSession Execute(IGameSession gameSession, EngineSettings settings)
         {
+            Logger.Debug($"[Turn {gameSession.Turn}] Execute commands.");
+
             gameSession.ClearCommands();
 
             return gameSession;

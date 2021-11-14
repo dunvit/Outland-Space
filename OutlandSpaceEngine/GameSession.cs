@@ -20,19 +20,30 @@ namespace Engine
         public bool IsValid { get; set; } = true;
         private bool _isBlocked = false;
         private CelestialMap SpaceMap { get; set; } = new CelestialMap(new List<ICelestialObject>());
-        private List<Command> Commands { get; set; }
+        private List<Command> Commands { get; set; } = new List<Command>();
         public DateTime ExecuteTime { get; set; }
 
         public GameSession()
         {
             Turn = 1;
-
-            Commands = new List<Command>();
         }
 
         public GameSession(CelestialMap celestialMap): this()
         {
+            Id = RandomGenerator.GetId();
             SpaceMap = celestialMap;
+        }
+
+        public GameSession(IGameSessionData sessionDTO)
+        {
+            Id = sessionDTO.Id;
+            Turn = sessionDTO.Turn;
+            IsPause = sessionDTO.IsPause;
+            ScenarioName = sessionDTO.ScenarioName;
+            IsValid = sessionDTO.IsValid;
+            ExecuteTime = sessionDTO.ExecuteTime;
+            LastUpdate = sessionDTO.LastUpdate;
+            SpaceMap = new CelestialMap(sessionDTO.GetCelestialObjects());
         }
 
         public void GenerateEmptySpaceMap()
@@ -68,7 +79,7 @@ namespace Engine
             return SpaceMap.GetCelestialObjects().DeepClone();
         }
 
-        public IGameSessionData Export()
+        public IGameSessionData ToGameSession()
         {
             return new SessionDataDto
             {

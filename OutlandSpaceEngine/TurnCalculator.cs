@@ -23,12 +23,8 @@ namespace Engine
             var millesecondsAfterLastTurnExecution = (DateTime.UtcNow - session.LastUpdate).TotalMilliseconds;
             if (millesecondsAfterLastTurnExecution < 1000) 
             {
-                //Logger.Info($"Recalculate celestial objects positions. Turn is {session.Turn}");
-
                 // Recalculate celestial objects positions 10 times per second
                 session = ExecuteMovement(session, 0.1);
-
-                //session.ExecuteTime = DateTime.UtcNow;
 
                 return session; 
             }
@@ -50,13 +46,7 @@ namespace Engine
         {
             var processingData = session.DeepClone();
 
-            //var sessionAfterCoordinatesRecalculate = new Coordinates().Recalculate(processingData, _engineSettings);
-
-            //var sessionAfterCommandsExecute = new Commands().Execute(sessionAfterCoordinatesRecalculate, new EngineSettings());
-
-            var sessionAfterCommandsExecute = new Commands().Execute(processingData, new EngineSettings());
-
-            processingData = sessionAfterCommandsExecute;
+            processingData = new Commands().Execute(processingData, new EngineSettings());
 
             processingData.FinishTurn();
 
@@ -67,9 +57,7 @@ namespace Engine
         {
             var processingData = session.DeepClone();
 
-            var sessionAfterCoordinatesRecalculate = new Coordinates().Recalculate(processingData, _engineSettings, deltaInSeconds);
-
-            processingData = sessionAfterCoordinatesRecalculate;
+            processingData = new Coordinates().Recalculate(processingData, _engineSettings, deltaInSeconds);
 
             return processingData.DeepClone();
         }

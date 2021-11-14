@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Universe.Session;
+﻿using Universe.Session;
 
 namespace Universe
 {
@@ -17,6 +16,7 @@ namespace Universe
 
         int GetTurn(int sessionId);
         IGameSessionData SessionInitialization(bool debug = false, bool isGenerateStartMap = false, int sessionId = -1);
+        IGameSessionData SessionInitialization(IGameSessionData session, bool debug = false);
 
         IGameSessionData Execute(int sessionId, int turns);
 

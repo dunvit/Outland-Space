@@ -2,6 +2,6 @@
 {
     public interface IGameSessionExporter
     {
-        IGameSessionData Export();
+        IGameSessionData ToGameSession();
     }
 }

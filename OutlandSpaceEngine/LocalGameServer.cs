@@ -25,7 +25,7 @@ namespace Engine
         {
             Validation(sessionId);
 
-            return _sessions.Get(sessionId).Export();
+            return _sessions.Get(sessionId).ToGameSession();
         }
 
         public void ResumeSession(int sessionId)
@@ -48,7 +48,7 @@ namespace Engine
         {
             Validation(sessionId);
 
-            _sessions.Get(sessionId).AddCommand(1, command);
+            _sessions.Get(sessionId).AddCommand(RandomGenerator.GetId(), command);
         }
 
         public int GetTurn(int sessionId)
@@ -58,18 +58,25 @@ namespace Engine
             return _sessions.Get(sessionId).Turn;
         }
 
+        public IGameSessionData SessionInitialization(IGameSessionData session, bool debug = false)
+        {
+            var gameSession = new GameSession(session);
+
+            _sessions.Set(gameSession.DeepClone());
+
+            if (debug is false)
+                Scheduler.Instance.ScheduleTask(50, 50, ExecuteTurnCalculation);
+
+            return gameSession.ToGameSession();
+        }
+
         public IGameSessionData SessionInitialization(bool debug = false, bool isGenerateStartMap = false, int sessionId = -1)
         {
             var session = SessionFactory.ProduceSession(sessionId);
 
             if(isGenerateStartMap) session.GenerateDebugSpaceMap();
 
-            _sessions.Set(session);
-
-            if(debug is false)
-                Scheduler.Instance.ScheduleTask(50, 50, ExecuteTurnCalculation);
-
-            return session.Export();
+            return SessionInitialization(session.ToGameSession(), debug);
         }
 
         private bool isDebug;
@@ -115,7 +122,7 @@ namespace Engine
 
             isDebug = false;
 
-            return result.Export();
+            return result.ToGameSession();
         }
 
         private void Validation(int sessionId)

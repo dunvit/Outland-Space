@@ -21,7 +21,7 @@ namespace OutlandSpaceClient.Tests.Tools
             var asteroid = AsteroidFactory.GenerateSmall(new Point(10100, 10100));
             session.AddCelestialObject(asteroid);
 
-            var sessionData = session.Export();
+            var sessionData = session.ToGameSession();
 
             var outerSpace = new OutlandSpaceClient.Tools.OuterSpace();
 
@@ -66,7 +66,7 @@ namespace OutlandSpaceClient.Tests.Tools
                 changeSelectedObjectEvents.Add(id);
             };
 
-            var sessionData = session.Export();
+            var sessionData = session.ToGameSession();
 
             outerSpace.Refresh(sessionData, new Point(10100, 10100), OutlandSpaceClient.Tools.MouseArguments.LeftClick);
             outerSpace.Refresh(sessionData, new Point(10150, 10150), OutlandSpaceClient.Tools.MouseArguments.LeftClick);
@@ -91,7 +91,7 @@ namespace OutlandSpaceClient.Tests.Tools
 
             // Act
 
-            var sessionData = SessionFactory.GenerateBaseSession(GlobalSpaceMap.GenerateEmptyBase()).Export();
+            var sessionData = SessionFactory.GenerateBaseSession(GlobalSpaceMap.GenerateEmptyBase()).ToGameSession();
             var outerSpace = new OutlandSpaceClient.Tools.OuterSpace();
 
             // Assert
