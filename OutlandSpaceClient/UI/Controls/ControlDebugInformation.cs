@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using log4net;
 using OutlandSpaceClient.Tools;
+using Universe.Geometry;
 using Universe.Session;
 
 namespace OutlandSpaceClient.UI.Controls
@@ -9,6 +10,8 @@ namespace OutlandSpaceClient.UI.Controls
     public partial class ControlDebugInformation : UserControl
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        private Point _mouse = new Point(0, 0);
 
         public ControlDebugInformation()
         {
@@ -18,10 +21,18 @@ namespace OutlandSpaceClient.UI.Controls
 
             Global.Game.OnStartGame += Event_StartGame;
             Global.Game.OnEndTurn += Event_EndTurn;
-            Global.Game.OnEndTurnStep += Event_OnEndTurnStep;
+            Global.Game.OnEndTurnStep += Event_EndTurnStep;
+            Global.Game.OnMouseMove += EventMouseMove;
         }
 
-        private void Event_OnEndTurnStep(IGameSessionData session, int step)
+        private void EventMouseMove(Point mouseLocation)
+        {
+            _mouse = mouseLocation;
+
+            this.PerformSafely(RefreshControl);
+        }
+
+        private void Event_EndTurnStep(IGameSessionData session, int step)
         {
             Logger.Debug($"Refresh game information for turn '{session.Turn} and step {step}'.");
 
@@ -49,7 +60,9 @@ namespace OutlandSpaceClient.UI.Controls
             txtTurn.Text = @"Turn: " + session.Turn + "";
             txtMode.Text = @"Mode: " + session.IsPause;
             txtId.Text = @"session Id: " + session.Id + "";
-            txtLocation.Text = @"Location X: " + session.CelestialObjects[1].PositionX + "";
+            
+
+            RefreshControl();
 
             //if (session.CelestialObjects[1].AtomicLocation.Count > 0 && session.Step < 21)
             //{
@@ -58,6 +71,11 @@ namespace OutlandSpaceClient.UI.Controls
             //    label1.Text = @"Location X: " + locationX + "";
             //    Logger.Debug($" location {locationX} Turn {session.Turn} step {session.Step}");
             //}
+        }
+
+        public void RefreshControl()
+        {
+            txtLocation.Text = $@"Mouse x: {_mouse.X} y: {_mouse.Y}";
         }
     }
 }

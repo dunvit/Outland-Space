@@ -17,6 +17,8 @@ namespace OutlandSpaceClient
         public event Action<IGameSessionData> OnRefreshLocations;
         public event Action<IGameSessionData, int> OnEndTurnStep;
 
+        public event Action<Point> OnMouseMove;
+
         public GameState State;
         private OuterSpace _outerSpace;
 
@@ -40,19 +42,21 @@ namespace OutlandSpaceClient
 
         private void Event_ChangeSelectedObject(int id)
         {
-            // TODO: Refresh UI active entity to ControlTacticalMap
-            throw new NotImplementedException();
+            // TODO: Refresh UI active entity to ControlTacticalMap by GameState system
+            //throw new NotImplementedException();
         }
 
         private void Event_ChangeActiveObject(int id)
         {
             // TODO: Refresh UI active entity to ControlTacticalMap
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void RefreshOuterSpace(Point coordinates, MouseArguments type)
         {
             _outerSpace.Refresh(_session, coordinates, type);
+
+            OnMouseMove?.Invoke(coordinates);
         }
 
         private void Event_RefreshLocations(IGameSessionData session)
