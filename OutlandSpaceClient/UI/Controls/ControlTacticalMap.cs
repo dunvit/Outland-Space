@@ -56,7 +56,25 @@ namespace OutlandSpaceClient.UI.Controls
 
         private void MapClick(object sender, MouseEventArgs e)
         {
-            Global.Game.RefreshOuterSpace(GetCurrentMapCoordinates(e.Location), MouseArguments.LeftClick);
+            var mouseButton = MouseArguments.LeftClick;
+
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    mouseButton = MouseArguments.LeftClick;
+                    break;
+                case MouseButtons.None:
+                    break;
+                case MouseButtons.Right:
+                    mouseButton = MouseArguments.RightClick;
+                    break;
+                case MouseButtons.Middle:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            Global.Game.RefreshOuterSpace(GetCurrentMapCoordinates(e.Location), mouseButton);
         }
 
         internal void Initialization()
@@ -66,7 +84,7 @@ namespace OutlandSpaceClient.UI.Controls
             _celestialBackground = new CelestialBackground(300, Width, Height);
 
             bmpbase = new Bitmap(Width, Height);
-            
+
             Draw.DrawBaseTacticalMapScreen(bmpbase, Global.Game.State.ScreenInfo, _session, _celestialBackground);
 
             imageTacticalMap.Image = (Bitmap)bmpbase.Clone();            
@@ -78,7 +96,12 @@ namespace OutlandSpaceClient.UI.Controls
 
             Image image = (Bitmap)bmpbase.Clone();
 
-            Draw.DrawTacticalMapScreen(image, Global.Game.State.ScreenInfo, _session, _celestialBackground, currentFrameRate);
+            if (Global.Game.State.ScreenInfo.ControlActiveCelestialObjectLocation == new System.Drawing.Point(0, 0))
+            {
+                Global.Game.State.ScreenInfo.ControlActiveCelestialObjectLocation = ((Form1)ParentForm).ControlActiveCelestialObjectLocation;
+            }
+
+            Draw.DrawTacticalMapScreen(image, Global.Game.State, _session, _celestialBackground, currentFrameRate);
 
             imageTacticalMap.Image?.Dispose();
             imageTacticalMap.Image = image;

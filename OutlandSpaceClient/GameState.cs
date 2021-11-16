@@ -1,6 +1,6 @@
-﻿using Engine.DataProcessing;
-using OutlandSpaceClient.UI.Model;
+﻿using OutlandSpaceClient.UI.Model;
 using OutlandSpaceCommon;
+using Universe.Session;
 
 namespace OutlandSpaceClient
 {
@@ -9,6 +9,8 @@ namespace OutlandSpaceClient
         public IScreenInfo ScreenInfo;
 
         public EngineSettings Settings = new EngineSettings();
+
+        public IGameSessionData GameSession;
 
         public GameState()
         {

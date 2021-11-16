@@ -50,12 +50,21 @@ namespace Engine.Generation
             smallAsteroid.PositionX = 10300;
             smallAsteroid.PositionY = 10300;
             smallAsteroid.Direction = 90;
-            smallAsteroid.Speed = 10;
+            smallAsteroid.Speed = 1;
 
-            var objects = new List<ICelestialObject>();
+            var smallAsteroid2 = Tools.Random.GenerateSmallAsteroid(new SpacePoint(centerMap, radiusMap), radiusMap);
 
-            objects.Add(PlayerSpacecraft.Generate());
-            objects.Add(smallAsteroid);
+            smallAsteroid2.PositionX = 9800;
+            smallAsteroid2.PositionY = 9900;
+            smallAsteroid2.Direction = 180;
+            smallAsteroid2.Speed = 3;
+
+            var objects = new List<ICelestialObject>
+            {
+                PlayerSpacecraft.Generate(),
+                smallAsteroid,
+                smallAsteroid2
+            };
 
 
             return new CelestialMap(objects);

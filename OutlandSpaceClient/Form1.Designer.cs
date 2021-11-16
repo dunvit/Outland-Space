@@ -32,6 +32,7 @@ namespace OutlandSpaceClient
             this.cmdResume = new System.Windows.Forms.Button();
             this.controlDebugInformation1 = new OutlandSpaceClient.UI.Controls.ControlDebugInformation();
             this.crlTacticalMap = new OutlandSpaceClient.UI.Controls.ControlTacticalMap();
+            this.controlActiveCelestialObject = new OutlandSpaceClient.UI.Controls.ControlActiveCelestialObject();
             this.SuspendLayout();
             // 
             // cmdResume
@@ -60,11 +61,21 @@ namespace OutlandSpaceClient
             this.crlTacticalMap.Size = new System.Drawing.Size(150, 150);
             this.crlTacticalMap.TabIndex = 8;
             // 
+            // controlActiveCelestialObject
+            // 
+            this.controlActiveCelestialObject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.controlActiveCelestialObject.Location = new System.Drawing.Point(1056, 12);
+            this.controlActiveCelestialObject.Name = "controlActiveCelestialObject";
+            this.controlActiveCelestialObject.Size = new System.Drawing.Size(234, 172);
+            this.controlActiveCelestialObject.TabIndex = 9;
+            this.controlActiveCelestialObject.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 773);
+            this.Controls.Add(this.controlActiveCelestialObject);
             this.Controls.Add(this.controlDebugInformation1);
             this.Controls.Add(this.cmdResume);
             this.Controls.Add(this.crlTacticalMap);
@@ -81,6 +92,7 @@ namespace OutlandSpaceClient
         private System.Windows.Forms.Button cmdResume;
         private UI.Controls.ControlDebugInformation controlDebugInformation1;
         private UI.Controls.ControlTacticalMap crlTacticalMap;
+        private UI.Controls.ControlActiveCelestialObject controlActiveCelestialObject;
     }
 }
 

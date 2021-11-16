@@ -1,5 +1,4 @@
-﻿using Engine;
-using System;
+﻿using System;
 using System.Linq;
 using Universe.Geometry;
 using Universe.Session;
@@ -23,18 +22,7 @@ namespace OutlandSpaceClient.Tools
             var objectsInRange = gameSession.GetCelestialObjectsByDistance(coordinates, 20).Where(celestialObject =>
                 celestialObject.Id != gameSession.GetPlayerSpaceShip().Id).ToList();
 
-            if (objectsInRange.Count == 0)
-            {
-                if (_activeObjectId != 0)
-                {
-                    // Mouse left from active celestial object
-                    OnChangeActiveObject?.Invoke(0);
-                }
-
-                _activeObjectId = 0;
-
-                return;
-            }
+            if (objectsInRange.Count == 0) return;
 
             var id = objectsInRange.First().Id;
 
@@ -52,6 +40,11 @@ namespace OutlandSpaceClient.Tools
                     OnChangeActiveObject?.Invoke(id);
                     break;
             }
+        }
+
+        public void ClearActiveObject()
+        {
+            _activeObjectId = 0;
         }
     }
 }

@@ -11,5 +11,9 @@ namespace OutlandSpaceClient.UI.Model
         PointF CenterScreenOnMap { get; set; }
 
         IMapDrawSettings Settings { get; set; }
+
+        Point ControlActiveCelestialObjectLocation { get; set; }
+
+        int ActiveCelestialObjectId { get; set; }
     }
 }

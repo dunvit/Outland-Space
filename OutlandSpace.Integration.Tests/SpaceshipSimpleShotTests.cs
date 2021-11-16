@@ -1,8 +1,5 @@
 using Engine;
-using Engine.Generation;
 using NUnit.Framework;
-using Universe;
-using Universe.Geometry;
 using Universe.Objects.Equipment;
 using Universe.Objects.Equipment.Weapon;
 
@@ -10,15 +7,12 @@ namespace OutlandSpace.Integration.Tests
 {
     public class SpaceshipSimpleShotTests
     {
-        private IGameSession session;
-        private IGameServer _server;
-        private TurnCalculator _turnCalculator;
+        private GlobalEnvironment _environment;
 
         [SetUp]
         protected void Init()
         {
-            _server = new LocalGameServer();
-            _turnCalculator = new TurnCalculator();
+            _environment = Global.GetOneAsteroidEnvironment();
         }
 
         [Test]
@@ -26,32 +20,26 @@ namespace OutlandSpace.Integration.Tests
         {
             // Arrange
 
-            var exceptedId = 1000000001;
+            const int exceptedId = 1000000001;
 
             // Act
 
-            var spaceMap = GlobalSpaceMap.GenerateEmptyBase();
+            _environment.Session = _environment.TurnCalculator.Execute(_environment.Session, 1);
 
-            session = new GameSession(spaceMap);
-
-            var asteroid = AsteroidFactory.GenerateSmall(new Point(10100, 10100));
-            session.AddCelestialObject(asteroid);
-
-            _server.SessionInitialization(session.ToGameSession(), true);
-
-            session = _turnCalculator.Execute(session, 1);
-
-            var spaceship = session.GetPlayerSpaceShip();
+            var spaceship = _environment.Session.GetPlayerSpaceShip();
 
             var missileLauncher = (IWeaponModule)EquipmentFactory.Create(spaceship.Id, ModulesType.WeaponModuleLightMissileLauncher);
 
-            var command = missileLauncher.Shot(asteroid.Id);
+            var command = missileLauncher.Shot(_environment.Session.GetCelestialObjects()[1].Id);
 
-            _server.Command(session.Id, command);
+            _environment.Server.Command(_environment.Session.Id, command);
+
+            var commendOnServerSide = new Command(command);
 
             // Assert
 
             Assert.AreEqual(exceptedId, spaceship.Id);
+            Assert.AreEqual(exceptedId, commendOnServerSide.CelestialObjectId);
         }
     }
 }

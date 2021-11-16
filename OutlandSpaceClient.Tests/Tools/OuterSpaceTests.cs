@@ -21,6 +21,9 @@ namespace OutlandSpaceClient.Tests.Tools
             var asteroid = AsteroidFactory.GenerateSmall(new Point(10100, 10100));
             session.AddCelestialObject(asteroid);
 
+            var smallAsteroid2 = AsteroidFactory.GenerateSmall(new Point(9800, 9900));
+            session.AddCelestialObject(smallAsteroid2);
+
             var sessionData = session.ToGameSession();
 
             var outerSpace = new OutlandSpaceClient.Tools.OuterSpace();
@@ -32,17 +35,15 @@ namespace OutlandSpaceClient.Tests.Tools
 
             outerSpace.Refresh(sessionData, new Point(10100, 10100), OutlandSpaceClient.Tools.MouseArguments.Move);
             outerSpace.Refresh(sessionData, new Point(10150, 10150), OutlandSpaceClient.Tools.MouseArguments.Move);
-            outerSpace.Refresh(sessionData, new Point(10101, 10101), OutlandSpaceClient.Tools.MouseArguments.Move);
+            outerSpace.Refresh(sessionData, new Point(9801, 9901), OutlandSpaceClient.Tools.MouseArguments.Move);
             outerSpace.Refresh(sessionData, new Point(10150, 10150), OutlandSpaceClient.Tools.MouseArguments.Move);
             outerSpace.Refresh(sessionData, new Point(10107, 10091), OutlandSpaceClient.Tools.MouseArguments.Move);
             
             // Assert
 
             Assert.AreEqual(asteroid.Id, changeActiveObjectEvents[0]);
-            Assert.AreEqual(0, changeActiveObjectEvents[1]);
+            Assert.AreEqual(smallAsteroid2.Id, changeActiveObjectEvents[1]);
             Assert.AreEqual(asteroid.Id, changeActiveObjectEvents[2]);
-            Assert.AreEqual(0, changeActiveObjectEvents[3]);
-            Assert.AreEqual(asteroid.Id, changeActiveObjectEvents[4]);
         }
 
         [Test]

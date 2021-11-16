@@ -10,20 +10,23 @@ namespace OutlandSpaceClient
 {
     public class GameManager: IGameEvents
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
         public event Action<IGameSessionData> OnRefreshLocations;
         public event Action<IGameSessionData, int> OnEndTurnStep;
 
+        public event Action<IGameSessionData, int> OnChangeChangeActiveObject;
+        public event Action<IGameSessionData, int> OnChangeChangeSelectedObject;
+
         public event Action<Point> OnMouseMove;
 
         public GameState State;
-        private OuterSpace _outerSpace;
+        private readonly OuterSpace _outerSpace;
 
         private readonly Worker _worker;
-        private IGameSessionData _session;
+        
 
         public GameManager(Worker worker)
         {
@@ -40,34 +43,44 @@ namespace OutlandSpaceClient
             _worker.OnRefreshLocations += Event_RefreshLocations;
         }
 
-        private void Event_ChangeSelectedObject(int id)
+        private void Event_ChangeSelectedObject(int celestialObjectId)
         {
-            // TODO: Refresh UI active entity to ControlTacticalMap by GameState system
-            //throw new NotImplementedException();
+            OnChangeChangeSelectedObject?.Invoke(State.GameSession, celestialObjectId);
         }
 
-        private void Event_ChangeActiveObject(int id)
+        private void Event_ChangeActiveObject(int celestialObjectId)
         {
-            // TODO: Refresh UI active entity to ControlTacticalMap
-            //throw new NotImplementedException();
+            if (celestialObjectId == 0) return;
+
+            State.ScreenInfo.ActiveCelestialObjectId = celestialObjectId;
+
+            OnChangeChangeActiveObject?.Invoke(State.GameSession, celestialObjectId);
         }
+
 
         public void RefreshOuterSpace(Point coordinates, MouseArguments type)
         {
-            _outerSpace.Refresh(_session, coordinates, type);
+            _outerSpace.Refresh(State.GameSession, coordinates, type);
+
+            if (type == MouseArguments.RightClick)
+            {
+                State.ScreenInfo.ActiveCelestialObjectId = 0;
+                _outerSpace.ClearActiveObject();
+                OnChangeChangeActiveObject?.Invoke(State.GameSession, 0);
+            }
 
             OnMouseMove?.Invoke(coordinates);
         }
 
         private void Event_RefreshLocations(IGameSessionData session)
         {
-            _session = session;
+            State.GameSession = session;
             OnRefreshLocations?.Invoke(session);
         }
 
         private void Event_StartGame(IGameSessionData session)
         {
-            _session = session;
+            State.GameSession = session;
             OnStartGame?.Invoke(session);
         }
 
@@ -85,7 +98,7 @@ namespace OutlandSpaceClient
         {
             Logger.Debug($"[EndTurn] session.Id = {session.Id} session.Turn = {session.Turn}");
 
-            _session = session;
+            State.GameSession = session;
 
             OnEndTurnStep?.Invoke(session, step);
         }
@@ -94,7 +107,7 @@ namespace OutlandSpaceClient
         {
             Logger.Debug($"[EndTurn] session.Id = {session.Id} session.Turn = {session.Turn}");
 
-            _session = session;
+            State.GameSession = session;
 
             OnEndTurn?.Invoke(session);
         }        

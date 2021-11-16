@@ -9,7 +9,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 {
     public class Draw
     {
-        public static void DrawTacticalMapScreen(Image image, IScreenInfo screenParameters, IGameSessionData session, CelestialBackground _celestialBackground, int currentFrameRate)
+        public static void DrawTacticalMapScreen(Image image, GameState state, IGameSessionData session, CelestialBackground _celestialBackground, int currentFrameRate)
         {
             var graphics = Graphics.FromImage(image);
 
@@ -18,12 +18,11 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
             graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
-            // TODO: Calculate celestial object position by timespan instead of frame 
-            // recalculate frame number for draw process 
+            DrawStartFlicker.Execute(graphics, session, state.ScreenInfo, _celestialBackground);
 
-            DrawStartFlicker.Execute(graphics, session, screenParameters, _celestialBackground);
+            DrawCelestialObjects.Execute(graphics, session, state.ScreenInfo, currentFrameRate);
 
-            DrawCelestialObjects.Execute(graphics, session, screenParameters, currentFrameRate);
+            DrawControlsConnectors.Execute(graphics, session, state);
         }
 
         public static void DrawBaseTacticalMapScreen(Image image, IScreenInfo screenParameters, IGameSessionData session, CelestialBackground celestialBackground)

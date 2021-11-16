@@ -33,5 +33,10 @@ namespace Universe.Session
                 Map(e => e.celestialObject).
                 ToList();
         }
+
+        public static ICelestialObject GetCelestialObject(this IGameSessionData gameSession, int celestialObjectId)
+        {
+            return gameSession.GetCelestialObjects().FirstOrDefault(x => x.Id == celestialObjectId);
+        }
     }
 }

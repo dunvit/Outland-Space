@@ -11,6 +11,8 @@ namespace OutlandSpaceClient.UI.Model
         public PointF CenterScreenOnMap { get; set; }
         public Graphics GraphicSurface { get; set; }
         public IMapDrawSettings Settings { get; set; } = new MapSettings();
+        public Point ControlActiveCelestialObjectLocation { get; set; }
+        public int ActiveCelestialObjectId { get; set; }
 
         public ScreenParameters(float width, float height, int centerScreenX = 10000, int centerScreenY = 10000)
         {

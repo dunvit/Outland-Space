@@ -26,5 +26,7 @@ namespace Universe.Session
         DateTime ExecuteTime { get; set; }
 
         List<ICelestialObject> GetCelestialObjects();
+
+        
     }
 }
