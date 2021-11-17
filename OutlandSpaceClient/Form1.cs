@@ -3,19 +3,17 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using log4net;
-using Universe.Session;
-
+using OutlandSpaceClient.UI.Model;
 
 namespace OutlandSpaceClient
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, IGlobalUpdater
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public Point ControlActiveCelestialObjectLocation
-        {
-            get { return controlActiveCelestialObject.Location; }
-        }
+        private IGameManager _gameManager;
+
+        public Point ControlActiveCelestialObjectLocation => controlActiveCelestialObject.Location;
 
         public Form1()
         {
@@ -27,11 +25,7 @@ namespace OutlandSpaceClient
 
             crlTacticalMap.Dock = DockStyle.Fill;
 
-            if (Global.Game == null) return;
-
             Logger.Debug("Base game screen initialization finished.");
-
-            Global.Game.StartGameSession();
         }
 
         private void cmdResume_Click(object sender, EventArgs e)
@@ -41,7 +35,15 @@ namespace OutlandSpaceClient
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            crlTacticalMap.Initialization();
+            crlTacticalMap.Initialization(_gameManager);
+            controlActiveCelestialObject.Initialization(_gameManager);
+        }
+
+        public void Initialization(IGameManager gameManager)
+        {
+            _gameManager = gameManager;
+
+            Global.Game.StartGameSession();
         }
     }
 }

@@ -18,6 +18,8 @@ namespace Updater
         public event Action<IGameSessionData> OnStartGame;
         public event Action<IGameSessionData> OnEndTurn;
         public event Action<IGameSessionData> OnRefreshLocations;
+        public event Action<IGameSessionData, int> OnChangeChangeActiveObject;
+        public event Action<IGameSessionData, int> OnChangeChangeSelectedObject;
         public event Action<IGameSessionData, int> OnEndTurnStep;
 
         public Worker()

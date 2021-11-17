@@ -8,7 +8,7 @@ using Updater;
 
 namespace OutlandSpaceClient
 {
-    public class GameManager: IGameEvents
+    public class GameManager: IGameManager
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
@@ -16,13 +16,12 @@ namespace OutlandSpaceClient
         public event Action<IGameSessionData> OnEndTurn;
         public event Action<IGameSessionData> OnRefreshLocations;
         public event Action<IGameSessionData, int> OnEndTurnStep;
-
         public event Action<IGameSessionData, int> OnChangeChangeActiveObject;
         public event Action<IGameSessionData, int> OnChangeChangeSelectedObject;
 
         public event Action<Point> OnMouseMove;
 
-        public GameState State;
+        public GameState State { get; set; }
         private readonly OuterSpace _outerSpace;
 
         private readonly Worker _worker;

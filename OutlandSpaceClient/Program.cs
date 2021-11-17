@@ -22,7 +22,11 @@ namespace OutlandSpaceClient
 
             Logger.Info("Start 'Outland Space' game desktop client.");
 
-            Application.Run(new Form1());
+            var mainScreen = new Form1();
+
+            mainScreen.Initialization(Global.Game);
+
+            Application.Run(mainScreen);
         }
     }
 }

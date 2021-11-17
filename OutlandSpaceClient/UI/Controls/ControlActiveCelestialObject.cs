@@ -2,25 +2,23 @@
 using System.Drawing;
 using System.Windows.Forms;
 using OutlandSpaceClient.Tools;
+using OutlandSpaceClient.UI.Model;
 using Universe.Geometry;
 using Universe.Objects;
 using Universe.Session;
 
 namespace OutlandSpaceClient.UI.Controls
 {
-    public partial class ControlActiveCelestialObject : UserControl
+    public partial class ControlActiveCelestialObject : UserControl, IGlobalUpdater
     {
         private int _lastCelestialObjectId;
+        private IGameManager _gameManager;
 
         public ControlActiveCelestialObject()
         {
             InitializeComponent();
 
             panel1.Refresh();
-
-            if (Global.Game == null) return;
-
-            Global.Game.OnChangeChangeActiveObject += Event_ChangeActiveObject;
         }
 
         private void Event_ChangeActiveObject(IGameSessionData gameSession, int celestialObjectId)
@@ -29,7 +27,7 @@ namespace OutlandSpaceClient.UI.Controls
             {
                 if (_lastCelestialObjectId == 0) return;
 
-                if (Global.Game.State.ScreenInfo.ActiveCelestialObjectId == 0)
+                if (_gameManager.State.ScreenInfo.ActiveCelestialObjectId == 0)
                 {
                     Visible = false;
                 }
@@ -115,7 +113,14 @@ namespace OutlandSpaceClient.UI.Controls
         {
             lblExitScreen.ForeColor = Color.Silver;
             Visible = false;
-            Global.Game.RefreshOuterSpace(new Universe.Geometry.Point(0, 0), MouseArguments.RightClick);
+            _gameManager.RefreshOuterSpace(new Universe.Geometry.Point(0, 0), MouseArguments.RightClick);
+        }
+
+        public void Initialization(IGameManager gameManager)
+        {
+            _gameManager = gameManager;
+
+            _gameManager.OnChangeChangeActiveObject += Event_ChangeActiveObject;
         }
     }
 }
