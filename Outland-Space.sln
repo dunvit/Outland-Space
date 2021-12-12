@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlandSpace.Integration.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3BA93425-B099-4F21-BCB9-02265737D6E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrototypeUI", "PrototypeUI\PrototypeUI.csproj", "{FC91B653-8FF5-4B2D-9C4B-A92E81312AD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5945C38A-7CCC-4C9D-A239-2E0BE194F54C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC91B653-8FF5-4B2D-9C4B-A92E81312AD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC91B653-8FF5-4B2D-9C4B-A92E81312AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC91B653-8FF5-4B2D-9C4B-A92E81312AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC91B653-8FF5-4B2D-9C4B-A92E81312AD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
