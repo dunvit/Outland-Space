@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.SmartEnum" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OutlandSpaceClient\OutlandSpaceClient.csproj" />
     <ProjectReference Include="..\OutlandSpaceCommon\OutlandSpaceCommon.csproj" />
   </ItemGroup>
