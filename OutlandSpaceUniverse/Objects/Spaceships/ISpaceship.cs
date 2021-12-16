@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Universe.Characters;
 using Universe.Objects.Equipment;
 using Universe.Objects.Equipment.Control;
 using Universe.Objects.Equipment.Energy;
@@ -24,5 +25,7 @@ namespace Universe.Objects.Spaceships
         List<IShieldModule> GetWorkableShieldModules();
         List<ICommandModule> GetWorkableCommandModules();
         List<IRechargeableBattery> GetWorkableRechargeableBatteryModules();
+
+        public List<ICharacter> Crew { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace OutlandSpace.Integration.Tests
         [SetUp]
         protected void Init()
         {
-            _environment = Global.GetOneAsteroidEnvironment();
+            _environment = Global.GetOneEnemySpaceshipEnvironment();
         }
 
         [Test]
@@ -21,6 +21,7 @@ namespace OutlandSpace.Integration.Tests
             // Arrange
 
             const int exceptedId = 1000000001;
+            const int exceptedTargetId = 1000000002;
 
             // Act
 
@@ -40,6 +41,7 @@ namespace OutlandSpace.Integration.Tests
 
             Assert.AreEqual(exceptedId, spaceship.Id);
             Assert.AreEqual(exceptedId, commendOnServerSide.CelestialObjectId);
+            Assert.AreEqual(exceptedTargetId, commendOnServerSide.TargetCelestialObjectId);
         }
     }
 }
