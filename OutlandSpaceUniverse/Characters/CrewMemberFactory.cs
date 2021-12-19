@@ -7,7 +7,7 @@ namespace Universe.Characters
 {
     public class CrewMemberFactory
     {
-        public static ICharacter GenerateRandomCrewMemberWithoutSkills(int celestialObjectId = 0,int moduleId = 0)
+        public static ICharacter GenerateRandomCrewMember(int celestialObjectId = 0,int moduleId = 0)
         {
             var gender = GetRandomGender();
 

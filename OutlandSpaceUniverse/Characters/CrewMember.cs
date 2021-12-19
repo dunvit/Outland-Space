@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using LanguageExt;
 using Universe.Characters.Skills;
 
 namespace Universe.Characters
@@ -27,12 +26,37 @@ namespace Universe.Characters
             LocationCelestialObject = celestialObject;
             LocationModuleId = module;
 
-            _skills = skills;
+            _skills = skills ?? new List<ISkill>();
         }
 
         public double GetSkill(SkillType skill)
         {
-            throw new NotImplementedException();
+            const double defaultSkillValue = 0.0;
+
+            foreach (var currentSkill in _skills)
+            {
+                if (currentSkill.Label == skill)
+                {
+                    return currentSkill.Value;
+                }
+            }
+
+            return defaultSkillValue;
         }
+
+        public void SetSkill(ISkill skill)
+        {
+            if (_skills.Contains(skill)) _skills.Remove(skill);
+
+            _skills.Add(skill);
+        }
+
+        public void SetSkill(SkillType skill, double value)
+        {
+            var genericSkill = new GenericSkill(skill, value);
+
+            SetSkill(genericSkill);
+        }
+        
     }
 }

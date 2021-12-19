@@ -7,7 +7,7 @@ namespace Universe.Characters.Skills
 {
     public interface ISkill
     {
-        public string Label { get; set; }
+        public SkillType Label { get; set; }
 
         public double Value { get; set; }
     }

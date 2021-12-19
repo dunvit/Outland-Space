@@ -49,10 +49,10 @@ namespace Universe.Objects.Spaceships
             var commandModule = EquipmentFactory.Create(spaceship.Id, ModulesType.CommandModuleFrigateSize);
             spaceship.ToSpaceship().Modules.Add(commandModule);
 
-            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMemberWithoutSkills(spaceship.Id, shield.Id));
-            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMemberWithoutSkills(spaceship.Id, energy.Id));
-            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMemberWithoutSkills(spaceship.Id, weapon.Id));
-            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMemberWithoutSkills(spaceship.Id, commandModule.Id));
+            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMember(spaceship.Id, shield.Id));
+            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMember(spaceship.Id, energy.Id));
+            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMember(spaceship.Id, weapon.Id));
+            spaceship.Crew.Add(CrewMemberFactory.GenerateRandomCrewMember(spaceship.Id, commandModule.Id));
 
             return spaceship;
         }

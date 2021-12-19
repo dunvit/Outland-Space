@@ -16,5 +16,9 @@ namespace Universe.Characters
         public int LocationModuleId { get; set; }
 
         double GetSkill(SkillType skill);
+
+        void SetSkill(ISkill skill);
+
+        void SetSkill(SkillType skill, double value);
     }
 }
