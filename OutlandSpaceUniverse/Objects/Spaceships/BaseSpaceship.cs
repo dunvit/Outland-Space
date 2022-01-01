@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Universe.Characters;
 using Universe.Objects.Equipment;
 using Universe.Objects.Equipment.Control;
 using Universe.Objects.Equipment.Energy;
@@ -13,6 +14,8 @@ namespace Universe.Objects.Spaceships
     public class BaseSpaceship: BaseCelestialObject, ISpaceship
     {
         public List<IModule> Modules { get; set; } = new List<IModule>();
+
+        public List<ICharacter> Crew { get; set; } = new List<ICharacter>();
 
         public float MaxSpeed { get; set; }
 
@@ -79,6 +82,8 @@ namespace Universe.Objects.Spaceships
                 Select(weaponModule => weaponModule.ToRechargeableBattery()).
                 ToList();
         }
+
+        
 
         public List<ICommandModule> GetCommandModules()
         {

@@ -19,7 +19,10 @@ namespace OutlandSpace.Integration.Tests
             var spaceMap = GlobalSpaceMap.GenerateEmptyBase();
 
             Session = new GameSession(spaceMap);
+        }
 
+        public void GenerateOneAsteroidEnvironment()
+        {
             var asteroid = AsteroidFactory.GenerateSmall(new Point(10100, 10100));
             Session.AddCelestialObject(asteroid);
 

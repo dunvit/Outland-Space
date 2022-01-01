@@ -14,7 +14,7 @@ namespace Engine
 
         private readonly ReaderWriterLockSlim _sessionLock = new ReaderWriterLockSlim();
 
-        private List<int> _runnedSessions = new List<int>();
+        private readonly List<int> _runningSessions = new List<int>();
 
         public IGameSession CloneSession(int sessionId)
         {
@@ -32,7 +32,7 @@ namespace Engine
         {
             Validation(sessionId);
 
-            _runnedSessions.Add(sessionId);
+            _runningSessions.Add(sessionId);
 
             ExecuteTurnCalculation();
         }
@@ -41,7 +41,7 @@ namespace Engine
         {
             Validation(sessionId);
 
-            _runnedSessions.Remove(sessionId);
+            _runningSessions.Remove(sessionId);
         }
 
         public void Command(int sessionId, string command)
@@ -79,34 +79,34 @@ namespace Engine
             return SessionInitialization(session.ToGameSession(), debug);
         }
 
-        private bool isDebug;
-        private bool isExecute;
+        private bool _isDebug;
+        private bool _isExecute;
 
         private void ExecuteTurnCalculation()
         {
-            if(isExecute) return;
+            if(_isExecute) return;
 
-            isExecute = true;
+            _isExecute = true;
 
             foreach (var session in _sessions.GetAll())
             {
                 // TODO: Refactor update session pause status
-                session.IsPause = !_runnedSessions.Contains(session.Id);
+                session.IsPause = !_runningSessions.Contains(session.Id);
 
                 if (session.IsPause) continue;
-                if (isDebug) continue;
+                if (_isDebug) continue;
 
                 Execute(session.Id);
             }
 
-            isExecute = false;
+            _isExecute = false;
         }
 
         public IGameSessionData Execute(int sessionId, int turns = 1)
         {
             Validation(sessionId);
 
-            isDebug = true;
+            _isDebug = true;
 
             var session = _sessions.Get(sessionId).DeepClone();
 
@@ -120,7 +120,7 @@ namespace Engine
             session.UnBlock();
             _sessionLock.ExitWriteLock();
 
-            isDebug = false;
+            _isDebug = false;
 
             return result.ToGameSession();
         }

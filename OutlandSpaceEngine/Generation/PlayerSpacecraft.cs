@@ -7,7 +7,7 @@ namespace Engine.Generation
     {
         public static ICelestialObject Generate()
         {
-            var furyClassSpaceship = SpaceshipFactory.GenerateFuryClassSpaceship();
+            var furyClassSpaceship = SpaceshipFactory.GenerateFuryClassSpaceshipWithCrew();
 
             ICelestialObject spaceship = new BaseSpaceship
             {
@@ -19,7 +19,8 @@ namespace Engine.Generation
                 Speed = 10,
                 Modules = furyClassSpaceship.ToSpaceship().Modules,
                 MaxSpeed = furyClassSpaceship.ToSpaceship().MaxSpeed,
-                Type = CelestialObjectTypes.SpaceshipPlayer
+                Type = CelestialObjectTypes.SpaceshipPlayer,
+                Crew = furyClassSpaceship.ToSpaceship().Crew
             };
 
             return spaceship;
