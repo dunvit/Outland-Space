@@ -34,7 +34,7 @@ namespace OutlandSpaceClient.UI.Controls
             // 
             // controlActiveCelestialObject1
             // 
-            this.controlActiveCelestialObject1.Location = new System.Drawing.Point(443, 218);
+            this.controlActiveCelestialObject1.Location = new System.Drawing.Point(553, 271);
             this.controlActiveCelestialObject1.Name = "controlActiveCelestialObject1";
             this.controlActiveCelestialObject1.Size = new System.Drawing.Size(235, 167);
             this.controlActiveCelestialObject1.TabIndex = 0;
@@ -43,8 +43,10 @@ namespace OutlandSpaceClient.UI.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.controlActiveCelestialObject1);
+            this.DoubleBuffered = true;
             this.Name = "VisibilityControlsScreen";
             this.Text = "VisibilityControlsScreen";
             this.ResumeLayout(false);
