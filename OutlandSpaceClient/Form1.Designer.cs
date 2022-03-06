@@ -33,6 +33,9 @@ namespace OutlandSpaceClient
             this.controlDebugInformation1 = new OutlandSpaceClient.UI.Controls.ControlDebugInformation();
             this.crlTacticalMap = new OutlandSpaceClient.UI.Controls.ControlTacticalMap();
             this.controlActiveCelestialObject = new OutlandSpaceClient.UI.Controls.ControlActiveCelestialObject();
+            this.crlDebugCommands = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.crlDebugCommands.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdResume
@@ -70,11 +73,41 @@ namespace OutlandSpaceClient
             this.controlActiveCelestialObject.TabIndex = 9;
             this.controlActiveCelestialObject.Visible = false;
             // 
+            // crlDebugCommands
+            // 
+            this.crlDebugCommands.BackColor = System.Drawing.Color.Black;
+            this.crlDebugCommands.Controls.Add(this.button1);
+            this.crlDebugCommands.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.crlDebugCommands.ForeColor = System.Drawing.Color.DarkOrange;
+            this.crlDebugCommands.Location = new System.Drawing.Point(22, 83);
+            this.crlDebugCommands.Name = "crlDebugCommands";
+            this.crlDebugCommands.Size = new System.Drawing.Size(183, 157);
+            this.crlDebugCommands.TabIndex = 10;
+            this.crlDebugCommands.TabStop = false;
+            this.crlDebugCommands.Text = "Debug Commands";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.Linen;
+            this.button1.Location = new System.Drawing.Point(6, 24);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(171, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Object Found";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 773);
+            this.Controls.Add(this.crlDebugCommands);
             this.Controls.Add(this.controlActiveCelestialObject);
             this.Controls.Add(this.controlDebugInformation1);
             this.Controls.Add(this.cmdResume);
@@ -84,6 +117,7 @@ namespace OutlandSpaceClient
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.crlDebugCommands.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -93,6 +127,8 @@ namespace OutlandSpaceClient
         private UI.Controls.ControlDebugInformation controlDebugInformation1;
         private UI.Controls.ControlTacticalMap crlTacticalMap;
         private UI.Controls.ControlActiveCelestialObject controlActiveCelestialObject;
+        private System.Windows.Forms.GroupBox crlDebugCommands;
+        private System.Windows.Forms.Button button1;
     }
 }
 

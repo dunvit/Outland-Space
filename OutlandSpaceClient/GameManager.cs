@@ -44,28 +44,28 @@ namespace OutlandSpaceClient
 
         private void Event_ChangeSelectedObject(int celestialObjectId)
         {
-            OnChangeChangeSelectedObject?.Invoke(State.GameSession, celestialObjectId);
+            OnChangeChangeSelectedObject?.Invoke(State.GetGameSession(), celestialObjectId);
         }
 
         private void Event_ChangeActiveObject(int celestialObjectId)
         {
             if (celestialObjectId == 0) return;
 
-            State.ScreenInfo.ActiveCelestialObjectId = celestialObjectId;
+            State.SetActiveCelestialObject(celestialObjectId);
 
-            OnChangeChangeActiveObject?.Invoke(State.GameSession, celestialObjectId);
+            OnChangeChangeActiveObject?.Invoke(State.GetGameSession(), celestialObjectId);
         }
 
 
         public void RefreshOuterSpace(Point coordinates, MouseArguments type)
         {
-            _outerSpace.Refresh(State.GameSession, coordinates, type);
+            _outerSpace.Refresh(State.GetGameSession(), coordinates, type);
 
             if (type == MouseArguments.RightClick)
             {
                 State.ScreenInfo.ActiveCelestialObjectId = 0;
                 _outerSpace.ClearActiveObject();
-                OnChangeChangeActiveObject?.Invoke(State.GameSession, 0);
+                OnChangeChangeActiveObject?.Invoke(State.GetGameSession(), 0);
             }
 
             OnMouseMove?.Invoke(coordinates);
@@ -73,13 +73,13 @@ namespace OutlandSpaceClient
 
         private void Event_RefreshLocations(IGameSessionData session)
         {
-            State.GameSession = session;
+            State.SetSession(session);
             OnRefreshLocations?.Invoke(session);
         }
 
         private void Event_StartGame(IGameSessionData session)
         {
-            State.GameSession = session;
+            State.SetSession(session);
             OnStartGame?.Invoke(session);
         }
 
@@ -97,7 +97,7 @@ namespace OutlandSpaceClient
         {
             Logger.Debug($"[EndTurn] session.Id = {session.Id} session.Turn = {session.Turn}");
 
-            State.GameSession = session;
+            State.SetSession(session);
 
             OnEndTurnStep?.Invoke(session, step);
         }
@@ -106,7 +106,7 @@ namespace OutlandSpaceClient
         {
             Logger.Debug($"[EndTurn] session.Id = {session.Id} session.Turn = {session.Turn}");
 
-            State.GameSession = session;
+            State.SetSession(session);
 
             OnEndTurn?.Invoke(session);
         }        

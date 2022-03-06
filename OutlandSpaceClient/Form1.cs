@@ -45,5 +45,14 @@ namespace OutlandSpaceClient
 
             Global.Game.StartGameSession();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            crlDebugCommands.Visible = false;
+
+            MainScreenVisibilityManager.ShowFoundSignature(_gameManager);
+
+            crlDebugCommands.Visible = true;
+        }
     }
 }
