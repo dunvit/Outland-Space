@@ -17,7 +17,7 @@ namespace OutlandSpaceClient
 
         public GameState()
         {
-            ScreenInfo = new ScreenParameters(1920, 1080);
+            ScreenInfo = new ScreenParameters(1920, 1080, 10000, 10000);
         }
 
         public IGameSessionData GetGameSession()
