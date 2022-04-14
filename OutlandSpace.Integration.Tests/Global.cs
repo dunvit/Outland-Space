@@ -21,19 +21,6 @@ namespace OutlandSpace.Integration.Tests
 
             var spaceship = SpaceshipFactory.GenerateFuryClassSpaceshipWithCrew();
 
-            //ICelestialObject spaceship = new BaseSpaceship
-            //{
-            //    Id = 1000000002,
-            //    Name = "Target I",
-            //    Direction = 270,
-            //    PositionX = 10010,
-            //    PositionY = 10010,
-            //    Speed = 10,
-            //    Modules = furyClassSpaceship.ToSpaceship().Modules,
-            //    MaxSpeed = furyClassSpaceship.ToSpaceship().MaxSpeed,
-            //    Type = CelestialObjectTypes.SpaceshipNpcEnemy
-            //};
-
             spaceship.Id = 1000000002;
             spaceship.Name = "Target I";
             spaceship.Direction = 270;
