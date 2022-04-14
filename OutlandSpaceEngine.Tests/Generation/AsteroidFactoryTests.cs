@@ -1,4 +1,5 @@
-﻿using Engine.Generation;
+﻿using BenchmarkDotNet.Running;
+using Engine.Generation;
 using NUnit.Framework;
 using Universe.Objects;
 using Universe.Objects.Points;
@@ -13,6 +14,8 @@ namespace OutlandSpaceEngine.Tests.Generation
         {
             const double centerMap = 1000;
             const int radiusMap = 500;
+
+            var summary = BenchmarkRunner.Run<AsteroidFactory>();
 
             var asteroid = AsteroidFactory.GenerateSmall(new SpacePoint(centerMap, centerMap), radiusMap);
 

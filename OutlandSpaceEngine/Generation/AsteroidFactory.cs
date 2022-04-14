@@ -1,10 +1,12 @@
-﻿using Universe.Geometry;
+﻿using BenchmarkDotNet.Attributes;
+using Universe.Geometry;
 using Universe.Objects;
 using Universe.Objects.Asteroids;
 using Universe.Objects.Points;
 
 namespace Engine.Generation
 {
+    [MemoryDiagnoser]
     public class AsteroidFactory
     {
         private static ICelestialObjectBuilder BasePreset()
@@ -19,6 +21,7 @@ namespace Engine.Generation
             return builder.Build();
         }
 
+        [Benchmark]
         public static ICelestialObject GenerateSmall(SpacePoint centerMap, int radius)
         {
             var asteroidBuilder = BasePreset()
