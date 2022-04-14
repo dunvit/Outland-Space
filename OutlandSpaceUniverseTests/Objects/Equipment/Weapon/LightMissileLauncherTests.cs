@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Universe.Objects.Equipment;
 using Universe.Objects.Equipment.Weapon;
 
-namespace OutlandSpaceUniverse.Tests.Objects.Equipment.Weapon
+namespace Tests.Universe.Objects.Equipment.Weapon
 {
     [TestFixture]
     public class LightMissileLauncherTests

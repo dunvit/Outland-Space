@@ -59,14 +59,14 @@ namespace OutlandSpaceEngine.Tests.Generation
             var expectedStructureFull = 5;
 
             // Act
-            var moduleFromEnergyModuleFactory = WeaponModuleFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher).ToWeapon();
+            var moduleFromWeaponModuleFactory = WeaponModuleFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher).ToWeapon();
             var moduleFromEquipmentFactory = EquipmentFactory.Create(1, ModulesType.WeaponModuleLightMissileLauncher).ToWeapon();
 
             // Assert
-            Assert.AreEqual(expectedModuleName, moduleFromEnergyModuleFactory.Name);
-            Assert.AreEqual(expectedBaseAccuracy, moduleFromEnergyModuleFactory.BaseAccuracy);
-            Assert.AreEqual(expectedAmmoId, moduleFromEnergyModuleFactory.AmmoId);
-            Assert.AreEqual(ModuleCategory.Weapon, moduleFromEnergyModuleFactory.Category);
+            Assert.AreEqual(expectedModuleName, moduleFromWeaponModuleFactory.Name);
+            Assert.AreEqual(expectedBaseAccuracy, moduleFromWeaponModuleFactory.BaseAccuracy);
+            Assert.AreEqual(expectedAmmoId, moduleFromWeaponModuleFactory.AmmoId);
+            Assert.AreEqual(ModuleCategory.Weapon, moduleFromWeaponModuleFactory.Category);
 
             Assert.AreEqual(expectedModuleName, moduleFromEquipmentFactory.Name);
             Assert.AreEqual(expectedBaseAccuracy, moduleFromEquipmentFactory.BaseAccuracy);
