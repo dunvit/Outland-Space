@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Drawing;
+using System.Linq;
 using Engine;
 using OutlandSpaceClient.UI.Model;
 using OutlandSpaceCommon;
@@ -23,6 +24,12 @@ namespace OutlandSpaceClient
         public IGameSessionData GetGameSession()
         {
             return _gameSession;
+        }
+
+        public void Refresh()
+        {
+            var spacecraft = _gameSession.GetPlayerSpaceShip();
+            ScreenInfo.CenterScreenOnMap = new PointF((float)spacecraft.PositionX, (float)spacecraft.PositionY);
         }
 
         public ICelestialObject GetActiveCelestialObject()

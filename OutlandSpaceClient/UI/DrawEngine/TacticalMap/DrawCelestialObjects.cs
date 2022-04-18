@@ -21,7 +21,7 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
                         DrawMissile(graphics, session, screenInfo, currentObject);
                         break;
                     case CelestialObjectTypes.SpaceshipPlayer:
-                        DrawSpaceship(graphics, session, screenInfo, currentObject);
+                        DrawPlayerSpaceship(graphics, session, screenInfo, currentObject);
                         break;
                     case CelestialObjectTypes.SpaceshipNpcNeutral:
                         DrawSpaceship(graphics, session, screenInfo, currentObject);
@@ -38,6 +38,8 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
                     case CelestialObjectTypes.Explosion:
                         break;
                 }
+
+                DrawDirection(graphics, screenInfo, currentObject);
             }
         }
 
@@ -85,6 +87,25 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
             graphics.FillEllipse(new SolidBrush(color), screenCoordinates.X - 2, screenCoordinates.Y - 2, 4, 4);
             graphics.DrawEllipse(new Pen(color), screenCoordinates.X - 4, screenCoordinates.Y - 4, 8, 8);
+        }
+
+        private static void DrawPlayerSpaceship(Graphics graphics, IGameSessionData session, IScreenInfo screenInfo, ICelestialObject spaceShip)
+        {
+            var screenCoordinates = UiTools.ToScreenCoordinates(screenInfo, spaceShip.Location(session));
+            var ship = spaceShip;
+            var color = Color.DarkOliveGreen;
+
+            graphics.FillEllipse(new SolidBrush(color), screenCoordinates.X - 2, screenCoordinates.Y - 2, 4, 4);
+            graphics.DrawEllipse(new Pen(color), screenCoordinates.X - 4, screenCoordinates.Y - 4, 8, 8);
+
+
+            graphics.DrawEllipse(new Pen(color), screenCoordinates.X - 8, screenCoordinates.Y - 8, 16, 16);
+        }
+
+        private static void DrawDirection(Graphics graphics, IScreenInfo screenInfo, ICelestialObject celestialObject)
+        {
+            //SpaceMapGraphics.DrawLongLine(screenInfo, celestialObject, graphics, Color.Red);
+            DrawCommon.DrawArrow(screenInfo, celestialObject, graphics, Color.Red, 12);
         }
     }
 }

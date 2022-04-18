@@ -20,6 +20,8 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
 
             DrawStartFlicker.Execute(graphics, session, state.ScreenInfo, _celestialBackground);
 
+            DrawGrid.Execute(graphics, state.ScreenInfo);
+
             DrawCelestialObjects.Execute(graphics, session, state.ScreenInfo, currentFrameRate);
 
             DrawControlsConnectors.Execute(graphics, session, state);
@@ -35,8 +37,6 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
             graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
             DrawGridBackGround.Execute(graphics, screenParameters);
-
-            DrawGrid.Execute(graphics, screenParameters);
 
             DrawStartFlicker.Execute(graphics, session, screenParameters, celestialBackground);
         }

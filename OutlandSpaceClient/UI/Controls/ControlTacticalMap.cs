@@ -103,6 +103,8 @@ namespace OutlandSpaceClient.UI.Controls
                 _gameManager.State.ScreenInfo.ControlActiveCelestialObjectLocation = ((Form1)ParentForm).ControlActiveCelestialObjectLocation;
             }
 
+            _gameManager.State.Refresh();
+
             Draw.DrawTacticalMapScreen(image, _gameManager.State, _session, _celestialBackground, currentFrameRate);
 
             imageTacticalMap.Image?.Dispose();
