@@ -9,5 +9,9 @@
         bool IsDrawSpaceshipInformation { get; set; }
 
         bool IsCenterOnSpaceship { get; set; }
+
+        int Scale { get; }
+
+        void ChangeScale(int delta);
     }
 }

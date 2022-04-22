@@ -11,11 +11,10 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
         {
             try
             {
-                double xLeftPosition = screenInfo.CenterScreenOnMap.X - screenInfo.Center.X;
-                double yLeftPosition = screenInfo.CenterScreenOnMap.Y - screenInfo.Center.Y;
+                var scale = screenInfo.Settings.Scale;
 
-                DrawGridByStep(graphics, screenInfo, xLeftPosition, yLeftPosition, 10, Color.FromArgb(8, 8, 8));
-                DrawGridByStep(graphics, screenInfo, xLeftPosition, yLeftPosition, 100, Color.FromArgb(18, 18, 18));
+                DrawGridBasicZones(graphics, screenInfo, scale * 5, Color.FromArgb(8, 8, 8));
+                DrawGridBasicZones(graphics, screenInfo, scale * 50, Color.FromArgb(18, 18, 18));
             }
             catch
             {
@@ -23,35 +22,36 @@ namespace OutlandSpaceClient.UI.DrawEngine.TacticalMap
             }
         }
 
-        private static void DrawGridByStep(Graphics graphics, IScreenInfo screenInfo, double xLeftPosition, double yLeftPosition, int step, Color color)
+        private static void DrawGridBasicZones(Graphics graphics, IScreenInfo screenInfo, int step, Color color)
         {
             var smallGridPen = new Pen(color);
 
-            const int offsetX = 400;
-            const int offsetY = 400;
+            var offsetX = step * 2;
+            var offsetY = step * 2;
 
-            var leftCornerX = (int)Math.Round(xLeftPosition / step) * step - offsetX;
-            var leftCornerY = (int)Math.Round(yLeftPosition / step) * step - offsetY;
+            var stepsInScreenWidth = screenInfo.Width / step;
+            var stepsInScreenHeight = screenInfo.Height / step;
 
-            for (var i = leftCornerX;
-                i < screenInfo.CenterScreenOnMap.X + screenInfo.Center.X + offsetX * 2;
-                i += step)
+            var mapTopLeftCorner = new Point(
+                (int)(Math.Round((screenInfo.CenterScreenOnMap.X - screenInfo.Width / 2) / step) * step),
+                (int)(Math.Round((screenInfo.CenterScreenOnMap.Y - screenInfo.Height / 2) / step) * step));
+
+            for (var i = 0; i < stepsInScreenWidth; i++)
             {
-                var lineFrom = UiTools.ToScreenCoordinates(screenInfo, new PointF(i, leftCornerY));
-                var lineTo = UiTools.ToScreenCoordinates(screenInfo, new PointF(i, leftCornerY + screenInfo.Height + offsetY));
-
+                var lineFrom = UiTools.ToScreenCoordinates(screenInfo, new PointF(mapTopLeftCorner.X + i * step, mapTopLeftCorner.Y - offsetY));
+                var lineTo = UiTools.ToScreenCoordinates(screenInfo, new PointF(mapTopLeftCorner.X + i * step, mapTopLeftCorner.Y + screenInfo.Height ));
 
                 graphics.DrawLine(smallGridPen, lineFrom.X, lineFrom.Y, lineTo.X, lineTo.Y);
+
             }
 
-            for (var i = leftCornerY;
-                i < screenInfo.CenterScreenOnMap.Y + screenInfo.Center.Y + offsetY * 2;
-                i += step)
+            for (var i = 0; i < stepsInScreenHeight; i++)
             {
-                var lineFrom = UiTools.ToScreenCoordinates(screenInfo, new PointF(leftCornerX, i));
-                var lineTo = UiTools.ToScreenCoordinates(screenInfo, new PointF(leftCornerX + screenInfo.Width + offsetX * 2, i));
+                var lineFrom = UiTools.ToScreenCoordinates(screenInfo, new PointF(mapTopLeftCorner.X - offsetX, mapTopLeftCorner.Y + i * step));
+                var lineTo = UiTools.ToScreenCoordinates(screenInfo, new PointF(mapTopLeftCorner.X + screenInfo.Width, mapTopLeftCorner.Y + i * step));
 
                 graphics.DrawLine(smallGridPen, lineFrom.X, lineFrom.Y, lineTo.X, lineTo.Y);
+
             }
         }
     }

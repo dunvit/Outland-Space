@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Engine.Generation.Celestial;
@@ -10,8 +11,13 @@ using Universe.Geometry;
 
 namespace OutlandSpaceClient.UI.Controls
 {
-    public partial class ControlTacticalMap : BaseRenderControl, IGlobalUpdater
+    public partial class ControlTacticalMap : BaseRenderControl, IGlobalUpdater, IMessageFilter
     {
+        // P/Invoke declarations
+        [DllImport("user32.dll")]
+        private static extern IntPtr WindowFromPoint(System.Drawing.Point pt);
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
 
         static Bitmap bmpLive;
         static Bitmap bmpLast;
@@ -139,6 +145,20 @@ namespace OutlandSpaceClient.UI.Controls
         }
 
 
-        
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg == 0x20a)
+            {
+                // WM_MOUSEWHEEL, find the control at screen position m.LParam
+                System.Drawing.Point pos = new System.Drawing.Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
+                IntPtr hWnd = WindowFromPoint(pos);
+                if (hWnd != IntPtr.Zero && hWnd != m.HWnd && Control.FromHandle(hWnd) != null)
+                {
+                    SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

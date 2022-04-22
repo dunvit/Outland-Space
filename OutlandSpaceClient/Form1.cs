@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using log4net;
 using OutlandSpaceClient.UI.Model;
@@ -9,7 +10,7 @@ namespace OutlandSpaceClient
 {
     public partial class Form1 : Form, IGlobalUpdater
     {
-        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
         private IGameManager _gameManager;
 
@@ -25,7 +26,15 @@ namespace OutlandSpaceClient
 
             crlTacticalMap.Dock = DockStyle.Fill;
 
+            MouseWheel += ChangeScaleEvent;
+            MouseMove += ChangeScaleEvent;
+
             Logger.Debug("Base game screen initialization finished.");
+        }
+
+        private void ChangeScaleEvent(object sender, MouseEventArgs e)
+        {
+            _gameManager.State.ScreenInfo.Settings.ChangeScale(e.Delta);
         }
 
         private void cmdResume_Click(object sender, EventArgs e)

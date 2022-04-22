@@ -76,6 +76,8 @@ namespace OutlandSpaceClient.UI.Controls
         public void RefreshControl()
         {
             txtLocation.Text = $@"Mouse x: {_mouse.X} y: {_mouse.Y}";
+
+            label1.Text = $@"Scale is: {Global.Game.State.ScreenInfo.Settings.Scale}";
         }
     }
 }
